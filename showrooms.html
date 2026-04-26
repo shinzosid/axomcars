@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axom Cars | Showrooms</title>
+    <title>Axom Cars | Showrooms & Outlets</title>
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
@@ -12,7 +12,65 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .location-meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #888;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-value {
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nearby-badge {
+            display: inline-block;
+            background: #f0f7ff;
+            color: #1d70b8;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        .review-link {
+            font-size: 0.85rem;
+            color: #1d70b8;
+            text-decoration: none;
+            margin-left: 8px;
+        }
+
+        .review-link:hover {
+            text-decoration: underline;
+        }
+
+        .rating-container {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -48,6 +106,9 @@
                 <a href="showrooms.html" class="nav-dropdown">
                     <span>Showrooms</span>
                 </a>
+                <a href="showrooms.html#outlets" class="nav-dropdown">
+                    <span>Outlets</span>
+                </a>
                 <a href="workshops.html" class="nav-dropdown">
                     <span>Workshops</span>
                 </a>
@@ -76,10 +137,14 @@
         <section class="page-header-section light-bg">
             <div class="container">
                 <div class="section-header">
-                    <h1>Our Showrooms</h1>
-                    <p>Experience the premium range of Tata Motors at our state-of-the-art showrooms in Guwahati.</p>
+                    <h1>Our Locations</h1>
+                    <p>Experience the Axom standard of excellence across our network of showrooms and outlets.</p>
                 </div>
-                
+
+                <!-- Showrooms Section -->
+                <div class="location-category-title">
+                    <h2>Primary Showrooms</h2>
+                </div>
                 <div class="showrooms-grid">
                     <!-- Dispur Showroom -->
                     <div class="showroom-card">
@@ -93,30 +158,46 @@
                         </div>
                         <div class="showroom-content">
                             <h3>Axom Cars - Dispur</h3>
-                            <div class="showroom-rating">
-                                <div class="stars">
-                                    <span class="star fill">★</span>
-                                    <span class="star fill">★</span>
-                                    <span class="star fill">★</span>
-                                    <span class="star fill">★</span>
-                                    <span class="star half">★</span>
-                                </div>
+                            <div class="rating-container">
+                                <div class="stars"><span class="star fill">★</span><span class="star fill">★</span><span
+                                        class="star fill">★</span><span class="star fill">★</span><span
+                                        class="star half">★</span></div>
                                 <span class="rating-value">4.6</span>
-                                <span class="review-count">(172 Reviews)</span>
+                                <a href="https://www.google.com/maps/search/Axom+Cars+Dispur+Guwahati#reviews"
+                                    target="_blank" class="review-link">(170+ Reviews)</a>
                             </div>
                             <div class="showroom-info">
                                 <p class="address">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                                    Ground Floor, Supermarket, Unique Avenuee, GS Rd, Dispur, Bormotoria, Guwahati, Assam 781006
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                    Ground Floor, Unique Avenuee, GS Road, Opp, Supermarket, Dispur, Guwahati 781006
                                 </p>
-                                <p class="phone">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                                    096191 89624
-                                </p>
+                                <div class="location-meta-grid">
+                                    <div class="meta-item">
+                                        <span class="meta-label">Landmark</span>
+                                        <span class="meta-value">Opposite Supermarket</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Timing</span>
+                                        <span class="meta-value">9:30 AM - 7:00 PM</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Contact</span>
+                                        <span class="meta-value">7099034014</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Email</span>
+                                        <span class="meta-value">info.sales@axomcars.in</span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="showroom-actions">
-                                <a href="https://www.google.com/maps/place/Tata+Motors+Cars+Showroom+-+Axom+Cars,+Dispur/@26.1412278,91.7965178,17z/data=!3m1!4b1!4m6!3m5!1s0x375a599d5d0a81e1:0x3abe583d2ffbd03c!8m2!3d26.1412278!4d91.7965178!16s%2Fg%2F11t3gxvvb9!5m1!1e1?entry=ttu" target="_blank" class="btn btn-primary">Get Directions</a>
-                                <a href="https://www.google.com/maps/place/Tata+Motors+Cars+Showroom+-+Axom+Cars,+Dispur/@26.1412278,91.7965178,17z/data=!4m8!3m7!1s0x375a599d5d0a81e1:0x3abe583d2ffbd03c!8m2!3d26.1412278!4d91.7965178!9m1!1b1!16s%2Fg%2F11t3gxvvb9!5m1!1e1?entry=ttu" target="_blank" class="btn btn-secondary">View Reviews</a>
+                                <a href="https://www.google.com/maps/search/Axom+Cars+Dispur" target="_blank"
+                                    class="btn btn-primary">Get Directions</a>
                             </div>
                         </div>
                     </div>
@@ -133,30 +214,220 @@
                         </div>
                         <div class="showroom-content">
                             <h3>Axom Cars - Ulubari</h3>
-                            <div class="showroom-rating">
-                                <div class="stars">
-                                    <span class="star fill">★</span>
-                                    <span class="star fill">★</span>
-                                    <span class="star fill">★</span>
-                                    <span class="star fill">★</span>
-                                    <span class="star fill">★</span>
-                                </div>
+                            <div class="rating-container">
+                                <div class="stars"><span class="star fill">★</span><span class="star fill">★</span><span
+                                        class="star fill">★</span><span class="star fill">★</span><span
+                                        class="star fill">★</span></div>
                                 <span class="rating-value">4.9</span>
-                                <span class="review-count">(34 Reviews)</span>
+                                <a href="https://www.google.com/maps/search/Axom+Cars+Ulubari+Guwahati#reviews"
+                                    target="_blank" class="review-link">(30+ Reviews)</a>
                             </div>
                             <div class="showroom-info">
                                 <p class="address">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                                    GROUND FLOOR, GS Rd, near Dolphin Galaxy, South Sarania, Ulubari, Guwahati, Assam 781007
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                    GROUND FLOOR, GS Rd, near Dolphin Galaxy, Ulubari, Guwahati 781007
                                 </p>
-                                <p class="phone">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                                    084228 56067
-                                </p>
+                                <div class="location-meta-grid">
+                                    <div class="meta-item">
+                                        <span class="meta-label">Landmark</span>
+                                        <span class="meta-value">Near Dolphin Galaxy</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Timing</span>
+                                        <span class="meta-value">9:00 AM - 7:00 PM</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Contact</span>
+                                        <span class="meta-value">7099034013</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Email</span>
+                                        <span class="meta-value">info.sales@axomcars.in</span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="showroom-actions">
-                                <a href="https://www.google.com/maps/place/Tata+Motors+Cars+Showroom+-+Axom+Cars,+Ulubari/@26.174001,91.7203913,14z/data=!4m6!3m5!1s0x375a590001e5fba9:0x9bede774cb998859!8m2!3d26.174001!4d91.7585001!16s%2Fg%2F11mcq3xnb_!5m1!1e1?entry=ttu" target="_blank" class="btn btn-primary">Get Directions</a>
-                                <a href="https://www.google.com/maps/place/Tata+Motors+Cars+Showroom+-+Axom+Cars,+Ulubari/@26.174001,91.7203913,14z/data=!4m8!3m7!1s0x375a590001e5fba9:0x9bede774cb998859!8m2!3d26.174001!4d91.7585001!9m1!1b1!16s%2Fg%2F11mcq3xnb_!5m1!1e1?entry=ttu" target="_blank" class="btn btn-secondary">View Reviews</a>
+                                <a href="https://www.google.com/maps/search/Axom+Cars+Ulubari" target="_blank"
+                                    class="btn btn-primary">Get Directions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outlets Section -->
+                <div id="outlets" class="location-category-title" style="margin-top: 60px;">
+                    <h2>Regional Outlets</h2>
+                </div>
+                <div class="showrooms-grid">
+                    <!-- Rangia -->
+                    <div class="showroom-card">
+                        <div class="showroom-carousel" id="carousel-rangia">
+                            <div class="carousel-images">
+                                <img src="images/showrooms/rangia/1.jpg" alt="Axom Cars Rangia 1" class="active">
+                                <img src="images/showrooms/rangia/2.jpg" alt="Axom Cars Rangia 2">
+                            </div>
+                            <button class="carousel-prev" onclick="moveCarousel('carousel-rangia', -1)">❮</button>
+                            <button class="carousel-next" onclick="moveCarousel('carousel-rangia', 1)">❯</button>
+                        </div>
+                        <div class="showroom-content">
+                            <h3>Axom Cars - Rangia</h3>
+                            <div class="rating-container">
+                                <div class="stars"><span class="star fill">★</span><span class="star fill">★</span><span
+                                        class="star fill">★</span><span class="star fill">★</span><span
+                                        class="star fill">★</span></div>
+                                <span class="rating-value">4.8</span>
+                                <a href="https://www.google.com/maps/search/Axom+Cars+Rangia#reviews" target="_blank"
+                                    class="review-link">(Highly Rated)</a>
+                            </div>
+                            <div class="showroom-info">
+                                <p class="address">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                    1NO, Nakul Rd, near ARMY AUDITIORIUM, Rangia, Sundhia 781354
+                                </p>
+                                <div class="location-meta-grid">
+                                    <div class="meta-item">
+                                        <span class="meta-label">Landmark</span>
+                                        <span class="meta-value">Near ARMY AUDITIORIUM</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Contact</span>
+                                        <span class="meta-value">7099013466</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Email</span>
+                                        <span class="meta-value">info.sales@axomcars.in</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Nearby Areas</span>
+                                        <span class="meta-value">Rangia</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showroom-actions">
+                                <a href="https://www.google.com/maps/search/Axom+Cars+Rangia" target="_blank"
+                                    class="btn btn-primary">Get Directions</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jagiroad -->
+                    <div class="showroom-card">
+                        <div class="showroom-carousel" id="carousel-jagiroad">
+                            <div class="carousel-images">
+                                <img src="images/showrooms/jagiroad/1.jpg" alt="Axom Cars Jagiroad 1" class="active">
+                                <img src="images/showrooms/jagiroad/2.jpg" alt="Axom Cars Jagiroad 2">
+                            </div>
+                            <button class="carousel-prev" onclick="moveCarousel('carousel-jagiroad', -1)">❮</button>
+                            <button class="carousel-next" onclick="moveCarousel('carousel-jagiroad', 1)">❯</button>
+                        </div>
+                        <div class="showroom-content">
+                            <h3>Axom Cars - Jagiroad</h3>
+                            <div class="rating-container">
+                                <div class="stars"><span class="star fill">★</span><span class="star fill">★</span><span
+                                        class="star fill">★</span><span class="star fill">★</span><span
+                                        class="star fill">★</span></div>
+                                <span class="rating-value">4.8</span>
+                                <a href="https://www.google.com/maps/search/Axom+Cars+Jagiroad#reviews" target="_blank"
+                                    class="review-link">(Highly Rated)</a>
+                            </div>
+                            <div class="showroom-info">
+                                <p class="address">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                    NH 27, opposite OMM Bajaj, Jagiroad, Assam 782410
+                                </p>
+                                <div class="location-meta-grid">
+                                    <div class="meta-item">
+                                        <span class="meta-label">Landmark</span>
+                                        <span class="meta-value">Opposite OMM Bajaj</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Contact</span>
+                                        <span class="meta-value">7099013467</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Email</span>
+                                        <span class="meta-value">info.sales@axomcars.in</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Nearby Areas</span>
+                                        <span class="meta-value">Jagiroad</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showroom-actions">
+                                <a href="https://www.google.com/maps/search/Axom+Cars+Jagiroad" target="_blank"
+                                    class="btn btn-primary">Get Directions</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dudhnoi -->
+                    <div class="showroom-card">
+                        <div class="showroom-carousel" id="carousel-dudhnoi">
+                            <div class="carousel-images">
+                                <img src="images/showrooms/dudhnoi/1.jpg" alt="Axom Cars Dudhnoi 1" class="active">
+                                <img src="images/showrooms/dudhnoi/2.jpg" alt="Axom Cars Dudhnoi 2">
+                            </div>
+                            <button class="carousel-prev" onclick="moveCarousel('carousel-dudhnoi', -1)">❮</button>
+                            <button class="carousel-next" onclick="moveCarousel('carousel-dudhnoi', 1)">❯</button>
+                        </div>
+                        <div class="showroom-content">
+                            <h3>Axom Cars - Dudhnoi</h3>
+                            <div class="rating-container">
+                                <div class="stars"><span class="star fill">★</span><span class="star fill">★</span><span
+                                        class="star fill">★</span><span class="star fill">★</span><span
+                                        class="star fill">★</span></div>
+                                <span class="rating-value">4.7</span>
+                                <a href="https://www.google.com/maps/search/Axom+Cars+Dudhnoi#reviews" target="_blank"
+                                    class="review-link">(Highly Rated)</a>
+                            </div>
+                            <div class="showroom-info">
+                                <p class="address">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                    GROUND FLOOR NH 17PART 1, THEKASHU PT -1, NEW DUDHNOI 783124
+                                </p>
+                                <div class="location-meta-grid">
+                                    <div class="meta-item">
+                                        <span class="meta-label">Landmark</span>
+                                        <span class="meta-value">HDFC Bank</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Contact</span>
+                                        <span class="meta-value">7099013467</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Email</span>
+                                        <span class="meta-value">crmservice@axomcars.in</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Nearby Areas</span>
+                                        <span class="meta-value">Dudhnoi</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showroom-actions">
+                                <a href="https://www.google.com/maps/search/Axom+Cars+Dudhnoi" target="_blank"
+                                    class="btn btn-primary">Get Directions</a>
                             </div>
                         </div>
                     </div>
@@ -171,164 +442,34 @@
                 <div class="footer-col">
                     <img src="logo.png" alt="Axom Cars" class="logo-white">
                     <p>Redefining luxury and performance in every journey. Join the Axom family today.</p>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/p/Axom-Cars-61555218074115/" target="_blank"
-                            class="social-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                            </svg>
-                            <span>Facebook</span>
-                        </a>
-                        <a href="https://www.instagram.com/axomcars/" target="_blank" class="social-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>
-                            <span>Instagram</span>
-                        </a>
-                    </div>
                 </div>
-
                 <div class="footer-col">
-                    <h4>Axom Range</h4>
+                    <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="cars.html">SUVs</a></li>
-                        <li><a href="cars.html">Sedans</a></li>
-                        <li><a href="index.html#range">Electric Vehicles</a></li>
-                        <li><a href="offers.html">Latest Offers</a></li>
+                        <li><a href="showrooms.html">Showrooms</a></li>
+                        <li><a href="showrooms.html#outlets">Outlets</a></li>
+                        <li><a href="workshops.html">Workshops</a></li>
+                        <li><a href="careers.html">Careers</a></li>
                     </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Help & Support</h4>
-                    <ul class="footer-links">
-                        <li><a href="javascript:void(0)" onclick="openTestDriveModal()">Book Test Drive</a></li>
-                        <li><a href="finance.html">EMI Calculator</a></li>
-                        <li><a href="tel:7099034015">Service: 7099034015</a></li>
-                        <li><a href="tel:7099064993">Sales: 7099064993</a></li>
-                        <li><a href="mailto:info.sales@axomcars.in">Email Us</a></li>
-                        <li><a href="showrooms.html">Dealer Locator</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col footer-contact">
-                    <h4>Connect</h4>
-                    <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                        </svg>
-                        Sales: 7099064993
-                    </p>
-                    <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect width="20" height="16" x="2" y="4" rx="2" />
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                        </svg>
-                        info.sales@axomcars.in
-                    </p>
                 </div>
             </div>
-
             <div class="footer-bottom">
-                <p>For Roadside Assistance, call on - 18002098282</p>
                 <p>&copy; 2026 Axom Cars. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Help Modal -->
-    <div class="modal-overlay" id="helpModal">
-        <div class="modal-container">
-            <div class="modal-close" id="closeModal">&times;</div>
-            <div class="modal-image"></div>
-            <div class="modal-form-container">
-                <h2>How can we help you?</h2>
-                <form id="helpForm">
-                    <div class="form-group">
-                        <label for="visitorName">Name</label>
-                        <input type="text" id="visitorName" placeholder="Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="visitorMobile">Mobile</label>
-                        <div class="mobile-input-wrapper">
-                            <span class="mobile-prefix">+91</span>
-                            <input type="tel" id="visitorMobile" placeholder="Mobile No." required pattern="[0-9]{10}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="carModel">Model</label>
-                        <select id="carModel" required>
-                            <option value="" disabled selected>Select Model</option>
-                            <optgroup label="SUVs">
-                                <option value="sierra">Sierra</option>
-                                <option value="harrier">Harrier</option>
-                                <option value="safari">Safari</option>
-                                <option value="nexon">Nexon</option>
-                                <option value="punch">Punch</option>
-                            </optgroup>
-                            <optgroup label="Sedans & Hatchbacks">
-                                <option value="altroz">Altroz</option>
-                                <option value="tiago">Tiago</option>
-                                <option value="curvv">CURVV</option>
-                                <option value="tigor">Tigor</option>
-                            </optgroup>
-                            <optgroup label="Electric (EV)">
-                                <option value="nexon-ev">Nexon EV</option>
-                                <option value="punch-ev">Punch EV</option>
-                                <option value="tiago-ev">Tiago EV</option>
-                                <option value="tigor-ev">Tigor EV</option>
-                                <option value="curvv-ev">Curvv EV</option>
-                                <option value="harrier-ev">Harrier EV</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="outlet">Outlet</label>
-                        <select id="outlet" required>
-                            <option value="" disabled selected>Select Outlet</option>
-                            <option value="dispur">Axom Cars Dispur</option>
-                            <option value="ulubari">Axom Cars Ulubari</option>
-                            <option value="rangia">Axom Cars Rangia</option>
-                            <option value="dudhnoi">Axom Cars Dudhnoi</option>
-                            <option value="jagiroad">Axom Cars Jagiroad</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="modal-submit-btn">SEND</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Firebase SDK (Compat) -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-
     <script src="main.js"></script>
     <script>
-        function moveCarousel(id, direction) {
-            const carousel = document.getElementById(id);
+        function moveCarousel(carouselId, direction) {
+            const carousel = document.getElementById(carouselId);
             const images = carousel.querySelectorAll('.carousel-images img');
             let activeIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
-            
+
             images[activeIndex].classList.remove('active');
             activeIndex = (activeIndex + direction + images.length) % images.length;
             images[activeIndex].classList.add('active');
         }
-
-        // Optional: Auto-slide every 5 seconds
-        document.querySelectorAll('.showroom-carousel').forEach(carousel => {
-            setInterval(() => {
-                moveCarousel(carousel.id, 1);
-            }, 5000);
-        });
     </script>
 </body>
 

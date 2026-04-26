@@ -250,18 +250,24 @@ body {
 .hero-actions {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 1.2rem;
     align-items: flex-start;
 }
 
 .hero-actions .btn {
-    padding: 0.5rem 0;
-    border-radius: 0;
-    min-width: 240px;
+    /* Uses base .btn styles */
 }
 
 .hero-actions .btn-primary {
     background: #1d70b8; /* Matching the blue in image */
+}
+
+.cta-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
 }
 
 .learn-more-link {
@@ -288,24 +294,24 @@ body {
 }
 
 .btn {
-    padding: 0.8rem 2.2rem;
+    height: 48px;
+    padding: 0 2rem;
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 600;
-    line-height: 1.5;
     text-decoration: none;
     border-radius: 4px;
     transition: var(--transition);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 240px;
     gap: 10px;
     cursor: pointer;
     text-align: center;
     border: none;
     outline: none;
     -webkit-font-smoothing: antialiased;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -666,14 +672,12 @@ body {
 }
 
 .swatch:hover {
-    transform: translateY(-5px);
     border-color: rgba(255, 255, 255, 0.6);
 }
 
 .swatch.active {
     border-color: #fff;
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .swatch.active::before {
@@ -1426,27 +1430,34 @@ body {
 }
 
 .modal-submit-btn {
-    background: var(--accent-red);
+    width: 100%;
+    height: 56px;
+    background: #1d70b8;
     color: #fff;
     border: none;
-    padding: 15px;
-    border-radius: 6px;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
     font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
     cursor: pointer;
-    margin-top: 15px;
-    transition: background 0.3s ease, transform 0.2s ease;
-    text-transform: uppercase;
+    margin-top: 25px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px rgba(29, 112, 184, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
 }
 
 .modal-submit-btn:hover {
-    background: #b30000;
-    transform: translateY(-2px);
+    background: #155a94;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(29, 112, 184, 0.4);
 }
 
 .modal-submit-btn:active {
-    transform: translateY(0);
+    transform: translateY(-1px);
 }
 
 /* Responsive Modal */
@@ -1659,46 +1670,22 @@ body {
     bottom: 30px;
     right: 30px;
     z-index: 999;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #25d366;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
     cursor: pointer;
     text-decoration: none;
 }
 
 .whatsapp-sticky:hover {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    transform: scale(1.1);
 }
 
 .whatsapp-sticky img {
-    width: 38px;
-    height: 38px;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
 }
 
-/* Pulsing effect */
-.whatsapp-sticky::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: inherit;
-    border-radius: inherit;
-    z-index: -1;
-    animation: whatsappPulse 2s infinite;
-}
-
-@keyframes whatsappPulse {
-    0% { transform: scale(1); opacity: 0.5; }
-    100% { transform: scale(1.5); opacity: 0; }
-}
+/* Pulsing effect removed */
 
 /* --- Offers Page Styles --- */
 .page-header-section.offers-bg {
@@ -1882,6 +1869,7 @@ body {
     }
 
     .hero-actions .btn {
+        height: 54px;
         width: 100%;
         justify-content: center;
     }
@@ -1901,6 +1889,7 @@ body {
     }
 
     .cta-group .btn {
+        height: 54px;
         width: 100%;
         text-align: center;
         justify-content: center;
@@ -2071,6 +2060,15 @@ body {
     .whatsapp-sticky img {
         width: 30px;
         height: 30px;
+    }
+
+    .location-meta-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .meta-value {
+        word-break: break-all;
     }
 }
 
