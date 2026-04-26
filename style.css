@@ -1878,6 +1878,21 @@ body {
         margin-bottom: 1rem;
     }
 
+    .cta-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 350px;
+        margin-top: 2rem;
+    }
+
+    .cta-group .btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
     .feature-row, .feature-row:nth-child(even) {
         flex-direction: column;
         gap: 2rem;
