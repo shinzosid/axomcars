@@ -228,8 +228,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     swatch.style.backgroundColor = color.hex;
                 }
 
+                
                 swatch.addEventListener('click', () => {
-                    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+                    document.querySelectorAll('.swatch').forEach(s => {
+                        s.classList.remove('active');
+                        s.classList.remove('swatch-loading');
+                    });
                     swatch.classList.add('active');
                     if (colorNameEl) colorNameEl.textContent = color.name;
                     
@@ -241,6 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         nextImg.src = color.img;
                         
                         const performSwap = () => {
+                            swatch.classList.remove('swatch-loading');
                             if (imgSkeleton) imgSkeleton.style.display = 'none';
                             mainImg.src = color.img;
                             mainImg.style.display = 'block';
@@ -250,11 +255,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (nextImg.complete) {
                             performSwap();
                         } else {
+                            swatch.classList.add('swatch-loading');
                             mainImg.style.opacity = '0.3';
                             if (imgSkeleton) imgSkeleton.style.display = 'block';
                             nextImg.onload = performSwap;
                         }
                     }
+    
 
                     if (displayContainer) {
                         const bgColor = color.hex.includes('gradient') ? color.hex.split(',')[1].split(' ')[1] : color.hex;
