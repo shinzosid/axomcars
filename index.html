@@ -9,17 +9,19 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
     <link rel="manifest" href="favicon_io/site.webmanifest">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="preload" fetchpriority="high" as="image" href="hero.png" type="image/png">
 </head>
 
 <body>
     <header class="header">
         <div class="container header-container">
             <div class="logo-container">
-                <a href="#"><img src="logo.png" alt="Axom Cars Logo" class="logo"></a>
+                <a href="#"><img src="logo.png" alt="Axom Cars Logo" class="logo" width="180" height="50"></a>
             </div>
 
             <nav class="header-nav">
@@ -63,6 +65,9 @@
                 <a href="careers.html" class="nav-dropdown">
                     <span>Careers</span>
                 </a>
+                <a href="newsletter.html" class="nav-dropdown">
+                    <span>Newsletter</span>
+                </a>
             </nav>
 
             <div class="header-actions">
@@ -77,7 +82,7 @@
 
     <main>
         <section class="hero static-hero">
-            <img src="hero.png" alt="The New Tata Punch" class="hero-image">
+            <img src="hero.png" alt="The New Tata Punch" class="hero-image" fetchpriority="high" width="1920" height="1080">
             <div class="hero-overlay-box">
                 <p class="price-start">Price starts at ₹5.64 Lakh*</p>
                 <p class="brand-tag">The New</p>
@@ -113,7 +118,7 @@
                 <div class="range-grid" id="rangeGrid">
                     <!-- SUVs -->
                     <div class="car-card" data-category="suv">
-                        <img src="images/cars/sierra/sierraoutdoor.avif" alt="Tata Sierra">
+                        <img loading="lazy" src="images/cars/sierra/sierraoutdoor.avif" width="400" height="250" alt="Tata Sierra">
                         <div class="car-info">
                             <h3>Tata Sierra</h3>
                             <p class="price">The Legend Returns</p>
@@ -125,7 +130,7 @@
                         </div>
                     </div>
                     <div class="car-card" data-category="suv">
-                        <img src="images/cars/harrier/harrier-exterior.jpg" alt="Tata Harrier">
+                        <img loading="lazy" src="images/cars/harrier/harrier-exterior.jpg" width="400" height="250" alt="Tata Harrier">
                         <div class="car-info">
                             <h3>Tata Harrier</h3>
                             <p class="price">Unleash the Warrior</p>
@@ -137,7 +142,7 @@
                         </div>
                     </div>
                     <div class="car-card" data-category="suv">
-                        <img src="images/cars/safari/safari-exterior.jpg" alt="Tata Safari">
+                        <img loading="lazy" src="images/cars/safari/safari-exterior.jpg" width="400" height="250" alt="Tata Safari">
                         <div class="car-info">
                             <h3>Tata Safari</h3>
                             <p class="price">Reclaim Your Life</p>
@@ -149,7 +154,7 @@
                         </div>
                     </div>
                     <div class="car-card" data-category="suv">
-                        <img src="images/cars/nexon/exteriornexon.png" alt="Tata Nexon">
+                        <img loading="lazy" src="images/cars/nexon/exteriornexon.png" width="400" height="250" alt="Tata Nexon">
                         <div class="car-info">
                             <h3>Tata Nexon</h3>
                             <p class="price">It's #WayAhead</p>
@@ -161,7 +166,7 @@
                         </div>
                     </div>
                     <div class="car-card" data-category="suv">
-                        <img src="images/cars/punch/new-punch-exterior.png" alt="Tata Punch">
+                        <img loading="lazy" src="images/cars/punch/new-punch-exterior.png" width="400" height="250" alt="Tata Punch">
                         <div class="car-info">
                             <h3>Tata Punch</h3>
                             <p class="price">The No-Compromise SUV</p>
@@ -173,7 +178,7 @@
                         </div>
                     </div>
                     <div class="car-card" data-category="suv">
-                        <img src="images/cars/curvv/curvvexterior.jpg" alt="Tata Curvv">
+                        <img loading="lazy" src="images/cars/curvv/curvvexterior.jpg" width="400" height="250" alt="Tata Curvv">
                         <div class="car-info">
                             <h3>Tata Curvv</h3>
                             <p class="price">Shaped for the Bold</p>
@@ -187,7 +192,7 @@
 
                     <!-- Sedans -->
                     <div class="car-card" data-category="sedan" style="display: none;">
-                        <img src="images/cars/tigor/tigorexterior.jpg" alt="Tata Tigor">
+                        <img loading="lazy" src="images/cars/tigor/tigorexterior.jpg" width="400" height="250" alt="Tata Tigor">
                         <div class="car-info">
                             <h3>Tata Tigor</h3>
                             <p class="price">Sedan for the Stars</p>
@@ -201,7 +206,7 @@
 
                     <!-- Hatchbacks -->
                     <div class="car-card" data-category="hatchback" style="display: none;">
-                        <img src="images/cars/altroz/altroz-exterior.jpg" alt="Tata Altroz">
+                        <img loading="lazy" src="images/cars/altroz/altroz-exterior.jpg" width="400" height="250" alt="Tata Altroz">
                         <div class="car-info">
                             <h3>Tata Altroz</h3>
                             <p class="price">The Gold Standard</p>
@@ -213,7 +218,7 @@
                         </div>
                     </div>
                     <div class="car-card" data-category="hatchback" style="display: none;">
-                        <img src="images/cars/tiago/tiagoexterior.jpg" alt="Tata Tiago">
+                        <img loading="lazy" src="images/cars/tiago/tiagoexterior.jpg" width="400" height="250" alt="Tata Tiago">
                         <div class="car-info">
                             <h3>Tata Tiago</h3>
                             <p class="price">Seriously Fun</p>
@@ -227,7 +232,7 @@
 
                     <!-- Electric (EV) -->
                     <div class="car-card" data-category="ev" style="display: none;">
-                        <img src="images/electric/nexon-ev.avif" alt="Nexon EV">
+                        <img loading="lazy" src="images/electric/nexon-ev.avif" alt="Nexon EV">
                         <div class="car-info">
                             <h3>Tata Nexon EV</h3>
                             <p class="price">Empowering the Future</p>
@@ -239,7 +244,7 @@
                         </div>
                     </div>
                     <div class="car-card" data-category="ev" style="display: none;">
-                        <img src="images/electric/Punch-ev.avif" alt="Punch EV">
+                        <img loading="lazy" src="images/electric/Punch-ev.avif" alt="Punch EV">
                         <div class="car-info">
                             <h3>Tata Punch EV</h3>
                             <p class="price">Boldly Electric</p>
@@ -251,7 +256,7 @@
                         </div>
                     </div>
                     <div class="car-card" data-category="ev" style="display: none;">
-                        <img src="images/electric/tiago-ev-cropped.avif" alt="Tiago EV">
+                        <img loading="lazy" src="images/electric/tiago-ev-cropped.avif" alt="Tiago EV">
                         <div class="car-info">
                             <h3>Tata Tiago EV</h3>
                             <p class="price">Go.ev</p>
@@ -263,7 +268,7 @@
                         </div>
                     </div>
                     <div class="car-card" data-category="ev" style="display: none;">
-                        <img src="images/electric/tigor-ev.avif" alt="Tigor EV">
+                        <img loading="lazy" src="images/electric/tigor-ev.avif" alt="Tigor EV">
                         <div class="car-info">
                             <h3>Tata Tigor EV</h3>
                             <p class="price">The Electric Sedan</p>
@@ -275,7 +280,7 @@
                         </div>
                     </div>
                     <div class="car-card" data-category="ev" style="display: none;">
-                        <img src="images/electric/curvv-ev.avif" alt="Curvv EV">
+                        <img loading="lazy" src="images/electric/curvv-ev.avif" alt="Curvv EV">
                         <div class="car-info">
                             <h3>Tata Curvv EV</h3>
                             <p class="price">Future in Motion</p>
@@ -287,7 +292,7 @@
                         </div>
                     </div>
                     <div class="car-card" data-category="ev" style="display: none;">
-                        <img src="images/electric/harrier-ev.avif" alt="Harrier EV">
+                        <img loading="lazy" src="images/electric/harrier-ev.avif" alt="Harrier EV">
                         <div class="car-info">
                             <h3>Tata Harrier EV</h3>
                             <p class="price">Legendary Power, Electric Soul</p>
@@ -307,7 +312,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <img src="logo.png" alt="Axom Cars" class="logo-white">
+                    <img src="logo.png" alt="Axom Cars" class="logo-white" width="180" height="50">
                     <p>Redefining luxury and performance in every journey. Join the Axom family today.</p>
                     <div class="social-icons">
                         <a href="https://www.facebook.com/p/Axom-Cars-61555218074115/" target="_blank"
@@ -449,14 +454,14 @@
 
     <!-- Sticky WhatsApp Button -->
     <a href="https://wa.me/917099064993" class="whatsapp-sticky" target="_blank" aria-label="Chat with Axom Cars Sales on WhatsApp">
-        <img src="whatsapp.png" alt="WhatsApp">
+        <img loading="lazy" src="whatsapp.png" alt="WhatsApp" width="60" height="60">
     </a>
 
     <!-- Firebase SDK (Compat) -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
-    <script src="main.js"></script>
+    <script defer src="main.min.js"></script>
 </body>
 
 </html>

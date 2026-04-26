@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
     <link rel="manifest" href="favicon_io/site.webmanifest">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -67,7 +67,7 @@
     <header class="header">
         <div class="container header-container">
             <div class="logo-container">
-                <a href="index.html"><img src="logo.png" alt="Axom Cars Logo" class="logo"></a>
+                <a href="index.html"><img src="logo.png" alt="Axom Cars Logo" class="logo" width="180" height="50"></a>
             </div>
 
             <nav class="header-nav">
@@ -111,6 +111,9 @@
                 <a href="careers.html" class="nav-dropdown">
                     <span>Careers</span>
                 </a>
+                <a href="newsletter.html" class="nav-dropdown">
+                    <span>Newsletter</span>
+                </a>
             </nav>
 
             <div class="header-actions">
@@ -137,8 +140,8 @@
                     <div class="showroom-card">
                         <div class="showroom-carousel" id="carousel-workshop-guwahati">
                             <div class="carousel-images">
-                                <img src="images/workshop/guwahati/1.jpg" alt="Axom Cars Service Guwahati 1" class="active">
-                                <img src="images/workshop/guwahati/2.jpeg" alt="Axom Cars Service Guwahati 2">
+                                <img loading="lazy" src="images/workshop/guwahati/1.jpg" alt="Axom Cars Service Guwahati 1" class="active">
+                                <img loading="lazy" src="images/workshop/guwahati/2.jpeg" alt="Axom Cars Service Guwahati 2">
                             </div>
                             <button class="carousel-prev"
                                 onclick="moveCarousel('carousel-workshop-guwahati', -1)">❮</button>
@@ -204,8 +207,8 @@
                     <div class="showroom-card">
                         <div class="showroom-carousel" id="carousel-workshop-rangia">
                             <div class="carousel-images">
-                                <img src="images/workshop/rangia/1.jpg" alt="Axom Cars Service Rangia 1" class="active">
-                                <img src="images/workshop/rangia/2.jpg" alt="Axom Cars Service Rangia 2">
+                                <img loading="lazy" src="images/workshop/rangia/1.jpg" alt="Axom Cars Service Rangia 1" class="active">
+                                <img loading="lazy" src="images/workshop/rangia/2.jpg" alt="Axom Cars Service Rangia 2">
                             </div>
                             <button class="carousel-prev"
                                 onclick="moveCarousel('carousel-workshop-rangia', -1)">❮</button>
@@ -275,7 +278,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <img src="logo.png" alt="Axom Cars" class="logo-white">
+                    <img src="logo.png" alt="Axom Cars" class="logo-white" width="180" height="50">
                     <p>Redefining luxury and performance in every journey. Join the Axom family today.</p>
                 </div>
                 <div class="footer-col">
@@ -294,7 +297,7 @@
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script defer src="main.min.js"></script>
     <script>
         function moveCarousel(id, direction) {
             const carousel = document.getElementById(id);

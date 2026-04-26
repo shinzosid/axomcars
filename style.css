@@ -1723,13 +1723,42 @@ body {
 }
 
 .offer-embed.placeholder {
-    background: #f9f9f9;
+    background: linear-gradient(135deg, #fdfdfd 0%, #f5f7f9 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px dashed #ddd;
-    color: var(--text-muted);
+    border: 2px dashed #e0e4e8;
+    color: #a0aec0;
+    text-align: center;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.offer-embed.placeholder:hover {
+    border-color: var(--secondary-color);
+    background: linear-gradient(135deg, #fdfdfd 0%, #f0f4f8 100%);
+}
+
+.placeholder-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 24px;
+    opacity: 0.4;
+    color: var(--secondary-color);
+}
+
+.placeholder-content h3 {
+    font-size: 1.4rem;
+    color: #4a5568;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.placeholder-content p {
+    font-size: 0.95rem;
+    color: #718096;
+    max-width: 250px;
 }
 
 .embed-loader {

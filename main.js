@@ -45,12 +45,6 @@ window.openTestDriveModal = function(modelId = '') {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Axom Cars JS Loaded');
-
-
-    // Static Hero (No carousel needed)
-
-
     // Vehicle Range Data
     const carsData = {
         sierra: {

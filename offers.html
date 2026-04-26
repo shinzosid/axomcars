@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
     <link rel="manifest" href="favicon_io/site.webmanifest">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
     <header class="header">
         <div class="container header-container">
             <div class="logo-container">
-                <a href="index.html"><img src="logo.png" alt="Axom Cars Logo" class="logo"></a>
+                <a href="index.html"><img src="logo.png" alt="Axom Cars Logo" class="logo" width="180" height="50"></a>
             </div>
 
             <nav class="header-nav">
@@ -63,6 +63,9 @@
                 <a href="careers.html" class="nav-dropdown">
                     <span>Careers</span>
                 </a>
+                <a href="newsletter.html" class="nav-dropdown">
+                    <span>Newsletter</span>
+                </a>
             </nav>
 
             <div class="header-actions">
@@ -105,12 +108,29 @@
 
                         <!-- Placeholder -->
                         <div class="offer-embed placeholder">
-                            <p>More Offers Coming Soon</p>
+                            <div class="placeholder-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                                    <line x1="16" x2="16" y1="2" y2="6"/>
+                                    <line x1="8" x2="8" y1="2" y2="6"/>
+                                    <line x1="3" x2="21" y1="10" y2="10"/>
+                                    <path d="M8 14h.01"/>
+                                    <path d="M12 14h.01"/>
+                                    <path d="M16 14h.01"/>
+                                    <path d="M8 18h.01"/>
+                                    <path d="M12 18h.01"/>
+                                    <path d="M16 18h.01"/>
+                                </svg>
+                            </div>
+                            <div class="placeholder-content">
+                                <h3>Stay Tuned</h3>
+                                <p>Exclusive seasonal offers and new launches are arriving soon.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <script async src="https://www.instagram.com/embed.js"></script>
+                <script defer async src="https://www.instagram.com/embed.js"></script>
                 <script>
                     // Wait for Instagram to render
                     window.addEventListener('load', () => {
@@ -141,7 +161,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <img src="logo.png" alt="Axom Cars" class="logo-white">
+                    <img src="logo.png" alt="Axom Cars" class="logo-white" width="180" height="50">
                     <p>Redefining luxury and performance in every journey. Join the Axom family today.</p>
                     <div class="social-icons">
                         <a href="https://www.facebook.com/p/Axom-Cars-61555218074115/" target="_blank"
@@ -281,10 +301,10 @@
     </div>
 
     <!-- Firebase SDK (Compat) -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
-    <script src="main.js"></script>
+    <script defer src="main.min.js"></script>
 </body>
 
 </html>
