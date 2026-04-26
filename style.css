@@ -1271,196 +1271,7 @@ body {
     justify-content: center;
 }
 
-/* ==========================================================================
-   Responsive Design
-   ========================================================================== */
-
-/* Tablet View (1024px and below) */
-@media (max-width: 1024px) {
-    .container {
-        padding: 0 5%;
-    }
-
-    .header-nav {
-        gap: 1.5rem;
-    }
-
-    .model-name {
-        font-size: 3.5rem;
-    }
-
-    .range-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    }
-
-    .showrooms-grid {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    }
-}
-
-/* Mobile Navigation Drawer */
-@media (max-width: 991px) {
-    .hamburger-menu {
-        display: flex;
-    }
-
-    .header-nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 350px;
-        height: 100vh;
-        background: white;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 80px 40px;
-        gap: 2rem;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
-        transition: 0.4s ease-in-out;
-        z-index: 1000;
-        overflow-y: auto;
-    }
-
-    .header-nav.active {
-        right: 0;
-    }
-
-    .nav-item.dropdown .dropdown-menu {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        box-shadow: none;
-        padding: 1rem 0 0 1.5rem;
-        display: none;
-        min-width: auto;
-    }
-
-    .nav-item.dropdown.active .dropdown-menu {
-        display: block;
-    }
-
-    .nav-item.dropdown .nav-link {
-        justify-content: space-between;
-        width: 100%;
-    }
-
-    .dropdown-list {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .dropdown-list a {
-        padding: 0.5rem 0;
-        border: none !important;
-    }
-}
-
-/* Small Screens (768px and below) */
-@media (max-width: 768px) {
-    .static-hero {
-        height: 80vh;
-    }
-
-    .hero-overlay-box {
-        left: 5%;
-        right: 5%;
-        bottom: 10%;
-        max-width: none;
-        padding: 2rem;
-    }
-
-    .model-name {
-        font-size: 3rem;
-    }
-
-    .section-header h2 {
-        font-size: 2rem;
-    }
-
-    /* Scrollable Tabs */
-    .tabs, .model-tabs {
-        display: flex;
-        overflow-x: auto;
-        padding-bottom: 10px;
-        -webkit-overflow-scrolling: touch;
-        justify-content: flex-start !important;
-        gap: 1.5rem;
-    }
-
-    .tabs::-webkit-scrollbar, 
-    .model-tabs::-webkit-scrollbar {
-        display: none;
-    }
-
-    .tab, .model-tab {
-        white-space: nowrap;
-        flex-shrink: 0;
-    }
-
-    /* Grid Adjustments */
-    .range-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-
-    .footer-col {
-        text-align: center;
-    }
-
-    .footer-links li, .footer-contact p {
-        justify-content: center;
-    }
-
-    /* Vehicle Detail Pages */
-    .vehicle-display {
-        height: auto;
-        min-height: 400px;
-    }
-
-    .specs-grid {
-        grid-template-columns: 1fr;
-        padding: 20px;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .comparison-table {
-        display: block;
-        overflow-x: auto;
-    }
-}
-
-/* Extra Small Screens (480px and below) */
-@media (max-width: 480px) {
-    .model-name {
-        font-size: 2.2rem;
-    }
-
-    .hero-actions {
-        width: 100%;
-    }
-
-    .hero-actions .btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .brand-tag {
-        font-size: 1.1rem;
-    }
-
-    .price-start {
-        font-size: 0.9rem;
-    }
-}
+/* Responsive logic consolidated at the end of file */
 
 /* --- Contact Modal Styles --- */
 .modal-overlay {
@@ -1871,13 +1682,246 @@ body {
     100% { transform: scale(1.5); opacity: 0; }
 }
 
+/* ==========================================================================
+   Responsive Overrides (Consolidated)
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+    :root {
+        --container-width: 1100px;
+    }
+    .model-name, .model-hero h1 {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .header-nav {
+        position: fixed;
+        top: var(--header-height);
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - var(--header-height));
+        background: var(--white);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+        overflow-y: auto;
+        align-items: flex-start;
+    }
+
+    .header-nav.active {
+        left: 0;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        padding: 0;
+        display: none;
+        width: 100%;
+        margin-left: 1rem;
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+
+    .hero-overlay-box {
+        left: 50%;
+        bottom: 10%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: none;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .hero-actions {
+        align-items: center;
+        width: 100%;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .model-name, .model-hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .feature-row, .feature-row:nth-child(even) {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .feature-text {
+        text-align: center;
+    }
+
+    .feature-text h3 {
+        font-size: 2rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .footer-col:first-child {
+        grid-column: span 2;
+        text-align: center;
+    }
+
+    .social-icons {
+        align-items: center;
+    }
+
+    .showrooms-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .showroom-card {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
 @media (max-width: 768px) {
+    .container {
+        padding: 0 1.25rem;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .tabs-container, .model-tabs {
+        justify-content: flex-start;
+        overflow-x: auto;
+        gap: 1rem;
+        padding-bottom: 0.75rem;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tab, .model-tab {
+        padding: 0.6rem 1rem;
+        white-space: nowrap;
+        font-size: 0.95rem;
+    }
+
+    .range-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .specs-detailed-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-mosaic {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-col:first-child {
+        grid-column: span 1;
+    }
+
+    .footer-col {
+        text-align: center;
+    }
+
+    .footer-links li, .footer-contact p {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .static-hero {
+        height: 75vh;
+    }
+
+    .hero-overlay-box {
+        bottom: 5%;
+    }
+
+    /* Modal Adjustments */
+    .modal-container {
+        flex-direction: column;
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    .modal-image {
+        display: none;
+    }
+
+    .modal-form-container {
+        padding: 25px 20px;
+    }
+
+    .modal-form-container h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .model-name, .model-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .brand-tag {
+        font-size: 1.1rem;
+    }
+
+    .price-start {
+        font-size: 0.9rem;
+    }
+
+    .vehicle-details h2 {
+        font-size: 1.8rem;
+    }
+
+    .vehicle-description {
+        font-size: 1rem;
+    }
+
+    .swatch {
+        width: 32px;
+        height: 32px;
+    }
+
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
     .whatsapp-sticky {
-        bottom: 20px;
-        right: 20px;
         width: 50px;
         height: 50px;
+        bottom: 20px;
+        right: 20px;
     }
+
     .whatsapp-sticky img {
         width: 30px;
         height: 30px;
