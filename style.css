@@ -856,7 +856,7 @@ body {
 }
 
 .specs-section {
-    padding: 80px 0;
+    padding: 60px 0;
     background: var(--bg-light);
 }
 
@@ -905,7 +905,7 @@ body {
 }
 
 .features-section {
-    padding: 100px 0;
+    padding: 60px 0;
 }
 
 .feature-row {
@@ -953,7 +953,7 @@ body {
 }
 
 .model-gallery {
-    padding: 100px 0;
+    padding: 60px 0;
     background: #000;
     color: var(--white);
 }
@@ -994,7 +994,7 @@ body {
 }
 
 .comparison-section {
-    padding: 100px 0;
+    padding: 60px 0;
     background: var(--white);
 }
 
