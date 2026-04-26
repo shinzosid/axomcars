@@ -330,6 +330,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const learnMoreBtn = document.getElementById('learnMoreBtn');
         if (learnMoreBtn) {
             learnMoreBtn.href = `cars/${carId}.html`;
+            
+            // Update WhatsApp Booking Link dynamically
+            const bookNowBtn = document.querySelector('.cta-group .btn-primary[href*="wa.me"]');
+            if (bookNowBtn) {
+                const message = encodeURIComponent(`Hi Axom Cars, I am interested in booking the Tata ${car.name}. Please provide more details.`);
+                bookNowBtn.href = `https://wa.me/917099064993?text=${message}`;
+            }
         }
     }
 
