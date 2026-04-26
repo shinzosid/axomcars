@@ -19,6 +19,32 @@ if (typeof firebase !== 'undefined') {
 // Lead Type Tracking
 window.currentLeadType = 'General Inquiry';
 
+// --- Carousel Functionality ---
+window.moveCarousel = function(carouselId, direction) {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+    
+    const images = carousel.querySelectorAll('.carousel-images img');
+    if (images.length <= 1) return;
+    
+    let activeIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+    if (activeIndex === -1) activeIndex = 0;
+    
+    images[activeIndex].classList.remove('active');
+    activeIndex = (activeIndex + direction + images.length) % images.length;
+    images[activeIndex].classList.add('active');
+};
+
+// Initialize Auto-sliding for all carousels
+function initAutoCarousels() {
+    const carousels = document.querySelectorAll('.showroom-carousel');
+    carousels.forEach(carousel => {
+        setInterval(() => {
+            window.moveCarousel(carousel.id, 1);
+        }, 5000); // Change image every 5 seconds
+    });
+}
+
 // Test Drive Modal Handler
 window.openTestDriveModal = function(modelId = '') {
     const modal = document.getElementById('helpModal');
@@ -331,8 +357,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (learnMoreBtn) {
             learnMoreBtn.href = `cars/${carId}.html`;
             
-            // Update WhatsApp Booking Link dynamically
-            const bookNowBtn = document.querySelector('.cta-group .btn-primary[href*="wa.me"]');
+            // Update WhatsApp Booking Link dynamically (Universal Selector)
+            const bookNowBtn = document.querySelector('.cta-group .btn[href*="wa.me"], #waBookBtn');
             if (bookNowBtn) {
                 const message = encodeURIComponent(`Hi Axom Cars, I am interested in booking the Tata ${car.name}. Please provide more details.`);
                 bookNowBtn.href = `https://wa.me/917099064993?text=${message}`;
@@ -513,5 +539,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    initAutoCarousels();
     initHelpModal();
 });
