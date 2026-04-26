@@ -244,11 +244,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update Links
         const learnMoreBtn = document.getElementById('learnMoreBtn');
-        if (learnMoreBtn) learnMoreBtn.href = ;
+        if (learnMoreBtn) learnMoreBtn.href = `cars/${carId}.html`;
         const bookNowBtn = document.querySelector('.cta-group .btn[href*="wa.me"], #waBookBtn');
         if (bookNowBtn) {
-            const message = encodeURIComponent();
-            bookNowBtn.href = ;
+            const message = encodeURIComponent(`Hi Axom Cars, I am interested in booking the Tata ${car.name}. Please provide more details.`);
+            bookNowBtn.href = `https://wa.me/917099064993?text=${message}`;
         }
     }
 
