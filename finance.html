@@ -80,70 +80,71 @@
                     <p>Calculated, clear, and convenient financial plans for your next journey.</p>
                 </div>
 
-                <!-- EMI Calculator Card -->
-                <div class="emi-calculator-card" style="max-width: 1000px; margin: 0 auto; background: #fff; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-wrap: wrap; text-align: left; border: 1px solid #f0f0f0;">
-                    <div style="flex: 1.2; min-width: 300px; padding: 50px; border-right: 1px solid #f5f5f5;">
-                        <h3 style="margin-bottom: 30px; color: var(--primary-dark); font-size: 26px; font-weight: 700;">Estimate Your EMI</h3>
+                <!-- Modern EMI Calculator Card -->
+                <div class="emi-calculator-container">
+                    <div class="emi-inputs">
+                        <h3 style="margin-bottom: 30px; color: var(--secondary-color); font-size: 26px; font-weight: 700;">Estimate Your EMI</h3>
                         
-                        <div class="emi-field" style="margin-bottom: 25px;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <label style="font-weight: 600; color: #444; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Loan Amount (₹)</label>
-                                <span id="valAmount" style="color: var(--accent-red); font-weight: 700; font-size: 18px;">₹7,00,000</span>
+                        <div class="emi-field">
+                            <div class="emi-label-row">
+                                <label>Loan Amount (₹)</label>
+                                <span id="valAmount" class="emi-value-display">₹7,00,000</span>
                             </div>
-                            <input type="range" id="emiAmount" min="100000" max="5000000" step="50000" value="700000" style="width: 100%; accent-color: var(--accent-red); cursor: pointer;" oninput="calculateEMI()">
+                            <input type="range" id="emiAmount" min="100000" max="5000000" step="50000" value="700000" class="emi-slider" oninput="calculateEMI()">
                         </div>
 
-                        <div class="emi-field" style="margin-bottom: 25px;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <label style="font-weight: 600; color: #444; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Interest Rate (%)</label>
-                                <span id="valRate" style="color: var(--accent-red); font-weight: 700; font-size: 18px;">8.75%</span>
+                        <div class="emi-field">
+                            <div class="emi-label-row">
+                                <label>Interest Rate (%)</label>
+                                <span id="valRate" class="emi-value-display">8.75%</span>
                             </div>
-                            <input type="range" id="emiRate" min="5" max="20" step="0.25" value="8.75" style="width: 100%; accent-color: var(--accent-red); cursor: pointer;" oninput="calculateEMI()">
+                            <input type="range" id="emiRate" min="5" max="20" step="0.25" value="8.75" class="emi-slider" oninput="calculateEMI()">
                         </div>
 
-                        <div class="emi-field" style="margin-bottom: 35px;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <label style="font-weight: 600; color: #444; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Tenure (Years)</label>
-                                <span id="valTenure" style="color: var(--accent-red); font-weight: 700; font-size: 18px;">7 Years</span>
+                        <div class="emi-field">
+                            <div class="emi-label-row">
+                                <label>Tenure (Years)</label>
+                                <span id="valTenure" class="emi-value-display">7 Years</span>
                             </div>
-                            <input type="range" id="emiTenure" min="1" max="7" step="1" value="7" style="width: 100%; accent-color: var(--accent-red); cursor: pointer;" oninput="calculateEMI()">
+                            <input type="range" id="emiTenure" min="1" max="7" step="1" value="7" class="emi-slider" oninput="calculateEMI()">
                         </div>
-
-                        <button onclick="calculateEMI()" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 16px;">Calculate Now</button>
                     </div>
 
-                    <div style="flex: 1; min-width: 300px; padding: 50px; background: #fafafa; display: flex; flex-direction: column; justify-content: center; align-items: center; border-left: 1px solid #f5f5f5;">
-                        <p style="color: #999; font-size: 13px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Estimated Monthly EMI</p>
-                        <div id="emiResult" style="font-size: 48px; font-weight: 800; color: var(--accent-red); margin-bottom: 40px; letter-spacing: -1px;">₹11,165</div>
+                    <div class="emi-results">
+                        <div class="emi-main-result">
+                            <p class="label">Estimated Monthly EMI</p>
+                            <div id="emiResult" class="amount">₹11,165</div>
+                        </div>
                         
-                        <div style="width: 100%; display: flex; flex-direction: column; gap: 20px; padding-top: 30px; border-top: 2px dashed #eee;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span style="color: #777; font-size: 14px;">Total Interest</span>
-                                <span id="totalInterest" style="font-weight: 700; color: #333; font-size: 16px;">₹2,37,860</span>
+                        <div class="emi-stats">
+                            <div class="emi-stat-row">
+                                <span class="emi-stat-label">Total Interest</span>
+                                <span id="totalInterest" class="emi-stat-value">₹2,37,860</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span style="color: #777; font-size: 14px;">Total Amount</span>
-                                <span id="totalPayable" style="font-weight: 700; color: #333; font-size: 16px;">₹9,37,860</span>
+                            <div class="emi-stat-row">
+                                <span class="emi-stat-label">Total Payable</span>
+                                <span id="totalPayable" class="emi-stat-value">₹9,37,860</span>
                             </div>
                         </div>
 
-                        <div style="margin-top: 40px; padding: 15px; background: #fff; border-radius: 12px; width: 100%; border: 1px solid #eee;">
-                            <p style="font-size: 12px; color: #888; line-height: 1.5;">*Indicative values only. Final EMI may vary based on bank schemes, processing fees, and document verification.</p>
+                        <div class="emi-disclaimer">
+                            <p>*Indicative values only. Final EMI may vary based on bank schemes and processing fees.</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- Features Section (No Red) -->
                 <div style="margin-top: 5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-                    <div style="padding: 30px; background: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left;">
-                        <h4 style="color: var(--accent-red); margin-bottom: 15px;">Low Interest Rates</h4>
+                    <div style="padding: 30px; background: #fff; border-radius: 15px; box-shadow: var(--shadow-sm); text-align: left; border: 1px solid #f0f0f0;">
+                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">Low Interest Rates</h4>
                         <p style="font-size: 14px; color: #666;">We partner with top-tier banks to bring you the most competitive interest rates in the market.</p>
                     </div>
-                    <div style="padding: 30px; background: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left;">
-                        <h4 style="color: var(--accent-red); margin-bottom: 15px;">Quick Approval</h4>
+                    <div style="padding: 30px; background: #fff; border-radius: 15px; box-shadow: var(--shadow-sm); text-align: left; border: 1px solid #f0f0f0;">
+                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">Quick Approval</h4>
                         <p style="font-size: 14px; color: #666;">Experience seamless documentation and rapid loan approvals to get you on the road faster.</p>
                     </div>
-                    <div style="padding: 30px; background: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left;">
-                        <h4 style="color: var(--accent-red); margin-bottom: 15px;">Flexible Tenure</h4>
+                    <div style="padding: 30px; background: #fff; border-radius: 15px; box-shadow: var(--shadow-sm); text-align: left; border: 1px solid #f0f0f0;">
+                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">Flexible Tenure</h4>
                         <p style="font-size: 14px; color: #666;">Choose a repayment plan that fits your lifestyle, with tenure options ranging up to 7 years.</p>
                     </div>
                 </div>
