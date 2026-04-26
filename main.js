@@ -460,13 +460,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalSeen = localStorage.getItem('axom_modal_seen');
 
         if (!modalSeen) {
-            // Show modal after 10 seconds (Increased for better LCP scores)
+            // Show modal after 8 seconds (The sweet spot for Leads + Performance)
             setTimeout(() => {
                 const modalTitle = modal.querySelector('h2');
                 if (modalTitle) modalTitle.textContent = 'How can we help you?';
                 window.currentLeadType = 'General Inquiry';
                 modal.classList.add('active');
-            }, 10000);
+            }, 8000);
         }
 
         // Close modal
