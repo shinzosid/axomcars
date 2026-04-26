@@ -12,6 +12,8 @@
     --transition: all 0.3s ease;
     --shadow-sm: 0 2px 10px rgba(0,0,0,0.05);
     --shadow-md: 0 4px 20px rgba(0,0,0,0.1);
+    --skeleton-bg: #f0f2f5;
+    --skeleton-highlight: #e1e4e8;
 }
 
 * {
@@ -2231,4 +2233,53 @@ body {
     .emi-main-result .amount {
         font-size: 40px;
     }
+}
+
+/* ==========================================================================
+   Skeleton Loading
+   ========================================================================== */
+
+.skeleton {
+    background-color: var(--skeleton-bg);
+    background-image: linear-gradient(
+        90deg,
+        var(--skeleton-bg) 0px,
+        var(--skeleton-highlight) 50%,
+        var(--skeleton-bg) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s infinite linear;
+    border-radius: 8px;
+}
+
+@keyframes skeleton-shimmer {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+.skeleton-text {
+    height: 1rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.skeleton-title {
+    height: 2rem;
+    margin-bottom: 1rem;
+    width: 60%;
+}
+
+.skeleton-img {
+    width: 100%;
+    height: 300px;
+}
+
+.skeleton-btn {
+    height: 45px;
+    width: 150px;
+    display: inline-block;
 }

@@ -296,6 +296,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         mainImg.style.opacity = '0';
                         setTimeout(() => {
                             mainImg.src = color.img;
+                    // Handle Skeleton removal
+                    const imgSkeleton = document.getElementById('imgSkeleton');
+                    if (imgSkeleton) {
+                        mainImg.onload = () => {
+                            imgSkeleton.style.display = 'none';
+                            mainImg.style.display = 'block';
+                            setTimeout(() => { mainImg.style.opacity = '1'; }, 50);
+                        };
+                        // In case it's already cached
+                        if (mainImg.complete) {
+                            imgSkeleton.style.display = 'none';
+                            mainImg.style.display = 'block';
+                            mainImg.style.opacity = '1';
+                        }
+                    }
+    
                             mainImg.style.opacity = '1';
                         }, 300);
                     }
