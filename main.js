@@ -336,21 +336,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         mainImg.style.opacity = '0';
                         setTimeout(() => {
                             mainImg.src = color.img;
-                    // Handle Skeleton removal
+                    
+                    // Handle Skeleton removal (Robust)
                     const imgSkeleton = document.getElementById('imgSkeleton');
                     if (imgSkeleton) {
-                        mainImg.onload = () => {
+                        const showImage = () => {
                             imgSkeleton.style.display = 'none';
                             mainImg.style.display = 'block';
-                            setTimeout(() => { mainImg.style.opacity = '1'; }, 50);
+                            setTimeout(() => { mainImg.style.opacity = '1'; }, 10);
                         };
-                        // In case it's already cached
-                        if (mainImg.complete) {
-                            imgSkeleton.style.display = 'none';
-                            mainImg.style.display = 'block';
-                            mainImg.style.opacity = '1';
-                        }
+                        mainImg.onload = showImage;
+                        if (mainImg.complete) showImage();
+                        // Fallback: hide skeleton after 2s anyway to prevent empty screen
+                        setTimeout(showImage, 2000);
                     }
+    
     
                             mainImg.style.opacity = '1';
                         }, 300);
