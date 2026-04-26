@@ -2283,3 +2283,71 @@ body {
     width: 150px;
     display: inline-block;
 }
+
+/* --- Premium Micro-interactions --- */
+.btn, .btn-primary, .btn-secondary, .whatsapp-sticky, .mobile-cta-btn {
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:active, .btn-primary:active, .btn-secondary:active, .whatsapp-sticky:active, .mobile-cta-btn:active {
+    transform: scale(0.95);
+}
+
+.btn:hover, .btn-primary:hover, .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Sticky Mobile CTA Bar */
+.mobile-sticky-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.8rem 1.5rem;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    z-index: 999;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.mobile-cta-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.mobile-cta-btn.primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.mobile-cta-btn.secondary {
+    background: #f0f2f5;
+    color: var(--text-color);
+    margin-right: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .mobile-sticky-bar.visible {
+        display: flex;
+    }
+}
+
+/* Form Feedback States */
+.btn-loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.btn-success {
+    background: #27ae60 !important;
+}

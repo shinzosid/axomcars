@@ -42,7 +42,47 @@ function initAutoCarousels() {
         setInterval(() => {
             window.moveCarousel(carousel.id, 1);
         }, 5000); // Change image every 5 seconds
-    });
+    
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
+        });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
 }
 
 // Test Drive Modal Handler
@@ -328,10 +368,90 @@ document.addEventListener('DOMContentLoaded', () => {
                             displayContainer.classList.remove('light-text');
                         }
                     }
-                });
+                
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
+        });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
 
                 swatchContainer.appendChild(swatch);
-            });
+            
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
+        });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
 
             // Set initial color state
             if (car.colors[0]) {
@@ -366,7 +486,47 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.model-tab').forEach(tab => {
             tab.classList.remove('active');
             if (tab.dataset.car === carId) tab.classList.add('active');
+        
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
         });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
 
         // Update Learn More Link
         const learnMoreBtn = document.getElementById('learnMoreBtn');
@@ -387,8 +547,88 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.addEventListener('click', () => {
             const carId = tab.dataset.car;
             updateVehicleUI(carId);
+        
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
         });
-    });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
+    
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
+        });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
 
     // Handle direct car model selection from URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -409,7 +649,47 @@ document.addEventListener('DOMContentLoaded', () => {
             menuToggle.classList.toggle('active');
             headerNav.classList.toggle('active');
             document.body.style.overflow = headerNav.classList.contains('active') ? 'hidden' : '';
+        
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
         });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
 
         // Mobile Dropdown Toggle
         const dropdowns = document.querySelectorAll('.dropdown');
@@ -421,9 +701,89 @@ document.addEventListener('DOMContentLoaded', () => {
                         e.preventDefault();
                         dropdown.classList.toggle('active');
                     }
-                });
+                
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
             }
         });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
+            }
+        
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
+        });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
@@ -436,7 +796,47 @@ document.addEventListener('DOMContentLoaded', () => {
                     headerNav.classList.remove('active');
                 }
             }
+        
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
         });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
     }
 
     // Homepage Tab Filtering
@@ -459,9 +859,129 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         card.style.display = 'none';
                     }
-                });
-            });
+                
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
         });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
+            
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
+        });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
+        
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
+        });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
     }
 
     // --- Contact Modal Logic ---
@@ -489,7 +1009,47 @@ document.addEventListener('DOMContentLoaded', () => {
         closeBtn.addEventListener('click', () => {
             modal.classList.remove('active');
             localStorage.setItem('axom_modal_seen', 'true');
+        
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
         });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
 
         // Close on outside click
         modal.addEventListener('click', (e) => {
@@ -497,7 +1057,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.classList.remove('active');
                 localStorage.setItem('axom_modal_seen', 'true');
             }
+        
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
         });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
 
         // Form submission
         helpForm.addEventListener('submit', (e) => {
@@ -527,7 +1127,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .catch((error) => {
                     console.error("Error adding lead to Firestore: ", error);
-                });
+                
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
+        });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
             }
 
             // Keep localStorage as a local backup
@@ -552,9 +1192,89 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 modal.classList.remove('active');
             }, 3000);
+        
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
         });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
+});
     }
 
     initAutoCarousels();
     initHelpModal();
+
+    // --- Premium Micro-interactions Logic ---
+    
+    // 1. Light Haptic Pulse
+    const triggerHaptic = () => {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); 
+        }
+    };
+
+    const ctaElements = document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn');
+    ctaElements.forEach(el => el.addEventListener('click', triggerHaptic));
+
+    // 2. Sticky Mobile CTA Visibility
+    const stickyBar = document.querySelector('.mobile-sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    
+    if (stickyBar && heroSection) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < 0) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
+        });
+    }
+
+    // 3. Form Submission Feedback (Enhancement)
+    const helpForm = document.getElementById('helpForm');
+    if (helpForm) {
+        helpForm.addEventListener('submit', () => {
+            const submitBtn = helpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.classList.add('btn-loading');
+                submitBtn.innerHTML = 'Sending...';
+            }
+        });
+    }
+    
 });
