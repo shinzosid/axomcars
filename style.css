@@ -285,8 +285,11 @@ body {
     transition: var(--transition);
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    min-width: 200px;
     gap: 0.5rem;
     cursor: pointer;
+    text-align: center;
 }
 
 .btn-primary {
