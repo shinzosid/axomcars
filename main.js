@@ -229,6 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 
+                
                 swatch.addEventListener('click', () => {
                     document.querySelectorAll('.swatch').forEach(s => {
                         s.classList.remove('active');
@@ -242,20 +243,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     if (mainImg) {
                         const nextImg = new Image();
+                        const startTime = Date.now();
+                        swatch.classList.add('swatch-loading');
                         nextImg.src = color.img;
                         
                         const performSwap = () => {
-                            swatch.classList.remove('swatch-loading');
-                            if (imgSkeleton) imgSkeleton.style.display = 'none';
-                            mainImg.src = color.img;
-                            mainImg.style.display = 'block';
-                            mainImg.style.opacity = '1';
+                            const elapsed = Date.now() - startTime;
+                            const remaining = Math.max(0, 300 - elapsed);
+                            
+                            setTimeout(() => {
+                                swatch.classList.remove('swatch-loading');
+                                if (imgSkeleton) imgSkeleton.style.display = 'none';
+                                mainImg.src = color.img;
+                                mainImg.style.display = 'block';
+                                mainImg.style.opacity = '1';
+                            }, remaining);
                         };
 
                         if (nextImg.complete) {
                             performSwap();
                         } else {
-                            swatch.classList.add('swatch-loading');
                             mainImg.style.opacity = '0.3';
                             if (imgSkeleton) imgSkeleton.style.display = 'block';
                             nextImg.onload = performSwap;
