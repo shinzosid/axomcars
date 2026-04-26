@@ -1682,6 +1682,120 @@ body {
     100% { transform: scale(1.5); opacity: 0; }
 }
 
+/* --- Offers Page Styles --- */
+.offers-hero {
+    min-height: 70vh;
+    padding: 100px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--bg-light);
+}
+
+.offers-slider-wrapper {
+    width: 100%;
+    margin-top: 3rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.offers-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 30px;
+    padding: 20px 0 40px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) #eee;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+}
+
+.offer-embed {
+    flex: 0 0 350px;
+    scroll-snap-align: center;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    min-height: 500px;
+}
+
+.offer-embed.placeholder {
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #ddd;
+    color: var(--text-muted);
+}
+
+.embed-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    z-index: 1;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.offers-footer {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.offers-footer p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.offers-footer a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .offers-hero {
+        padding: 60px 0;
+    }
+    
+    .offer-embed {
+        flex: 0 0 280px;
+        min-height: 450px;
+    }
+    
+    .offers-container {
+        gap: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .offer-embed {
+        flex: 0 0 260px;
+    }
+}
+
 /* ==========================================================================
    Responsive Overrides (Consolidated)
    ========================================================================== */

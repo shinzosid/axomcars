@@ -73,71 +73,40 @@
     </header>
 
     <main>
-        <section class="range" style="min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <section class="offers-hero">
             <div class="container">
                 <div class="section-header">
                     <h2>Latest Offers</h2>
                     <p>Unlock incredible value with our seasonal promotions.</p>
                 </div>
-                <div class="offers-slider-wrapper" style="width: 100%; margin-top: 3rem; overflow: hidden;">
-                    <div class="offers-container" style="display: flex; overflow-x: auto; gap: 30px; padding: 20px 10px 40px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--accent-red) #eee; -webkit-overflow-scrolling: touch;">
-                        
+                
+                <div class="offers-slider-wrapper">
+                    <div class="offers-container">
                         <!-- Offer 1 -->
-                        <div class="offer-embed" style="flex: 0 0 350px; scroll-snap-align: center; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; min-height: 500px;">
-                            <div class="embed-loader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                        <div class="offer-embed">
+                            <div class="embed-loader">
                                 <div class="spinner"></div>
-                                <p style="font-size: 14px; color: #888;">Loading Offer...</p>
+                                <p>Loading Offer...</p>
                             </div>
-                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXCCMM_D82C/" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; width:calc(100% - 2px); visibility: hidden;"></blockquote>
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXCCMM_D82C/" data-instgrm-version="14"></blockquote>
                         </div>
                         
                         <!-- Offer 2 -->
-                        <div class="offer-embed" style="flex: 0 0 350px; scroll-snap-align: center; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; min-height: 500px;">
-                            <div class="embed-loader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                        <div class="offer-embed">
+                            <div class="embed-loader">
                                 <div class="spinner"></div>
-                                <p style="font-size: 14px; color: #888;">Loading Offer...</p>
+                                <p>Loading Offer...</p>
                             </div>
-                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXebhkjj9P9/" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; width:calc(100% - 2px); visibility: hidden;"></blockquote>
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXebhkjj9P9/" data-instgrm-version="14"></blockquote>
                         </div>
 
-                        <!-- Placeholder for future offers -->
-                        <div class="offer-embed" style="flex: 0 0 350px; scroll-snap-align: center; background: #f9f9f9; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px dashed #ddd; min-height: 500px;">
-                            <p style="color: #888;">More Offers Coming Soon</p>
+                        <!-- Placeholder -->
+                        <div class="offer-embed placeholder">
+                            <p>More Offers Coming Soon</p>
                         </div>
                     </div>
                 </div>
 
-                <style>
-                    /* Custom Scrollbar Styling */
-                    .offers-container::-webkit-scrollbar {
-                        height: 6px;
-                    }
-                    .offers-container::-webkit-scrollbar-track {
-                        background: #f1f1f1;
-                        border-radius: 10px;
-                    }
-                    .offers-container::-webkit-scrollbar-thumb {
-                        background: var(--accent-red);
-                        border-radius: 10px;
-                    }
-                    .offers-container::-webkit-scrollbar-thumb:hover {
-                        background: #b30000;
-                    }
-
-                    /* Spinner Animation */
-                    .spinner {
-                        width: 40px;
-                        height: 40px;
-                        border: 4px solid #f3f3f3;
-                        border-top: 4px solid var(--accent-red);
-                        border-radius: 50%;
-                        animation: spin 1s linear infinite;
-                    }
-                    @keyframes spin {
-                        0% { transform: rotate(0deg); }
-                        100% { transform: rotate(360deg); }
-                    }
-                </style>
                 <script async src="https://www.instagram.com/embed.js"></script>
                 <script>
                     // Wait for Instagram to render
@@ -157,9 +126,9 @@
                     });
                 </script>
                 
-                <div style="margin-top: 4rem;">
-                    <p>Want to know more about these offers? Call our sales team at <a href="tel:7099064993" style="color: var(--accent-red); font-weight: 600;">7099064993</a></p>
-                    <a href="index.html" class="btn btn-secondary" style="margin-top: 1rem;">Back to Home</a>
+                <div class="offers-footer">
+                    <p>Want to know more about these offers? Call our sales team at <a href="tel:7099064993">7099064993</a></p>
+                    <a href="index.html" class="btn btn-secondary">Back to Home</a>
                 </div>
             </div>
         </section>
