@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             
                             setTimeout(() => {
                                 swatch.classList.remove('swatch-loading');
-                                if (imgSkeleton) imgSkeleton.style.display = 'none';
+                                if (imgSkeleton) { imgSkeleton.style.display = 'none'; imgSkeleton.style.opacity = '0'; }
                                 mainImg.src = color.img;
                                 mainImg.style.display = 'block';
                                 mainImg.style.opacity = '1';
@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
             initialImg.src = car.colors[0].img;
             
             const initShow = () => {
-                if (imgSkeleton) imgSkeleton.style.display = 'none';
+                if (imgSkeleton) { imgSkeleton.style.display = 'none'; imgSkeleton.style.opacity = '0'; }
                 mainImg.src = car.colors[0].img;
                 mainImg.style.display = 'block';
                 mainImg.style.opacity = '1';
