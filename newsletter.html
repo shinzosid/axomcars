@@ -229,5 +229,37 @@
         <a href="tel:+917099034014" class="mobile-cta-btn secondary">Call Sales</a>
         <a href="https://wa.me/917099064993?text=Hi%20Axom%20Cars,%20I%20am%20interested%20in%20booking%20a%20car.%20Please%20provide%20more%20details." class="mobile-cta-btn primary">Book Now</a>
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const newsletterForm = document.getElementById('newsletterForm');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const name = newsletterForm.querySelector('input[type="text"]').value;
+                const email = newsletterForm.querySelector('input[type="email"]').value;
+                
+                // Save to leads (localStorage)
+                const leads = JSON.parse(localStorage.getItem('axom_leads') || '[]');
+                leads.push({
+                    type: 'Newsletter Signup',
+                    name: name,
+                    email: email,
+                    date: new Date().toLocaleString(),
+                    status: 'New'
+                });
+                localStorage.setItem('axom_leads', JSON.stringify(leads));
+                
+                // Visual feedback
+                alert('Thank you for subscribing, ' + name + '! You have been added to our exclusive list.');
+                
+                // RESET THE FORM
+                newsletterForm.reset();
+            });
+        }
+    });
+    </script>
+    
 </body>
 </html>
