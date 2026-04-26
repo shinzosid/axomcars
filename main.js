@@ -233,23 +233,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     swatch.classList.add('active');
                     if (colorNameEl) colorNameEl.textContent = color.name;
                     
+                    
+                    // Smooth, Flicker-Free Swapping
                     const mainImg = document.getElementById('mainVehicleImage');
                     const imgSkeleton = document.getElementById('imgSkeleton');
+                    
                     if (mainImg) {
-                        mainImg.style.opacity = '0';
-                        if (imgSkeleton) imgSkeleton.style.display = 'block';
-                        mainImg.src = color.img;
-                        mainImg.onload = () => {
+                        const nextImg = new Image();
+                        nextImg.src = color.img;
+                        
+                        const performSwap = () => {
                             if (imgSkeleton) imgSkeleton.style.display = 'none';
+                            mainImg.src = color.img;
                             mainImg.style.display = 'block';
                             mainImg.style.opacity = '1';
                         };
-                        if (mainImg.complete) {
-                            if (imgSkeleton) imgSkeleton.style.display = 'none';
-                            mainImg.style.display = 'block';
-                            mainImg.style.opacity = '1';
+
+                        if (nextImg.complete) {
+                            // Already cached - swap instantly with zero flicker
+                            performSwap();
+                        } else {
+                            // Not cached - show skeleton only if it takes time
+                            mainImg.style.opacity = '0.3'; // Keep a ghost of the old car
+                            if (imgSkeleton) imgSkeleton.style.display = 'block';
+                            nextImg.onload = performSwap;
                         }
                     }
+    
 
                     if (displayContainer) {
                         const bgColor = color.hex.includes('gradient') ? color.hex.split(',')[1].split(' ')[1] : color.hex;
@@ -272,26 +282,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        const mainImg = document.getElementById('mainVehicleImage');
-        const imgSkeleton = document.getElementById('imgSkeleton');
-        const interiorImg = document.getElementById('interiorImage');
-        const lifestyleImg = document.getElementById('lifestyleImage');
+        
+                    // Smooth, Flicker-Free Swapping
+                    const mainImg = document.getElementById('mainVehicleImage');
+                    const imgSkeleton = document.getElementById('imgSkeleton');
+                    
+                    if (mainImg) {
+                        const nextImg = new Image();
+                        nextImg.src = color.img;
+                        
+                        const performSwap = () => {
+                            if (imgSkeleton) imgSkeleton.style.display = 'none';
+                            mainImg.src = color.img;
+                            mainImg.style.display = 'block';
+                            mainImg.style.opacity = '1';
+                        };
 
-        if (mainImg && car.colors[0]) {
-            mainImg.style.opacity = '0';
-            if (imgSkeleton) imgSkeleton.style.display = 'block';
-            mainImg.src = car.colors[0].img;
-            mainImg.onload = () => {
-                if (imgSkeleton) imgSkeleton.style.display = 'none';
-                mainImg.style.display = 'block';
-                mainImg.style.opacity = '1';
-            };
-            if (mainImg.complete) {
-                if (imgSkeleton) imgSkeleton.style.display = 'none';
-                mainImg.style.display = 'block';
-                mainImg.style.opacity = '1';
-            }
-        }
+                        if (nextImg.complete) {
+                            // Already cached - swap instantly with zero flicker
+                            performSwap();
+                        } else {
+                            // Not cached - show skeleton only if it takes time
+                            mainImg.style.opacity = '0.3'; // Keep a ghost of the old car
+                            if (imgSkeleton) imgSkeleton.style.display = 'block';
+                            nextImg.onload = performSwap;
+                        }
+                    }
+    
         if (interiorImg) interiorImg.src = car.interior;
         if (lifestyleImg) lifestyleImg.src = car.lifestyle;
 
