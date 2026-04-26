@@ -170,7 +170,6 @@
                 <p>Get early access to new launches, exclusive offers, and expert car care tips delivered straight to your inbox.</p>
                 
                 <form class="newsletter-form" id="newsletterForm">
-                    <input type="text" class="newsletter-input" placeholder="Full Name" required>
                     <input type="email" class="newsletter-input" placeholder="Email Address" required>
                     <button type="submit" class="btn btn-primary" style="width: 100%; height: 56px; border-radius: 12px;">Join the Journey</button>
                 </form>
@@ -237,14 +236,13 @@
             newsletterForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
-                const name = newsletterForm.querySelector('input[type="text"]').value;
                 const email = newsletterForm.querySelector('input[type="email"]').value;
                 
                 // Save to leads (localStorage)
                 const leads = JSON.parse(localStorage.getItem('axom_leads') || '[]');
                 leads.push({
                     type: 'Newsletter Signup',
-                    name: name,
+                    name: 'Subscriber',
                     email: email,
                     date: new Date().toLocaleString(),
                     status: 'New'
@@ -252,7 +250,7 @@
                 localStorage.setItem('axom_leads', JSON.stringify(leads));
                 
                 // Visual feedback
-                alert('Thank you for subscribing, ' + name + '! You have been added to our exclusive list.');
+                alert('Thank you for subscribing! You have been added to our exclusive list.');
                 
                 // RESET THE FORM
                 newsletterForm.reset();
