@@ -1,59 +1,3 @@
-window.currentLeadType = 'General Inquiry';
-
-// --- Carousel Functionality ---
-window.moveCarousel = function(carouselId, direction) {
-    const carousel = document.getElementById(carouselId);
-    if (!carousel) return;
-    
-    const images = carousel.querySelectorAll('.carousel-images img');
-    if (images.length <= 1) return;
-    
-    let activeIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
-    if (activeIndex === -1) activeIndex = 0;
-    
-    images[activeIndex].classList.remove('active');
-    activeIndex = (activeIndex + direction + images.length) % images.length;
-    images[activeIndex].classList.add('active');
-};
-
-function initAutoCarousels() {
-    const carousels = document.querySelectorAll('.showroom-carousel');
-    carousels.forEach(carousel => {
-        setInterval(() => {
-            window.moveCarousel(carousel.id, 1);
-        }, 5000);
-    });
-}
-
-function getBrightness(hexColor) {
-    const hex = hexColor.includes('gradient') ?
-        hexColor.split(',')[1].split(' ')[1].trim() :
-        hexColor.trim();
-    const cleanHex = hex.replace('#', '');
-    const r = parseInt(cleanHex.substring(0, 2), 16);
-    const g = parseInt(cleanHex.substring(2, 4), 16);
-    const b = parseInt(cleanHex.substring(4, 6), 16);
-    return (r * 299 + g * 587 + b * 114) / 1000;
-}
-
-// --- Test Drive Modal Handler ---
-window.openTestDriveModal = function(modelId = '') {
-    const modal = document.getElementById('helpModal');
-    if (!modal) return;
-    const modalTitle = modal.querySelector('h2');
-    const modelSelect = document.getElementById('carModel');
-    const helpForm = document.getElementById('helpForm');
-    
-    if (helpForm) helpForm.reset();
-    window.currentLeadType = 'Test Drive';
-    if (modalTitle) modalTitle.textContent = 'Book Your Test Drive';
-    if (modelId && modelSelect) modelSelect.value = modelId.toLowerCase();
-    
-    modal.classList.add('active');
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-    // --- Vehicle Range Data ---
     const carsData = {
         sierra: {
             name: "Sierra",
@@ -84,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 { id: "puregrey", name: "Pure Grey with Dual Tone", hex: "linear-gradient(90deg, #8a8b8f 50%, #111 50%)", img: "images/cars/harrier/pure-grey-right-85.avif" },
                 { id: "green", name: "Seaweed Green with Dual Tone", hex: "linear-gradient(90deg, #4f5634 50%, #111 50%)", img: "images/cars/harrier/seaweed-green-right-26.avif" }
             ],
-            interior: "images/cars/harrier/terrain-interior.avif",
-            lifestyle: "images/cars/harrier/harrier-exterior.avif",
+            interior: "images/cars/harrier/terrain-interior.jpg",
+            lifestyle: "images/cars/harrier/harrier-exterior.jpg",
             accentColor: "#8b0000"
         },
         safari: {
@@ -101,8 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 { id: "grey", name: "Daytona Grey with Dual Tone", hex: "linear-gradient(90deg, #38393b 50%, #111 50%)", img: "images/cars/safari/daytona-grey-left-297.avif" },
                 { id: "puregrey", name: "Pure Grey with Dual Tone", hex: "linear-gradient(90deg, #8a8b8f 50%, #111 50%)", img: "images/cars/safari/pure-grey-left-96.avif" }
             ],
-            interior: "images/cars/safari/safari_interior.avif",
-            lifestyle: "images/cars/safari/safari-exterior.avif",
+            interior: "images/cars/safari/safari_interior.jpg",
+            lifestyle: "images/cars/safari/safari-exterior.jpg",
             accentColor: "#d4af37"
         },
         nexon: {
@@ -117,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 { id: "white", name: "Calgary White with Dual Tone", hex: "linear-gradient(90deg, #f6f6f6 50%, #111 50%)", img: "images/cars/nexon/calgary-white-right-43.avif" },
                 { id: "beige", name: "Grassland Beige with Dual Tone", hex: "linear-gradient(90deg, #a4a089 50%, #111 50%)", img: "images/cars/nexon/grassland-beige-right-4.avif" }
             ],
-            interior: "images/cars/nexon/interiornexon.avif",
-            lifestyle: "images/cars/nexon/exteriornexon.avif",
+            interior: "images/cars/nexon/interiornexon.png",
+            lifestyle: "images/cars/nexon/exteriornexon.png",
             accentColor: "#1d70b8"
         },
         punch: {
@@ -133,8 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 { id: "caramel", name: "Caramel with Dual Tone", hex: "linear-gradient(90deg, #e67317 50%, #111 50%)", img: "images/cars/punch/caramel-right-17.avif" },
                 { id: "coorgclouds", name: "Coorg Clouds with Dual Tone", hex: "linear-gradient(90deg, #bccbcd 50%, #111 50%)", img: "images/cars/punch/coorg-clouds-right-10.avif" }
             ],
-            interior: "images/cars/punch/new-punch-interior.avif",
-            lifestyle: "images/cars/punch/new-punch-exterior.avif",
+            interior: "images/cars/punch/new-punch-interior.png",
+            lifestyle: "images/cars/punch/new-punch-exterior.png",
             accentColor: "#00ffff"
         },
         altroz: {
@@ -148,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 { id: "grey", name: "Pure Grey with Dual Tone", hex: "linear-gradient(90deg, #45464b 50%, #111 50%)", img: "images/cars/altroz/arcade-grey-right-52.avif" },
                 { id: "white", name: "Pristine White with Dual Tone", hex: "linear-gradient(90deg, #e0e4dc 50%, #111 50%)", img: "images/cars/altroz/prestine-white-right-1.avif" }
             ],
-            interior: "images/cars/altroz/altroz-interior.avif",
-            lifestyle: "images/cars/altroz/altroz-exterior.avif",
+            interior: "images/cars/altroz/altroz-interior.jpg",
+            lifestyle: "images/cars/altroz/altroz-exterior.jpg",
             accentColor: "#d4af37"
         },
         tiago: {
@@ -164,8 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 { id: "polarwhite", name: "Pristine White", hex: "#dcdddf", img: "images/cars/tiago/polar-white-dt-right-1.avif" },
                 { id: "tornadoblue", name: "Tornado Blue", hex: "#1864b3", img: "images/cars/tiago/tornado-blue-right-30.avif" }
             ],
-            interior: "images/cars/tiago/tiagointerior.avif",
-            lifestyle: "images/cars/tiago/tiagoexterior.avif",
+            interior: "images/cars/tiago/tiagointerior.jpg",
+            lifestyle: "images/cars/tiago/tiagoexterior.jpg",
             accentColor: "#1d70b8"
         },
         curvv: {
@@ -180,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 { id: "puregrey", name: "Pure Grey with Dual Tone", hex: "linear-gradient(90deg, #aaabb0 50%, #111 50%)", img: "images/cars/curvv/pure-grey-right-67.avif" },
                 { id: "royalblue", name: "Royal Blue with Dual Tone", hex: "linear-gradient(90deg, #0061aa 50%, #111 50%)", img: "images/cars/curvv/royal-blue-right-68.avif" }
             ],
-            interior: "images/cars/curvv/curvvinterior.avif",
-            lifestyle: "images/cars/curvv/curvvexterior.avif",
+            interior: "images/cars/curvv/curvvinterior.jpg",
+            lifestyle: "images/cars/curvv/curvvexterior.jpg",
             accentColor: "#d4af37"
         },
         tigor: {
@@ -195,197 +139,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 { id: "meteorbronze", name: "Meteor Bronze", hex: "#a07f52", img: "images/cars/tigor/meteor-bronze-right-41.avif" },
                 { id: "opalwhite", name: "Pristine White", hex: "#fefefe", img: "images/cars/tigor/opal-white-right-39.avif" }
             ],
-            interior: "images/cars/tigor/tigorinterior.avif",
-            lifestyle: "images/cars/tigor/tigorexterior.avif",
+            interior: "images/cars/tigor/tigorinterior.jpg",
+            lifestyle: "images/cars/tigor/tigorexterior.jpg",
             accentColor: "#b87333"
         }
     };
+    function getBrightness(hexColor) {
+        // If it's a gradient, extract the main color
+        const hex = hexColor.includes('gradient') ?
+            hexColor.split(',')[1].split(' ')[1].trim() :
+            hexColor.trim();
 
-    function updateVehicleUI(carId) {
-        const car = carsData[carId];
-        if (!car) return;
+        // Remove # if present
+        const cleanHex = hex.replace('#', '');
 
-        const nameEl = document.getElementById('vehicleName');
-        const taglineEl = document.getElementById('vehicleTagline');
-        const descEl = document.getElementById('vehicleDescription');
-        if (nameEl) nameEl.textContent = car.name;
-        if (taglineEl) taglineEl.textContent = car.tagline;
-        if (descEl) descEl.textContent = car.description;
+        // Convert to RGB
+        const r = parseInt(cleanHex.substring(0, 2), 16);
+        const g = parseInt(cleanHex.substring(2, 4), 16);
+        const b = parseInt(cleanHex.substring(4, 6), 16);
 
-        const swatchContainer = document.getElementById('colorSwatches');
-        const colorNameEl = document.getElementById('selectedColorName');
-        const displayContainer = document.querySelector('.vehicle-display-container');
-
-        if (swatchContainer) {
-            swatchContainer.innerHTML = '';
-            car.colors.forEach((color, index) => {
-                const swatch = document.createElement('div');
-                swatch.className = 'swatch' + (index === 0 ? ' active' : '');
-                
-                if (color.hex.includes('gradient')) {
-                    swatch.style.backgroundImage = color.hex;
-                } else {
-                    swatch.style.backgroundColor = color.hex;
-                }
-
-                swatch.addEventListener('click', () => {
-                    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-                    swatch.classList.add('active');
-                    if (colorNameEl) colorNameEl.textContent = color.name;
-                    
-                    const mainImg = document.getElementById('mainVehicleImage');
-                    const imgSkeleton = document.getElementById('imgSkeleton');
-                    if (mainImg) {
-                        mainImg.style.opacity = '0';
-                        if (imgSkeleton) imgSkeleton.style.display = 'block';
-                        mainImg.src = color.img;
-                        mainImg.onload = () => {
-                            if (imgSkeleton) imgSkeleton.style.display = 'none';
-                            mainImg.style.display = 'block';
-                            mainImg.style.opacity = '1';
-                        };
-                        if (mainImg.complete) {
-                            if (imgSkeleton) imgSkeleton.style.display = 'none';
-                            mainImg.style.display = 'block';
-                            mainImg.style.opacity = '1';
-                        }
-                    }
-
-                    if (displayContainer) {
-                        const bgColor = color.hex.includes('gradient') ? color.hex.split(',')[1].split(' ')[1] : color.hex;
-                        displayContainer.style.backgroundColor = bgColor;
-                        const brightness = getBrightness(color.hex);
-                        if (brightness < 128) displayContainer.classList.add('light-text');
-                        else displayContainer.classList.remove('light-text');
-                    }
-                });
-                swatchContainer.appendChild(swatch);
-            });
-            if (colorNameEl && car.colors[0]) colorNameEl.textContent = car.colors[0].name;
-            
-            if (displayContainer && car.colors[0]) {
-                const initialColor = car.colors[0].hex;
-                const bgColor = initialColor.includes('gradient') ? initialColor.split(',')[1].split(' ')[1] : initialColor;
-                displayContainer.style.backgroundColor = bgColor;
-                if (getBrightness(initialColor) < 128) displayContainer.classList.add('light-text');
-                else displayContainer.classList.remove('light-text');
-            }
-        }
-
-        const mainImg = document.getElementById('mainVehicleImage');
-        const imgSkeleton = document.getElementById('imgSkeleton');
-        const interiorImg = document.getElementById('interiorImage');
-        const lifestyleImg = document.getElementById('lifestyleImage');
-
-        if (mainImg && car.colors[0]) {
-            mainImg.style.opacity = '0';
-            if (imgSkeleton) imgSkeleton.style.display = 'block';
-            mainImg.src = car.colors[0].img;
-            mainImg.onload = () => {
-                if (imgSkeleton) imgSkeleton.style.display = 'none';
-                mainImg.style.display = 'block';
-                mainImg.style.opacity = '1';
-            };
-            if (mainImg.complete) {
-                if (imgSkeleton) imgSkeleton.style.display = 'none';
-                mainImg.style.display = 'block';
-                mainImg.style.opacity = '1';
-            }
-        }
-        if (interiorImg) interiorImg.src = car.interior;
-        if (lifestyleImg) lifestyleImg.src = car.lifestyle;
-
-        document.querySelectorAll('.model-tab').forEach(tab => {
-            tab.classList.remove('active');
-            if (tab.dataset.car === carId) tab.classList.add('active');
-        });
-
-        const learnMoreBtn = document.getElementById('learnMoreBtn');
-        if (learnMoreBtn) learnMoreBtn.href = `cars/${carId}.html`;
-        const bookNowBtn = document.querySelector('.cta-group .btn[href*="wa.me"], #waBookBtn');
-        if (bookNowBtn) {
-            const message = encodeURIComponent(`Hi Axom Cars, I am interested in booking the Tata ${car.name}. Please provide more details.`);
-            bookNowBtn.href = `https://wa.me/917099064993?text=${message}`;
-        }
+        // Calculate YIQ brightness
+        return (r * 299 + g * 587 + b * 114) / 1000;
     }
-
-    const modelTabs = document.querySelectorAll('.model-tab');
-    modelTabs.forEach(tab => {
-        tab.addEventListener('click', () => updateVehicleUI(tab.dataset.car));
-    });
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const targetCar = urlParams.get('car');
-    if (targetCar && carsData[targetCar]) {
-        updateVehicleUI(targetCar);
-    } else if (document.getElementById('vehicleDisplay') || document.getElementById('mainVehicleImage')) {
-        updateVehicleUI('sierra');
-    }
-
-    const menuToggle = document.getElementById('menuToggle');
-    const headerNav = document.querySelector('.header-nav');
-    if (menuToggle && headerNav) {
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            headerNav.classList.toggle('active');
-        });
-    }
-
-    const rangeTabs = document.querySelectorAll('.tab[data-range]');
-    const carCards = document.querySelectorAll('.car-card[data-category]');
-    if (rangeTabs.length > 0) {
-        rangeTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const category = tab.dataset.range;
-                rangeTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                carCards.forEach(card => {
-                    card.style.display = (card.dataset.category === category || category === 'all') ? 'block' : 'none';
-                });
-            });
-        });
-    }
-
-    const triggerHaptic = () => { if ('vibrate' in navigator) navigator.vibrate(10); };
-    document.querySelectorAll('.btn-primary, .btn-test-drive, .whatsapp-sticky, #helpForm button, .mobile-cta-btn').forEach(el => {
-        el.addEventListener('click', triggerHaptic);
-    });
-
-    const stickyBar = document.querySelector('.mobile-sticky-bar');
-    const heroSection = document.querySelector('.hero');
-    if (stickyBar && heroSection) {
-        window.addEventListener('scroll', () => {
-            const heroBottom = heroSection.getBoundingClientRect().bottom;
-            if (heroBottom < 0) stickyBar.classList.add('visible');
-            else stickyBar.classList.remove('visible');
-        });
-    }
-
-    const helpForm = document.getElementById('helpForm');
-    if (helpForm) {
-        helpForm.addEventListener('submit', () => {
-            const submitBtn = helpForm.querySelector('button[type="submit"]');
-            if (submitBtn) {
-                submitBtn.classList.add('btn-loading');
-                submitBtn.innerHTML = 'Sending...';
-            }
-        });
-    }
-
-    function initHelpModal() {
-        const modal = document.getElementById('helpModal');
-        if (!modal) return;
-        const modalSeen = localStorage.getItem('axom_modal_seen');
-        if (!modalSeen) {
-            setTimeout(() => {
-                const modalTitle = modal.querySelector('h2');
-                if (modalTitle) modalTitle.textContent = 'How can we help you?';
-                modal.classList.add('active');
-            }, 8000);
-        }
-        document.getElementById('closeModal')?.addEventListener('click', () => modal.classList.remove('active'));
-    }
-
-    initHelpModal();
-    initAutoCarousels();
-});
