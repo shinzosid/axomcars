@@ -266,7 +266,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (mainImg) {
                         const nextImg = new Image();
                         const startTime = Date.now();
-                        swatch.classList.add('swatch-loading');
+                        const carLoader = document.getElementById('carLoader');
+                        if (carLoader) carLoader.style.display = 'block';
+                        if (mainImg) {
+                            mainImg.style.opacity = '0.7';
+                            mainImg.style.filter = 'blur(2px)';
+                        }
+                        
                         nextImg.src = color.img;
                         
                         const performSwap = () => {
@@ -274,11 +280,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             const remaining = Math.max(0, 300 - elapsed);
                             
                             setTimeout(() => {
-                                swatch.classList.remove('swatch-loading');
+                                if (carLoader) carLoader.style.display = 'none';
                                 if (imgSkeleton) { imgSkeleton.style.display = 'none'; imgSkeleton.style.opacity = '0'; }
                                 mainImg.src = color.img;
                                 mainImg.style.display = 'block';
                                 mainImg.style.opacity = '1';
+                                mainImg.style.filter = 'none';
                             }, remaining);
                         };
 

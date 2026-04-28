@@ -2415,3 +2415,27 @@ body {
     border-radius: inherit;
     z-index: 1;
 }
+
+.modern-car-loader {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--primary-color, #1a1a1a);
+    animation: spin-car 1s ease-in-out infinite;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.vehicle-display-container.light-text .modern-car-loader {
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #fff;
+}
+
+@keyframes spin-car {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
