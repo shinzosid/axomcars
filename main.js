@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const carsData = {
         sierra: {
             name: "Sierra",
+            price: "11,49,000",
             tagline: "The Legend Returns",
             description: "Chaos Outside. Calm Within. Welcome Home, in every drive. Your commute, Reimagined.",
             colors: [
@@ -73,6 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         harrier: {
             name: "Harrier",
+            pricePetrol: "12,89,000",
+            priceDiesel: "13,99,990",
             tagline: "We are Warriors, We are Harriers",
             description: "Unleash the warrior within with the Bold New Harrier. Designed to dominate every terrain with effortless power and futuristic technology.",
             colors: [
@@ -90,6 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         safari: {
             name: "Safari",
+            pricePetrol: "13,29,000",
+            priceDiesel: "14,74,990",
             tagline: "Reclaim Your Life",
             description: "The New Safari is more than an SUV; it's a statement of luxury and dominance. Experience the pinnacle of comfort and sophistication.",
             colors: [
@@ -107,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         nexon: {
             name: "Nexon",
+            price: "7,36,990",
             tagline: "It's #WayAhead",
             description: "Lead the way with the SUV that's ahead of its time. Futuristic design meets unmatched performance in the new Tata Nexon.",
             colors: [
@@ -123,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         punch: {
             name: "Punch",
+            price: "5,64,990",
             tagline: "The no-compromise SUV",
             description: "Presenting the New Tata PUNCH, built to turn heads and designed to take command. The perfect blend of true SUV design and everyday practicality.",
             colors: [
@@ -139,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         altroz: {
             name: "Altroz",
+            price: "6,29,990",
             tagline: "Feel Special",
             description: "Every journey in the Tata Altroz is designed to indulge you—with intelligent features, immersive sound, and intuitive control at your fingertips. It's more than just technology. It's thoughtful innovation that makes you feel special, every step of the way.",
             colors: [
@@ -154,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         tiago: {
             name: "Tiago",
+            price: "4,59,990",
             tagline: "It's Seriously fun",
             description: "Younger than ever. Bolder than ever. Inspired by the spirited youth, the All-new Tiago is hard to ignore. Drive around the city and watch heads turn towards you.",
             colors: [
@@ -170,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         curvv: {
             name: "CURVV",
+            price: "9,69,990",
             tagline: "Where SUV muscle meets coupé finesse",
             description: "Merging the toughness and durability of an SUV with the elegant and sporty silhouette of a coupé.",
             colors: [
@@ -186,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         tigor: {
             name: "Tigor",
+            price: "5,54,990",
             tagline: "Sedan for the Stars",
             description: "Stunning style, state-of-the-art features, comprehensive safety and seamlessly smooth drives of the New Tigor ensure you are in your element while exploring the city.",
             colors: [
@@ -211,6 +222,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nameEl) nameEl.textContent = car.name;
         if (taglineEl) taglineEl.textContent = car.tagline;
         if (descEl) descEl.textContent = car.description;
+
+        const priceEl = document.getElementById('vehiclePrice');
+        if (priceEl) {
+            if (car.pricePetrol && car.priceDiesel) {
+                priceEl.innerHTML = 'Ex-showroom price starts at:<br>Petrol: ₹' + car.pricePetrol + '*<br>Diesel: ₹' + car.priceDiesel + '*';
+            } else if (car.price) {
+                priceEl.innerHTML = 'Ex-showroom price starts at ₹' + car.price + '*';
+            } else {
+                priceEl.innerHTML = '';
+            }
+        }
 
         const swatchContainer = document.getElementById('colorSwatches');
         const colorNameEl = document.getElementById('selectedColorName');

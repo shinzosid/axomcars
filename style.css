@@ -714,10 +714,32 @@ body {
     color: #333;
     margin-top: 5px;
     transition: color 0.3s ease;
+    margin-bottom: 0;
+}
+
+.color-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.vehicle-price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    margin: 0;
+    z-index: 10;
+    text-align: right;
 }
 
 /* Contrast adjustment for dark backgrounds */
 .vehicle-display-container.light-text .selected-color-name,
+.vehicle-display-container.light-text .vehicle-price,
 .vehicle-display-container.light-text .vehicle-details h2,
 .vehicle-display-container.light-text .vehicle-tagline,
 .vehicle-display-container.light-text .vehicle-description {
