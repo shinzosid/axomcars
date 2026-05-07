@@ -80,6 +80,13 @@
             <div class="table-header-actions">
                 <h2>Customer Inquiries</h2>
                 <div style="display: flex; gap: 10px; align-items: center;">
+                    <select id="typeFilter" onchange="renderLeads()" style="padding: 8px; border-radius: 6px; border: 1px solid #ddd; outline: none; font-family: 'Poppins', sans-serif;">
+                        <option value="all">All Types</option>
+                        <option value="Test Drive">Test Drive</option>
+                        <option value="Service">Service</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Newsletter Signup">Newsletter</option>
+                    </select>
                     <select id="dateFilter" onchange="renderLeads()" style="padding: 8px; border-radius: 6px; border: 1px solid #ddd; outline: none; font-family: 'Poppins', sans-serif;">
                         <option value="all">All Time</option>
                         <option value="current">Current Month</option>
@@ -182,6 +189,7 @@
             const totalEl = document.getElementById('totalLeads');
             const latestEl = document.getElementById('leadsTodayCount');
             const filterValue = document.getElementById('dateFilter').value;
+            const typeFilterValue = document.getElementById('typeFilter') ? document.getElementById('typeFilter').value : 'all';
 
             body.innerHTML = '<tr><td colspan="6" class="empty-state">Loading leads...</td></tr>';
 
@@ -194,21 +202,31 @@
                 });
 
                 // Filter logic
-                if (filterValue !== 'all') {
-                    const now = new Date();
-                    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
-                    const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, 1).getTime();
+                const now = new Date();
+                const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
+                const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, 1).getTime();
 
-                    leads = leads.filter(lead => {
-                        const leadTime = lead.id; // Using the 'id' which is Date.now()
-                        if (filterValue === 'current') {
-                            return leadTime >= startOfMonth;
-                        } else if (filterValue === 'last3') {
-                            return leadTime >= threeMonthsAgo;
+                leads = leads.filter(lead => {
+                    const leadTime = lead.id; // Using the 'id' which is Date.now()
+                    let passDate = true;
+                    if (filterValue === 'current') {
+                        passDate = leadTime >= startOfMonth;
+                    } else if (filterValue === 'last3') {
+                        passDate = leadTime >= threeMonthsAgo;
+                    }
+                    
+                    let passType = true;
+                    if (typeFilterValue !== 'all') {
+                        const leadType = lead.type || 'Inquiry';
+                        if (typeFilterValue === 'General Inquiry' && (leadType === 'Inquiry' || leadType === 'General Inquiry')) {
+                            passType = true;
+                        } else {
+                            passType = leadType === typeFilterValue;
                         }
-                        return true;
-                    });
-                }
+                    }
+                    
+                    return passDate && passType;
+                });
 
                 // Update Stats
                 totalEl.textContent = leads.length;
@@ -226,7 +244,7 @@
                 body.innerHTML = leads.map(lead => `
                     <tr>
                         <td style="font-size: 11px; white-space: nowrap;">${lead.date || 'N/A'}</td>
-                        <td><span style="background: ${lead.type === 'Test Drive' ? '#fff4f4' : '#f4fff4'}; color: ${lead.type === 'Test Drive' ? '#e74c3c' : '#27ae60'}; padding: 4px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; border: 1px solid currentColor;">${(lead.type || 'Inquiry').toUpperCase()}</span></td>
+                        <td><span style="background: ${lead.type === 'Test Drive' ? '#fff4f4' : (lead.type === 'Service' ? '#eef6fc' : '#f4fff4')}; color: ${lead.type === 'Test Drive' ? '#e74c3c' : (lead.type === 'Service' ? '#1d70b8' : '#27ae60')}; padding: 4px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; border: 1px solid currentColor;">${(lead.type || 'Inquiry').toUpperCase()}</span></td>
                         <td style="font-weight: 600;">${lead.name || 'N/A'}</td>
                         <td>${lead.mobile || 'N/A'}</td>
                         <td><span style="background: #e1e7ec; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">${(lead.model || 'N/A').toUpperCase()}</span></td>
@@ -241,23 +259,34 @@
 
         async function exportToCSV() {
             const filterValue = document.getElementById('dateFilter').value;
+            const typeFilterValue = document.getElementById('typeFilter') ? document.getElementById('typeFilter').value : 'all';
             const snapshot = await db.collection("leads").orderBy("id", "desc").get();
             let leads = [];
             snapshot.forEach(doc => leads.push(doc.data()));
             
             // Apply current filter to export
-            if (filterValue !== 'all') {
-                const now = new Date();
-                const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
-                const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, 1).getTime();
+            const now = new Date();
+            const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
+            const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, 1).getTime();
 
-                leads = leads.filter(lead => {
-                    const leadTime = lead.id;
-                    if (filterValue === 'current') return leadTime >= startOfMonth;
-                    if (filterValue === 'last3') return leadTime >= threeMonthsAgo;
-                    return true;
-                });
-            }
+            leads = leads.filter(lead => {
+                const leadTime = lead.id;
+                let passDate = true;
+                if (filterValue === 'current') passDate = leadTime >= startOfMonth;
+                if (filterValue === 'last3') passDate = leadTime >= threeMonthsAgo;
+                
+                let passType = true;
+                if (typeFilterValue !== 'all') {
+                    const leadType = lead.type || 'Inquiry';
+                    if (typeFilterValue === 'General Inquiry' && (leadType === 'Inquiry' || leadType === 'General Inquiry')) {
+                        passType = true;
+                    } else {
+                        passType = leadType === typeFilterValue;
+                    }
+                }
+                
+                return passDate && passType;
+            });
 
             if (leads.length === 0) {
                 alert('No leads to export.');

@@ -209,8 +209,9 @@
                                 </div>
                             </div>
                             <div class="showroom-actions">
+                                <button class="btn btn-primary" onclick="openServiceModal('guwahati')">Book Service</button>
                                 <a href="https://google.com/maps/place/Axom+Cars+Service+Center/@26.1517406,91.7766023,17z/data=!4m6!3m5!1s0x375a59fbd79fa1e3:0xada551a2d6c0195c!8m2!3d26.1495207!4d91.7839475!16s%2Fg%2F11kb0xn2v5!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D"
-                                    target="_blank" class="btn btn-primary">Get Directions</a>
+                                    target="_blank" class="btn btn-secondary">Get Directions</a>
                             </div>
                         </div>
                     </div>
@@ -299,8 +300,9 @@
                                 </div>
                             </div>
                             <div class="showroom-actions">
+                                <button class="btn btn-primary" onclick="openServiceModal('rangia')">Book Service</button>
                                 <a href="https://maps.app.goo.gl/uooZv9CtRtSzA46e7" target="_blank"
-                                    class="btn btn-primary">Get Directions</a>
+                                    class="btn btn-secondary">Get Directions</a>
                             </div>
                         </div>
                     </div>
@@ -333,11 +335,83 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Axom Cars. All rights reserved.</p>
             </div>
-        </div>
-    </footer>
+      <script defer src="main.min.js"></script>
 
-    <script defer src="main.min.js"></script>
+    <!-- Firebase SDK (Compat) -->
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
     <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBOjZ51fEzgaBPyZvkwsIjaza3Uu5NutF4",
+            authDomain: "axom-cars.firebaseapp.com",
+            databaseURL: "https://axom-cars-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "axom-cars",
+            storageBucket: "axom-cars.firebasestorage.app",
+            messagingSenderId: "1011433356105",
+            appId: "1:1011433356105:web:7629781533d27dabf23898"
+        };
+
+        // Delay firebase initialization to allow scripts to load
+        let db;
+        window.addEventListener('load', () => {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            db = firebase.firestore();
+            
+            // Attach form listener
+            const serviceForm = document.getElementById('serviceForm');
+            if (serviceForm) {
+                serviceForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const submitBtn = serviceForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.classList.add('btn-loading');
+                    submitBtn.innerHTML = 'Booking...';
+                    submitBtn.disabled = true;
+
+                    const name = document.getElementById('serviceName').value;
+                    const mobile = document.getElementById('serviceMobile').value;
+                    const model = document.getElementById('serviceCarModel').value;
+                    const outlet = document.getElementById('serviceWorkshop').value;
+                    const date = new Date();
+
+                    const leadData = {
+                        id: date.getTime(),
+                        type: 'Service',
+                        name: name,
+                        mobile: mobile,
+                        model: model,
+                        outlet: outlet,
+                        date: date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
+                    };
+
+                    try {
+                        // 1. Save to Firebase
+                        await db.collection("leads").doc(date.getTime().toString()).set(leadData);
+
+                        // 2. Save to localStorage (fallback/redundancy)
+                        const leads = JSON.parse(localStorage.getItem('axom_leads') || '[]');
+                        leads.push({ ...leadData, status: 'New' });
+                        localStorage.setItem('axom_leads', JSON.stringify(leads));
+
+                        alert('Service request booked successfully! Our team will contact you shortly.');
+                        serviceForm.reset();
+                        document.getElementById('serviceModal').classList.remove('active');
+                    } catch (error) {
+                        console.error('Error submitting lead:', error);
+                        alert('There was an error booking your service. Please try again.');
+                    } finally {
+                        submitBtn.classList.remove('btn-loading');
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+        });
+
         function moveCarousel(id, direction) {
             const carousel = document.getElementById(id);
             const images = carousel.querySelectorAll('.carousel-images img');
@@ -354,11 +428,91 @@
                 moveCarousel(carousel.id, 1);
             }, 5000);
         });
+
+        // Service Modal Logic
+        function openServiceModal(workshopId) {
+            const modal = document.getElementById('serviceModal');
+            const workshopSelect = document.getElementById('serviceWorkshop');
+            if (modal && workshopSelect) {
+                if (workshopId) {
+                    workshopSelect.value = workshopId;
+                }
+                modal.classList.add('active');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const closeBtn = document.getElementById('closeServiceModal');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    document.getElementById('serviceModal').classList.remove('active');
+                });
+            }
+        });
     </script>
-<div class="mobile-sticky-bar">
+    <div class="mobile-sticky-bar">
         <a href="tel:+917099034014" class="mobile-cta-btn secondary">Call Sales</a>
         <a href="https://wa.me/917099064993?text=Hi%20Axom%20Cars,%20I%20am%20interested%20in%20booking%20a%20car.%20Please%20provide%20more%20details." class="mobile-cta-btn primary">Book Now</a>
     </div>
-</body>
 
+    <!-- Service Booking Modal -->
+    <div class="modal-overlay" id="serviceModal">
+        <div class="modal-container">
+            <div class="modal-close" id="closeServiceModal">&times;</div>
+            <div class="modal-image" style="background-image: url('images/workshop/guwahati/1.jpg');"></div>
+            <div class="modal-form-container">
+                <h2>Book Car Service</h2>
+                <form id="serviceForm">
+                    <div class="form-group">
+                        <label for="serviceName">Name</label>
+                        <input type="text" id="serviceName" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceMobile">Mobile</label>
+                        <div class="mobile-input-wrapper">
+                            <span class="mobile-prefix">+91</span>
+                            <input type="tel" id="serviceMobile" placeholder="Mobile No." required pattern="[0-9]{10}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceCarModel">Car Model</label>
+                        <select id="serviceCarModel" required>
+                            <option value="" disabled selected>Select Model</option>
+                            <optgroup label="SUVs">
+                                <option value="sierra">Sierra</option>
+                                <option value="harrier">Harrier</option>
+                                <option value="safari">Safari</option>
+                                <option value="nexon">Nexon</option>
+                                <option value="punch">Punch</option>
+                            </optgroup>
+                            <optgroup label="Sedans & Hatchbacks">
+                                <option value="altroz">Altroz</option>
+                                <option value="tiago">Tiago</option>
+                                <option value="curvv">CURVV</option>
+                                <option value="tigor">Tigor</option>
+                            </optgroup>
+                            <optgroup label="Electric (EV)">
+                                <option value="nexon-ev">Nexon EV</option>
+                                <option value="punch-ev">Punch EV</option>
+                                <option value="tiago-ev">Tiago EV</option>
+                                <option value="tigor-ev">Tigor EV</option>
+                                <option value="curvv-ev">Curvv EV</option>
+                                <option value="harrier-ev">Harrier EV</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceWorkshop">Workshop Location</label>
+                        <select id="serviceWorkshop" required>
+                            <option value="" disabled selected>Select Workshop</option>
+                            <option value="guwahati">Guwahati Workshop</option>
+                            <option value="rangia">Rangia Workshop</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="modal-submit-btn">Book Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
