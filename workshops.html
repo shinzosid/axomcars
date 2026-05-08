@@ -335,81 +335,16 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Axom Cars. All rights reserved.</p>
             </div>
-      <script defer src="main.min.js"></script>
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
 
-    <!-- Firebase SDK (Compat) -->
-    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script defer src="main.min.js"></script>
 
     <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBOjZ51fEzgaBPyZvkwsIjaza3Uu5NutF4",
-            authDomain: "axom-cars.firebaseapp.com",
-            databaseURL: "https://axom-cars-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "axom-cars",
-            storageBucket: "axom-cars.firebasestorage.app",
-            messagingSenderId: "1011433356105",
-            appId: "1:1011433356105:web:7629781533d27dabf23898"
-        };
-
-        // Delay firebase initialization to allow scripts to load
-        let db;
-        window.addEventListener('load', () => {
-            if (!firebase.apps.length) {
-                firebase.initializeApp(firebaseConfig);
-            }
-            db = firebase.firestore();
-            
-            // Attach form listener
-            const serviceForm = document.getElementById('serviceForm');
-            if (serviceForm) {
-                serviceForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const submitBtn = serviceForm.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.innerHTML;
-                    submitBtn.classList.add('btn-loading');
-                    submitBtn.innerHTML = 'Booking...';
-                    submitBtn.disabled = true;
-
-                    const name = document.getElementById('serviceName').value;
-                    const mobile = document.getElementById('serviceMobile').value;
-                    const model = document.getElementById('serviceCarModel').value;
-                    const outlet = document.getElementById('serviceWorkshop').value;
-                    const date = new Date();
-
-                    const leadData = {
-                        id: date.getTime(),
-                        type: 'Service',
-                        name: name,
-                        mobile: mobile,
-                        model: model,
-                        outlet: outlet,
-                        date: date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
-                    };
-
-                    try {
-                        // 1. Save to Firebase
-                        await db.collection("leads").doc(date.getTime().toString()).set(leadData);
-
-                        // 2. Save to localStorage (fallback/redundancy)
-                        const leads = JSON.parse(localStorage.getItem('axom_leads') || '[]');
-                        leads.push({ ...leadData, status: 'New' });
-                        localStorage.setItem('axom_leads', JSON.stringify(leads));
-
-                        alert('Service request booked successfully! Our team will contact you shortly.');
-                        serviceForm.reset();
-                        document.getElementById('serviceModal').classList.remove('active');
-                    } catch (error) {
-                        console.error('Error submitting lead:', error);
-                        alert('There was an error booking your service. Please try again.');
-                    } finally {
-                        submitBtn.classList.remove('btn-loading');
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    }
-                });
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Supabase lead handling for the service form
+            window.handleLeadForm('serviceForm', 'Service');
         });
 
         function moveCarousel(id, direction) {
@@ -441,13 +376,8 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const closeBtn = document.getElementById('closeServiceModal');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', () => {
-                    document.getElementById('serviceModal').classList.remove('active');
-                });
-            }
+        document.getElementById('closeServiceModal')?.addEventListener('click', () => {
+            document.getElementById('serviceModal').classList.remove('active');
         });
     </script>
     <div class="mobile-sticky-bar">

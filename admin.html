@@ -118,31 +118,24 @@
         </div>
     </main>
 
-    <!-- Firebase SDK (Compat) -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
 
     <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBOjZ51fEzgaBPyZvkwsIjaza3Uu5NutF4",
-            authDomain: "axom-cars.firebaseapp.com",
-            databaseURL: "https://axom-cars-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "axom-cars",
-            storageBucket: "axom-cars.firebasestorage.app",
-            messagingSenderId: "1011433356105",
-            appId: "1:1011433356105:web:7629781533d27dabf23898"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
-
         // Check auth state on load
-        auth.onAuthStateChanged(user => {
-            if (user) {
+        async function checkAuthState() {
+            const { data: { session } } = await window.supabaseClient.auth.getSession();
+            if (session) {
+                document.getElementById('loginOverlay').style.display = 'none';
+                renderLeads();
+            } else {
+                document.getElementById('loginOverlay').style.display = 'flex';
+            }
+        }
+
+        window.supabaseClient.auth.onAuthStateChange((event, session) => {
+            if (session) {
                 document.getElementById('loginOverlay').style.display = 'none';
                 renderLeads();
             } else {
@@ -161,7 +154,11 @@
             error.style.display = 'none';
 
             try {
-                await auth.signInWithEmailAndPassword(email, pass);
+                const { error: authError } = await window.supabaseClient.auth.signInWithPassword({
+                    email: email,
+                    password: pass,
+                });
+                if (authError) throw authError;
             } catch (err) {
                 console.error(err);
                 error.textContent = err.message;
@@ -178,10 +175,9 @@
             }
         });
 
-        function logout() {
-            auth.signOut().then(() => {
-                location.reload();
-            });
+        async function logout() {
+            await window.supabaseClient.auth.signOut();
+            location.reload();
         }
 
         async function renderLeads() {
@@ -194,20 +190,21 @@
             body.innerHTML = '<tr><td colspan="6" class="empty-state">Loading leads...</td></tr>';
 
             try {
-                // Fetch from Firestore
-                const snapshot = await db.collection("leads").orderBy("id", "desc").get();
-                let leads = [];
-                snapshot.forEach(doc => {
-                    leads.push({ docId: doc.id, ...doc.data() });
-                });
+                // Fetch from Supabase
+                const { data: leads, error } = await window.supabaseClient
+                    .from('leads')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
 
                 // Filter logic
                 const now = new Date();
-                const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
-                const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, 1).getTime();
+                const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+                const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, 1);
 
-                leads = leads.filter(lead => {
-                    const leadTime = lead.id; // Using the 'id' which is Date.now()
+                const filteredLeads = leads.filter(lead => {
+                    const leadTime = new Date(lead.created_at);
                     let passDate = true;
                     if (filterValue === 'current') {
                         passDate = leadTime >= startOfMonth;
@@ -217,11 +214,11 @@
                     
                     let passType = true;
                     if (typeFilterValue !== 'all') {
-                        const leadType = lead.type || 'Inquiry';
-                        if (typeFilterValue === 'General Inquiry' && (leadType === 'Inquiry' || leadType === 'General Inquiry')) {
+                        const leadType = lead.source || 'Inquiry';
+                        if (typeFilterValue === 'General Inquiry' && (leadType.includes('General') || leadType.includes('Inquiry'))) {
                             passType = true;
                         } else {
-                            passType = leadType === typeFilterValue;
+                            passType = leadType.includes(typeFilterValue);
                         }
                     }
                     
@@ -229,28 +226,32 @@
                 });
 
                 // Update Stats
-                totalEl.textContent = leads.length;
+                totalEl.textContent = filteredLeads.length;
                 
                 // Calculate Leads Today
                 const startOfToday = new Date().setHours(0, 0, 0, 0);
-                const todayLeads = leads.filter(l => l.id >= startOfToday);
+                const todayLeads = filteredLeads.filter(l => new Date(l.created_at).getTime() >= startOfToday);
                 latestEl.textContent = todayLeads.length;
 
-                if (leads.length === 0) {
-                    body.innerHTML = '<tr><td colspan="6" class="empty-state">No leads found in cloud.</td></tr>';
+                if (filteredLeads.length === 0) {
+                    body.innerHTML = '<tr><td colspan="6" class="empty-state">No leads found.</td></tr>';
                     return;
                 }
 
-                body.innerHTML = leads.map(lead => `
-                    <tr>
-                        <td style="font-size: 11px; white-space: nowrap;">${lead.date || 'N/A'}</td>
-                        <td><span style="background: ${lead.type === 'Test Drive' ? '#fff4f4' : (lead.type === 'Service' ? '#eef6fc' : '#f4fff4')}; color: ${lead.type === 'Test Drive' ? '#e74c3c' : (lead.type === 'Service' ? '#1d70b8' : '#27ae60')}; padding: 4px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; border: 1px solid currentColor;">${(lead.type || 'Inquiry').toUpperCase()}</span></td>
-                        <td style="font-weight: 600;">${lead.name || 'N/A'}</td>
-                        <td>${lead.mobile || 'N/A'}</td>
-                        <td><span style="background: #e1e7ec; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">${(lead.model || 'N/A').toUpperCase()}</span></td>
-                        <td style="font-weight: 600;">${(lead.outlet || 'N/A').toUpperCase()}</td>
-                    </tr>
-                `).join('');
+                body.innerHTML = filteredLeads.map(lead => {
+                    const date = new Date(lead.created_at).toLocaleString('en-IN');
+                    const type = lead.source?.includes('Service') ? 'Service' : (lead.source?.includes('Test Drive') ? 'Test Drive' : 'Inquiry');
+                    return `
+                        <tr>
+                            <td style="font-size: 11px; white-space: nowrap;">${date}</td>
+                            <td><span style="background: ${type === 'Test Drive' ? '#fff4f4' : (type === 'Service' ? '#eef6fc' : '#f4fff4')}; color: ${type === 'Test Drive' ? '#e74c3c' : (type === 'Service' ? '#1d70b8' : '#27ae60')}; padding: 4px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; border: 1px solid currentColor;">${type.toUpperCase()}</span></td>
+                            <td style="font-weight: 600;">${lead.name || 'N/A'}</td>
+                            <td style="font-weight: 600;">${lead.phone || 'N/A'}</td>
+                            <td><span style="background: #e1e7ec; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">${(lead.vehicle || 'N/A').toUpperCase()}</span></td>
+                            <td style="font-weight: 600;">${(lead.location || 'N/A').toUpperCase()}</td>
+                        </tr>
+                    `;
+                }).join('');
             } catch (error) {
                 console.error("Error fetching leads: ", error);
                 body.innerHTML = '<tr><td colspan="6" class="empty-state" style="color: red;">Error loading leads. Check console.</td></tr>';
@@ -258,50 +259,24 @@
         }
 
         async function exportToCSV() {
-            const filterValue = document.getElementById('dateFilter').value;
-            const typeFilterValue = document.getElementById('typeFilter') ? document.getElementById('typeFilter').value : 'all';
-            const snapshot = await db.collection("leads").orderBy("id", "desc").get();
-            let leads = [];
-            snapshot.forEach(doc => leads.push(doc.data()));
-            
-            // Apply current filter to export
-            const now = new Date();
-            const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
-            const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, 1).getTime();
+            const { data: leads, error } = await window.supabaseClient
+                .from('leads')
+                .select('*')
+                .order('created_at', { ascending: false });
 
-            leads = leads.filter(lead => {
-                const leadTime = lead.id;
-                let passDate = true;
-                if (filterValue === 'current') passDate = leadTime >= startOfMonth;
-                if (filterValue === 'last3') passDate = leadTime >= threeMonthsAgo;
-                
-                let passType = true;
-                if (typeFilterValue !== 'all') {
-                    const leadType = lead.type || 'Inquiry';
-                    if (typeFilterValue === 'General Inquiry' && (leadType === 'Inquiry' || leadType === 'General Inquiry')) {
-                        passType = true;
-                    } else {
-                        passType = leadType === typeFilterValue;
-                    }
-                }
-                
-                return passDate && passType;
-            });
-
-            if (leads.length === 0) {
+            if (error || !leads.length) {
                 alert('No leads to export.');
                 return;
             }
 
-            const headers = ['Date', 'Type', 'Name', 'Mobile', 'Model', 'Outlet'];
-            // Wrap in quotes to handle commas
+            const headers = ['Date', 'Source', 'Name', 'Phone', 'Vehicle', 'Location'];
             const rows = leads.map(l => [
-                `"${l.date || ''}"`, 
-                `"${l.type || 'Inquiry'}"`, 
+                `"${new Date(l.created_at).toLocaleString('en-IN')}"`, 
+                `"${l.source || ''}"`, 
                 `"${l.name || ''}"`, 
-                `"${l.mobile || ''}"`, 
-                `"${l.model || ''}"`, 
-                `"${l.outlet || ''}"`
+                `"${l.phone || ''}"`, 
+                `"${l.vehicle || ''}"`, 
+                `"${l.location || ''}"`
             ]);
 
             let csvContent = "data:text/csv;charset=utf-8," 
@@ -316,6 +291,9 @@
             link.click();
             document.body.removeChild(link);
         }
+
+        // Initial auth check
+        checkAuthState();
     </script>
 </body>
 </html>
