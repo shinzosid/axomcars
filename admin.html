@@ -475,9 +475,15 @@
 
                 // 2. Broadcast to Emails
                 status.innerHTML = 'Step 2/2: Emailing Subscribers...';
+                
+                const secret = prompt('Please enter the Admin Broadcast Secret:');
+                if (!secret) {
+                    throw new Error('Admin Secret is required to send emails.');
+                }
+
                 const { data, error: broadcastError } = await window.supabaseClient.functions.invoke('broadcast-story', {
                     body: { storyId: story.id },
-                    headers: { 'x-admin-secret': 'YOUR_ADMIN_SECRET' }
+                    headers: { 'x-admin-secret': secret }
                 });
 
                 if (broadcastError) throw broadcastError;
