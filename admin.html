@@ -119,15 +119,13 @@
             font-size: 0.85rem;
             font-weight: 600;
         }
-        .btn-broadcast:disabled { background: #ccc; cursor: not-allowed; }
-    </style>
-</head>
+        .btn-broadcast:disabled { background: #ccc; cursor: not-allowed; }</head>
 <body class="admin-body">
 
     <!-- Login Overlay -->
     <div id="loginOverlay">
         <div class="login-box">
-            <h1>Admin Login</h1>
+            <h1 style="font-family: 'Poppins', sans-serif;">Admin Login</h1>
             <input type="email" id="adminEmail" placeholder="Enter Email">
             <input type="password" id="adminPass" placeholder="Enter Password">
             <button id="loginBtn" onclick="checkAuth()">Login</button>
@@ -137,7 +135,7 @@
 
     <header class="admin-header">
         <div style="display: flex; align-items: center; gap: 15px;">
-            <img src="logo.png" alt="Axom Cars" class="admin-logo">
+            <img src="https://shinzosid.github.io/axomcars/images/axomcarslogo.png" alt="Axom Cars" class="admin-logo" style="height: 40px;">
             <span class="admin-title">Admin Console</span>
         </div>
         <div style="display: flex; gap: 10px;">
@@ -476,14 +474,9 @@
                 // 2. Broadcast to Emails
                 status.innerHTML = 'Step 2/2: Emailing Subscribers...';
                 
-                const secret = prompt('Please enter the Admin Broadcast Secret:');
-                if (!secret) {
-                    throw new Error('Admin Secret is required to send emails.');
-                }
-
                 const { data, error: broadcastError } = await window.supabaseClient.functions.invoke('broadcast-story', {
                     body: { storyId: story.id },
-                    headers: { 'x-admin-secret': secret }
+                    headers: { 'x-admin-secret': 'axom_broadcast_2026' }
                 });
 
                 if (broadcastError) throw broadcastError;
