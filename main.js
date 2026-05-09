@@ -432,13 +432,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalSeen = localStorage.getItem('axom_modal_seen');
         if (!modalSeen) {
             setTimeout(() => {
+                // Double check if user has already opened it manually via another button
+                if (modal.classList.contains('active')) return;
+                
                 const modalTitle = modal.querySelector('h2');
                 if (modalTitle) modalTitle.textContent = 'How can we help you?';
                 modal.classList.add('active');
             }, 8000);
         }
-        document.getElementById('closeModal')?.addEventListener('click', () => modal.classList.remove('active'));
+        
+        // Save to localStorage when closed
+        document.getElementById('closeModal')?.addEventListener('click', () => {
+            modal.classList.remove('active');
+            localStorage.setItem('axom_modal_seen', 'true');
+        });
     }
+
+    // Set seen flag when any lead form is submitted successfully
+    const originalHandleLeadForm = window.handleLeadForm;
+    window.handleLeadForm = async function(formId, leadType) {
+        const form = document.getElementById(formId);
+        if (form && formId === 'helpForm') {
+            form.addEventListener('submit', () => {
+                localStorage.setItem('axom_modal_seen', 'true');
+            });
+        }
+        return originalHandleLeadForm(formId, leadType);
+    };
 
     initHelpModal();
     initAutoCarousels();
