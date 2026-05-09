@@ -6,7 +6,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
-serve(async (req) => {
+serve(async (req: Request) => {
   console.log(`Newsletter Function: ${req.method} request to ${req.url}`)
 
   if (req.method === 'OPTIONS') {
@@ -155,11 +155,11 @@ serve(async (req) => {
 
     return new Response('Not Found', { status: 404 })
 
-  } catch (err) {
-    console.error('Function error:', err.message)
+  } catch (err: any) {
+    console.error('Newsletter Error:', err.message)
     return new Response(JSON.stringify({ error: err.message }), {
-      status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 400,
     })
   }
 })

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsubscribe | Axom Cars</title>
+    <link rel="stylesheet" href="style.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .unsubscribe-container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 40px;
+            text-align: center;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        h1 { color: #1a1a1a; margin-bottom: 20px; }
+        p { color: #666; margin-bottom: 30px; line-height: 1.6; }
+        .btn-confirm {
+            background: #e74c3c;
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .btn-confirm:hover { background: #c0392b; transform: translateY(-2px); }
+        .success-icon { font-size: 48px; color: #27ae60; margin-bottom: 20px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="unsubscribe-container">
+        <div id="unsub-form">
+            <h1>We're sorry to see you go</h1>
+            <p>Are you sure you want to unsubscribe from the Axom Cars newsletter? You'll miss out on the latest TATA car launches and exclusive offers in Guwahati.</p>
+            <button class="btn-confirm" onclick="confirmUnsubscribe()">Confirm Unsubscribe</button>
+        </div>
+        
+        <div id="unsub-success" style="display: none;">
+            <div class="success-icon">✓</div>
+            <h1>Unsubscribed</h1>
+            <p>You have been successfully removed from our mailing list. You can re-subscribe anytime on our website.</p>
+            <a href="index.html" class="btn" style="color: #1d70b8; text-decoration: underline;">Back to Home</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
+    <script>
+        async function confirmUnsubscribe() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+            
+            if (!email) {
+                alert('No email address found.');
+                return;
+            }
+
+            const btn = document.querySelector('.btn-confirm');
+            btn.disabled = true;
+            btn.textContent = 'Processing...';
+
+            try {
+                // Update status in newsletter_subscribers table
+                const { error } = await window.supabaseClient
+                    .from('newsletter_subscribers')
+                    .update({ status: 'unsubscribed' })
+                    .eq('email', email);
+
+                if (error) throw error;
+
+                document.getElementById('unsub-form').style.display = 'none';
+                document.getElementById('unsub-success').style.display = 'block';
+            } catch (err) {
+                console.error(err);
+                alert('Error: ' + err.message);
+                btn.disabled = false;
+                btn.textContent = 'Confirm Unsubscribe';
+            }
+        }
+    </script>
+</body>
+</html>

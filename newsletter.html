@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
     <link rel="stylesheet" href="style.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         /* Modern Newsroom Styles */
         .newsroom-container {
@@ -40,36 +42,64 @@
 
         .news-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .news-card.featured {
             grid-row: span 2;
         }
 
-        .card-bg {
+        .card-bg-blur {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-size: cover;
             background-position: center;
+            filter: blur(20px) brightness(0.6);
             z-index: 1;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transition: opacity 0.8s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .news-card:hover .card-bg {
-            transform: scale(1.1);
+        .card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.8s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-bg.loaded,
+        .card-bg-blur.loaded {
+            opacity: 1;
+        }
+
+        .news-card:hover .card-bg,
+        .news-card:hover .card-bg-blur {
+            transform: scale(1.05);
         }
 
         .card-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.9) 100%);
-            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.9) 100%);
+            z-index: 3;
         }
 
         .card-content {
             position: relative;
-            z-index: 3;
+            z-index: 4;
             padding: 30px;
             color: #fff;
         }
@@ -111,6 +141,7 @@
                 grid-template-columns: 1fr;
                 grid-auto-rows: 350px;
             }
+
             .news-card.featured {
                 grid-row: span 1;
             }
@@ -134,11 +165,157 @@
         }
 
         @media (max-width: 600px) {
-            #newsletterForm { flex-direction: column; }
+            #newsletterForm {
+                flex-direction: column;
+            }
+        }
+
+        /* Skeleton Loader */
+        .skeleton {
+            background: #f0f0f0;
+            background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+            background-size: 200% 100%;
+            animation: 1.5s shine linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position-x: -200%;
+            }
+        }
+
+        .skeleton-card {
+            border-radius: 16px;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+        }
+
+        .skeleton-title {
+            height: 24px;
+            width: 80%;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .skeleton-text {
+            height: 16px;
+            width: 40%;
+            border-radius: 4px;
+        }
+
+        /* Story Modal Styles */
+        .story-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .story-modal-content {
+            background: #fff;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: 20px;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlide 0.4s ease;
+        }
+        @keyframes modalSlide {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-close {
+            position: sticky;
+            top: 20px;
+            right: 20px;
+            float: right;
+            background: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 10;
+            font-size: 24px;
+            color: #333;
+        }
+        .modal-hero {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .modal-body-content {
+            padding: 40px;
+        }
+        .modal-body-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        .modal-date {
+            color: #e74c3c;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: block;
+        }
+        .modal-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            white-space: pre-wrap;
+        }
+        .modal-cta-box {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        .btn-modal-cta {
+            display: inline-block;
+            background: #1d70b8;
+            color: #fff;
+            padding: 14px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
         }
     </style>
 </head>
+
 <body>
+
+    <!-- Story Viewer Modal -->
+    <div id="storyModal" class="story-modal" onclick="if(event.target == this) closeStory()">
+        <div class="story-modal-content">
+            <div class="modal-close" onclick="closeStory()">&times;</div>
+            <img id="modalImg" src="" alt="" class="modal-hero">
+            <div class="modal-body-content">
+                <span id="modalDate" class="modal-date"></span>
+                <h1 id="modalTitle"></h1>
+                <div id="modalText" class="modal-text"></div>
+                <!-- Gallery Section -->
+                <div id="modalGallery" style="display: none; margin-top: 30px;">
+                    <h3 style="font-size: 1rem; margin-bottom: 15px;">Event Gallery</h3>
+                    <div id="galleryGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px;">
+                        <!-- Gallery images will be injected here -->
+                    </div>
+                </div>
+                <div id="modalCta" class="modal-cta-box"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- RESTORED HEADER FROM INDEX.HTML -->
     <header class="header">
@@ -193,24 +370,46 @@
     </header>
 
     <div class="newsroom-container">
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 2px solid #f0f0f0; padding-bottom: 20px;">
-            <h1 style="font-weight: 700; color: #1a1a1a; margin: 0;">Axom Newsroom</h1>
-            <p style="color: #666; margin: 0;">Updates from Guwahati & Tata Motors</p>
+        <div
+            style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 2px solid #f0f0f0; padding-bottom: 20px;">
+            <h1 style="font-weight: 700; color: #1a1a1a; margin: 0;">Axom Cars Newsroom</h1>
+            <p style="color: #666; margin: 0;">News, Launches & Experiences</p>
         </div>
-        
+
         <div class="news-grid" id="newsGrid">
-            <p>Loading latest stories...</p>
+            <!-- Skeleton Placeholders -->
+            <div class="news-card featured">
+                <div class="skeleton-card">
+                    <div class="skeleton skeleton-title"></div>
+                    <div class="skeleton skeleton-text"></div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="skeleton-card">
+                    <div class="skeleton skeleton-title" style="width: 90%;"></div>
+                    <div class="skeleton skeleton-text"></div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="skeleton-card">
+                    <div class="skeleton skeleton-title" style="width: 70%;"></div>
+                    <div class="skeleton skeleton-text"></div>
+                </div>
+            </div>
         </div>
 
         <div class="subscribe-section">
             <h2 style="font-weight: 700;">Join the Axom Club</h2>
             <p style="color: #666;">Get exclusive updates and offers delivered directly to your inbox.</p>
-            
-            <div id="statusBox" style="display: none; padding: 15px; border-radius: 8px; margin: 20px auto; max-width: 500px;"></div>
-            
+
+            <div id="statusBox"
+                style="display: none; padding: 15px; border-radius: 8px; margin: 20px auto; max-width: 500px;"></div>
+
             <form id="newsletterForm">
-                <input type="email" id="subEmail" placeholder="Enter your email" required style="flex: 1; padding: 15px 20px; border: 1px solid #ddd; border-radius: 12px; font-family: inherit;">
-                <button type="submit" style="background: #e74c3c; color: #fff; padding: 15px 30px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer;">Subscribe</button>
+                <input type="email" id="subEmail" placeholder="Enter your email" required
+                    style="flex: 1; padding: 15px 20px; border: 1px solid #ddd; border-radius: 12px; font-family: inherit;">
+                <button type="submit"
+                    style="background: #e74c3c; color: #fff; padding: 15px 30px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer;">Subscribe</button>
             </form>
         </div>
     </div>
@@ -263,6 +462,9 @@
     <script defer src="main.min.js"></script>
 
     <script>
+        // Store stories globally for modal access
+        let allStories = [];
+
         // Fetch and Render Stories
         async function loadNewsroom() {
             const grid = document.getElementById('newsGrid');
@@ -270,67 +472,154 @@
                 const { data: stories, error } = await window.supabaseClient
                     .from('stories')
                     .select('*')
-                    .order('created_at', { ascending: false })
-                    .limit(5);
+                    .order('created_at', { ascending: false });
 
                 if (error) throw error;
-                if (!stories || stories.length === 0) {
+                allStories = stories || [];
+
+                if (allStories.length === 0) {
                     grid.innerHTML = '<div style="grid-column: span 2; text-align: center; padding: 40px; color: #888;"><h3>No stories found.</h3></div>';
                     return;
                 }
 
-                grid.innerHTML = stories.map((story, index) => {
+                grid.innerHTML = allStories.map((story, index) => {
                     const isFeatured = index === 0;
                     const date = new Date(story.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
                     return `
-                        <a href="${story.cta_link || '#'}" class="news-card ${isFeatured ? 'featured' : ''}">
+                        <div onclick="openStory('${story.id}')" class="news-card ${isFeatured ? 'featured' : ''}">
                             ${isFeatured ? '<div class="tag-latest">Latest</div>' : ''}
+                            <div class="card-bg-blur" style="background-image: url(\'${story.image_url || 'hero.png'}\')"></div>
                             <div class="card-bg" style="background-image: url(\'${story.image_url || 'hero.png'}\')"></div>
                             <div class="card-overlay"></div>
                             <div class="card-content">
                                 <h2 class="card-title">${story.title}</h2>
                                 <div class="card-meta">${date} | Axom Cars</div>
                             </div>
-                        </a>
+                        </div>
                     `;
                 }).join('');
+
+                // Image preloading logic
+                document.querySelectorAll('.news-card').forEach(card => {
+                    const bg = card.querySelector('.card-bg');
+                    const blur = card.querySelector('.card-bg-blur');
+                    const imgUrl = bg.style.backgroundImage.slice(5, -2);
+                    
+                    if (imgUrl) {
+                        const img = new Image();
+                        img.onload = () => {
+                            bg.classList.add('loaded');
+                            blur.classList.add('loaded');
+                        };
+                        img.src = imgUrl;
+                    }
+                });
+
+                // Check for Deep Link (ID in URL)
+                const urlParams = new URLSearchParams(window.location.search);
+                const storyId = urlParams.get('id');
+                if (storyId) {
+                    openStory(storyId);
+                }
+
             } catch (err) {
                 console.error("Newsroom error:", err);
                 grid.innerHTML = '<p>Oops! Error loading stories.</p>';
             }
         }
 
+        async function openStory(id) {
+            let story = allStories.find(s => s.id == id);
+            
+            // If story not in current list, fetch it individually
+            if (!story) {
+                const { data, error } = await window.supabaseClient
+                    .from('stories')
+                    .select('*')
+                    .eq('id', id)
+                    .single();
+                if (!error) story = data;
+            }
+
+            if (story) {
+                const date = new Date(story.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                document.getElementById('modalImg').src = story.image_url || 'hero.png';
+                document.getElementById('modalTitle').textContent = story.title;
+                document.getElementById('modalDate').textContent = date;
+                document.getElementById('modalText').textContent = story.body;
+                
+                // Render Gallery if exists
+                const galleryBox = document.getElementById('modalGallery');
+                const galleryGrid = document.getElementById('galleryGrid');
+                if (story.gallery_urls && story.gallery_urls.length > 0) {
+                    galleryGrid.innerHTML = story.gallery_urls.map(url => `
+                        <img src="${url}" onclick="document.getElementById('modalImg').src='${url}'" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    `).join('');
+                    galleryBox.style.display = 'block';
+                } else {
+                    galleryBox.style.display = 'none';
+                }
+                
+                const ctaBox = document.getElementById('modalCta');
+                if (story.cta_link) {
+                    ctaBox.innerHTML = `<a href="${story.cta_link}" class="btn-modal-cta">${story.cta_text || 'Learn More'}</a>`;
+                    ctaBox.style.display = 'block';
+                } else {
+                    ctaBox.style.display = 'none';
+                }
+
+                document.getElementById('storyModal').style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Stop scrolling
+
+                // Update URL without reloading
+                const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?id=' + id;
+                window.history.pushState({path:newUrl},'',newUrl);
+            }
+        }
+
+        function closeStory() {
+            document.getElementById('storyModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Enable scrolling
+            
+            // Remove ID from URL
+            const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            window.history.pushState({path:cleanUrl},'',cleanUrl);
+        }
+
         // Handle Subscription
         const subForm = document.getElementById('newsletterForm');
-        subForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('subEmail').value;
-            const btn = subForm.querySelector('button');
-            const statusBox = document.getElementById('statusBox');
+        if (subForm) {
+            subForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('subEmail').value;
+                const btn = subForm.querySelector('button');
+                const statusBox = document.getElementById('statusBox');
 
-            btn.disabled = true;
-            btn.textContent = 'Processing...';
+                btn.disabled = true;
+                btn.textContent = 'Processing...';
 
-            try {
-                const { data, error } = await window.supabaseClient.functions.invoke('newsletter-handler', {
-                    body: { action: 'subscribe', email: email }
-                });
-                if (error) throw error;
-                statusBox.innerHTML = data.message;
-                statusBox.style.display = 'block';
-                statusBox.style.backgroundColor = '#d4edda';
-                subForm.reset();
-            } catch (err) {
-                statusBox.innerHTML = "Error: " + err.message;
-                statusBox.style.display = 'block';
-                statusBox.style.backgroundColor = '#f8d7da';
-            } finally {
-                btn.disabled = false;
-                btn.textContent = 'Subscribe';
-            }
-        });
+                try {
+                    const { data, error } = await window.supabaseClient.functions.invoke('newsletter-handler/subscribe', {
+                        body: { email: email }
+                    });
+                    if (error) throw error;
+                    statusBox.innerHTML = data.message;
+                    statusBox.style.display = 'block';
+                    statusBox.style.backgroundColor = '#d4edda';
+                    subForm.reset();
+                } catch (err) {
+                    statusBox.innerHTML = "Error: " + err.message;
+                    statusBox.style.display = 'block';
+                    statusBox.style.backgroundColor = '#f8d7da';
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = 'Subscribe';
+                }
+            });
+        }
 
         loadNewsroom();
     </script>
 </body>
+
 </html>

@@ -217,8 +217,20 @@
                     <input type="text" id="storyTitle" placeholder="e.g., The New Tata Curvv has Arrived!">
                 </div>
                 <div class="form-group">
-                    <label>Image URL (Optional)</label>
-                    <input type="text" id="storyImage" placeholder="https://axomcars.in/images/photo.jpg">
+                    <label>Featured Image / Gallery (Select multiple for events)</label>
+                    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+                        <input type="file" id="imageUpload" accept="image/*" multiple onchange="handleImageUpload(this)" style="display: none;">
+                        <button type="button" onclick="document.getElementById('imageUpload').click()" style="padding: 10px 15px; background: #eee; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; font-weight: 500; font-family: 'Poppins', sans-serif;">
+                            📸 Select Photos
+                        </button>
+                        <p id="uploadStatus" style="font-size: 0.85rem; color: #666; margin: 0;"></p>
+                    </div>
+                    <!-- Gallery Preview Container -->
+                    <div id="galleryPreview" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin-top: 10px;">
+                        <!-- Thumbnails will appear here -->
+                    </div>
+                    <input type="hidden" id="storyImage">
+                    <input type="hidden" id="galleryUrls">
                 </div>
                 <div class="form-group">
                     <label>Your Story Content</label>
@@ -434,6 +446,98 @@
             document.body.removeChild(link);
         }
 
+        // --- Image Optimization & Upload Logic ---
+        let currentGallery = [];
+
+        async function handleImageUpload(input) {
+            const files = Array.from(input.files);
+            if (files.length === 0) return;
+
+            const status = document.getElementById('uploadStatus');
+            const preview = document.getElementById('galleryPreview');
+            const mainImgInput = document.getElementById('storyImage');
+            const galleryInput = document.getElementById('galleryUrls');
+            
+            status.innerHTML = `⚡ Processing ${files.length} images...`;
+            status.style.color = '#1d70b8';
+
+            try {
+                for (const file of files) {
+                    // 1. Compress Image (Client-side)
+                    const compressedFile = await compressImage(file);
+                    
+                    // 2. Upload to R2 via Supabase Edge Function
+                    const { data, error } = await window.supabaseClient.functions.invoke('upload-to-r2', {
+                        body: compressedFile,
+                        headers: { 'x-admin-secret': 'axom_broadcast_2026' }
+                    });
+
+                    if (error) throw error;
+                    if (!data || !data.success) throw new Error(data?.error || 'Upload failed');
+
+                    // 3. Add to Gallery
+                    currentGallery.push(data.publicUrl);
+                    
+                    // Create Thumbnail Preview
+                    const thumb = document.createElement('div');
+                    thumb.style.cssText = `
+                        position: relative;
+                        width: 100%;
+                        padding-top: 75%;
+                        background-image: url('${data.publicUrl}');
+                        background-size: cover;
+                        background-position: center;
+                        border-radius: 8px;
+                        border: 2px solid #eee;
+                    `;
+                    preview.appendChild(thumb);
+                }
+
+                // Update Hidden Inputs
+                mainImgInput.value = currentGallery[0] || ''; // Use first image as main featured image
+                galleryInput.value = JSON.stringify(currentGallery);
+                
+                status.innerHTML = `✅ Successfully uploaded ${currentGallery.length} images to R2`;
+                status.style.color = 'green';
+            } catch (err) {
+                console.error(err);
+                status.innerHTML = '❌ R2 Upload failed: ' + err.message;
+                status.style.color = 'red';
+            }
+        }
+
+        function compressImage(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+
+                        // Max width 1200px
+                        const MAX_WIDTH = 1200;
+                        if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width;
+                            width = MAX_WIDTH;
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        canvas.toBlob((blob) => {
+                            resolve(blob);
+                        }, 'image/webp', 0.8); // 80% quality WebP
+                    };
+                };
+            });
+        }
+
         // One-Click Broadcast Logic
         async function quickBroadcast() {
             const title = document.getElementById('storyTitle').value;
@@ -459,12 +563,16 @@
 
             try {
                 // 1. Save to Database (Updates Website)
+                const galleryData = document.getElementById('galleryUrls').value;
+                const galleryArray = galleryData ? JSON.parse(galleryData) : [];
+
                 const { data: story, error: dbError } = await window.supabaseClient
                     .from('stories')
                     .insert([{
                         title, 
                         body, 
                         image_url: image, 
+                        gallery_urls: galleryArray,
                         cta_link: link, 
                         cta_text: link ? 'Read More' : null
                     }])
