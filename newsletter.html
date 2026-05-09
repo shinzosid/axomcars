@@ -12,7 +12,7 @@
         /* Modern Newsroom Styles */
         .newsroom-container {
             max-width: 1200px;
-            margin: 100px auto 40px;
+            margin: 40px auto;
             padding: 40px 20px;
             font-family: 'Poppins', sans-serif;
         }
@@ -104,9 +104,6 @@
         .card-meta {
             font-size: 0.85rem;
             opacity: 0.8;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         @media (max-width: 900px) {
@@ -117,10 +114,9 @@
             .news-card.featured {
                 grid-row: span 1;
             }
-            .featured .card-title { font-size: 1.6rem; }
         }
 
-        /* Subscription Form Overlay */
+        /* Subscription Section */
         .subscribe-section {
             background: #fdfdfd;
             border: 1px solid #eee;
@@ -144,49 +140,117 @@
 </head>
 <body>
 
+    <!-- RESTORED HEADER FROM INDEX.HTML -->
     <header class="header">
         <div class="container header-container">
             <div class="logo-container">
                 <a href="index.html">
-                    <img src="logo.png" alt="Axom Cars Logo" class="logo" width="180">
+                    <picture>
+                        <source srcset="logo.avif" type="image/avif">
+                        <source srcset="logo.webp" type="image/webp">
+                        <img src="logo.png" alt="Axom Cars Logo" class="logo" width="180" height="50">
+                    </picture>
                 </a>
             </div>
+
             <nav class="header-nav">
-                <a href="index.html">Home</a>
-                <a href="cars.html">Cars</a>
-                <a href="workshops.html">Workshops</a>
-                <a href="finance.html">Finance</a>
-                <a href="newsletter.html" class="active">Newsletter</a>
+                <div class="nav-item dropdown">
+                    <a href="cars.html" class="nav-link">
+                        <span>Cars</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m6 9 6 6 6-6" />
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-list">
+                            <a href="cars/sierra.html">Sierra</a>
+                            <a href="cars/harrier.html">Harrier</a>
+                            <a href="cars/safari.html">Safari</a>
+                            <a href="cars/nexon.html">Nexon</a>
+                            <a href="cars/punch.html">Punch</a>
+                            <a href="cars/altroz.html">Altroz</a>
+                            <a href="cars/tiago.html">Tiago</a>
+                            <a href="cars/curvv.html">CURVV</a>
+                            <a href="cars/tigor.html">Tigor</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="showrooms.html" class="nav-dropdown"><span>Showrooms</span></a>
+                <a href="workshops.html" class="nav-dropdown"><span>Workshops</span></a>
+                <a href="offers.html" class="nav-dropdown"><span>Offers</span></a>
+                <a href="finance.html" class="nav-dropdown"><span>Finance</span></a>
+                <a href="careers.html" class="nav-dropdown"><span>Careers</span></a>
+                <a href="newsletter.html" class="active nav-dropdown"><span>Newsletter</span></a>
             </nav>
+
+            <div class="header-actions">
+                <div class="hamburger-menu" id="menuToggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
         </div>
     </header>
 
     <div class="newsroom-container">
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 2px solid #f0f0f0; padding-bottom: 20px;">
-            <h1 style="font-weight: 700; color: #1a1a1a; margin: 0;">Newsroom</h1>
-            <p style="color: #666; margin: 0;">Inside Axom Cars & Tata Motors</p>
+            <h1 style="font-weight: 700; color: #1a1a1a; margin: 0;">Axom Newsroom</h1>
+            <p style="color: #666; margin: 0;">Updates from Guwahati & Tata Motors</p>
         </div>
         
         <div class="news-grid" id="newsGrid">
-            <!-- Dynamic Stories will be injected here -->
-            <p>Gathering the latest stories...</p>
+            <p>Loading latest stories...</p>
         </div>
 
         <div class="subscribe-section">
-            <h2 style="font-weight: 700;">Never Miss a Story</h2>
+            <h2 style="font-weight: 700;">Join the Axom Club</h2>
             <p style="color: #666;">Get exclusive updates and offers delivered directly to your inbox.</p>
             
             <div id="statusBox" style="display: none; padding: 15px; border-radius: 8px; margin: 20px auto; max-width: 500px;"></div>
             
             <form id="newsletterForm">
-                <input type="email" id="subEmail" placeholder="Enter your email address" required style="flex: 1; padding: 15px 20px; border: 1px solid #ddd; border-radius: 12px; font-family: inherit; font-size: 1rem;">
-                <button type="submit" style="background: #1d70b8; color: #fff; padding: 15px 30px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.3s;">Subscribe</button>
+                <input type="email" id="subEmail" placeholder="Enter your email" required style="flex: 1; padding: 15px 20px; border: 1px solid #ddd; border-radius: 12px; font-family: inherit;">
+                <button type="submit" style="background: #e74c3c; color: #fff; padding: 15px 30px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer;">Subscribe</button>
             </form>
         </div>
     </div>
 
-    <footer class="footer" style="margin-top: 100px;">
+    <!-- RESTORED FOOTER FROM INDEX.HTML -->
+    <footer class="footer">
         <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <picture>
+                        <source srcset="logo.avif" type="image/avif">
+                        <source srcset="logo.webp" type="image/webp">
+                        <img src="logo.png" alt="Axom Cars" class="logo-white" width="180" height="50">
+                    </picture>
+                    <p>Redefining luxury and performance in every journey. Join the Axom family today.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="cars.html">New Cars</a></li>
+                        <li><a href="offers.html">Latest Offers</a></li>
+                        <li><a href="showrooms.html">Showrooms</a></li>
+                        <li><a href="workshops.html">Workshops</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Customer Care</h4>
+                    <ul class="footer-links">
+                        <li><a href="finance.html">EMI Calculator</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="newsletter.html">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h4>Connect</h4>
+                    <p>Sales: 7099064993</p>
+                    <p>Service: 7099034015</p>
+                    <p>info.sales@axomcars.in</p>
+                </div>
+            </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Axom Cars. All rights reserved.</p>
             </div>
@@ -196,12 +260,12 @@
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-client.js"></script>
+    <script defer src="main.min.js"></script>
 
     <script>
-        // 1. Fetch and Render Stories
+        // Fetch and Render Stories
         async function loadNewsroom() {
             const grid = document.getElementById('newsGrid');
-            
             try {
                 const { data: stories, error } = await window.supabaseClient
                     .from('stories')
@@ -210,22 +274,18 @@
                     .limit(5);
 
                 if (error) throw error;
-
                 if (!stories || stories.length === 0) {
-                    grid.innerHTML = '<div style="grid-column: span 2; text-align: center; padding: 40px; color: #888;"><h3>No stories found.</h3><p>We are currently preparing exciting updates for you!</p></div>';
+                    grid.innerHTML = '<div style="grid-column: span 2; text-align: center; padding: 40px; color: #888;"><h3>No stories found.</h3></div>';
                     return;
                 }
 
                 grid.innerHTML = stories.map((story, index) => {
                     const isFeatured = index === 0;
-                    const date = new Date(story.created_at).toLocaleDateString('en-GB', { 
-                        day: 'numeric', month: 'long', year: 'numeric' 
-                    });
-                    
+                    const date = new Date(story.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
                     return `
                         <a href="${story.cta_link || '#'}" class="news-card ${isFeatured ? 'featured' : ''}">
                             ${isFeatured ? '<div class="tag-latest">Latest</div>' : ''}
-                            <div class="card-bg" style="background-image: url('${story.image_url || 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80'}')"></div>
+                            <div class="card-bg" style="background-image: url(\'${story.image_url || 'hero.png'}\')"></div>
                             <div class="card-overlay"></div>
                             <div class="card-content">
                                 <h2 class="card-title">${story.title}</h2>
@@ -234,51 +294,42 @@
                         </a>
                     `;
                 }).join('');
-
             } catch (err) {
                 console.error("Newsroom error:", err);
-                grid.innerHTML = '<p>Oops! We couldn\'t load the newsroom. Please try again later.</p>';
+                grid.innerHTML = '<p>Oops! Error loading stories.</p>';
             }
         }
 
-        // 2. Handle Subscription
+        // Handle Subscription
         const subForm = document.getElementById('newsletterForm');
-        const statusBox = document.getElementById('statusBox');
-
         subForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('subEmail').value;
             const btn = subForm.querySelector('button');
+            const statusBox = document.getElementById('statusBox');
 
             btn.disabled = true;
             btn.textContent = 'Processing...';
-            statusBox.style.display = 'none';
 
             try {
                 const { data, error } = await window.supabaseClient.functions.invoke('newsletter-handler', {
                     body: { action: 'subscribe', email: email }
                 });
-
                 if (error) throw error;
-
                 statusBox.innerHTML = data.message;
                 statusBox.style.display = 'block';
                 statusBox.style.backgroundColor = '#d4edda';
-                statusBox.style.color = '#155724';
                 subForm.reset();
             } catch (err) {
-                console.error(err);
-                statusBox.innerHTML = "Error: " + (err.message || 'Something went wrong');
+                statusBox.innerHTML = "Error: " + err.message;
                 statusBox.style.display = 'block';
                 statusBox.style.backgroundColor = '#f8d7da';
-                statusBox.style.color = '#721c24';
             } finally {
                 btn.disabled = false;
                 btn.textContent = 'Subscribe';
             }
         });
 
-        // Start
         loadNewsroom();
     </script>
 </body>
