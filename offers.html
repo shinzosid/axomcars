@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axom Cars | Exclusive Offers</title>
+    <title>Latest Tata Car Offers & Discounts in Guwahati | Axom Cars</title>
+    <meta name="description" content="Don't miss out on exclusive offers and seasonal discounts on Tata SUVs, Sedans, and EVs at Axom Cars. Check our latest promotions, exchange bonuses, and festive deals in Assam.">
+    <meta name="keywords" content="Tata car offers Guwahati, car discounts Assam, exchange bonus Tata cars, Axom Cars festive deals, Tata Motors promotions">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
@@ -16,7 +18,7 @@
 </head>
 
 <body>
-    <header class="header">
+        <header class="header">
         <div class="container header-container">
             <div class="logo-container">
                 <a href="index.html">
@@ -39,22 +41,21 @@
                     </a>
                     <div class="dropdown-menu">
                         <div class="dropdown-list">
-                            <a href="cars.html?car=sierra">Sierra</a>
-                            <a href="cars.html?car=harrier">Harrier</a>
-                            <a href="cars.html?car=safari">Safari</a>
-                            <a href="cars.html?car=nexon">Nexon</a>
-                            <a href="cars.html?car=punch">Punch</a>
-                            <a href="cars.html?car=altroz">Altroz</a>
-                            <a href="cars.html?car=tiago">Tiago</a>
-                            <a href="cars.html?car=curvv">CURVV</a>
-                            <a href="cars.html?car=tigor">Tigor</a>
+                            <a href="cars/sierra.html">Sierra</a>
+                            <a href="cars/harrier.html">Harrier</a>
+                            <a href="cars/safari.html">Safari</a>
+                            <a href="cars/nexon.html">Nexon</a>
+                            <a href="cars/punch.html">Punch</a>
+                            <a href="cars/altroz.html">Altroz</a>
+                            <a href="cars/tiago.html">Tiago</a>
+                            <a href="cars/curvv.html">CURVV</a>
+                            <a href="cars/tigor.html">Tigor</a>
                         </div>
                     </div>
                 </div>
                 <a href="showrooms.html" class="nav-dropdown">
                     <span>Showrooms</span>
                 </a>
-                
                 <a href="workshops.html" class="nav-dropdown">
                     <span>Workshops</span>
                 </a>
@@ -92,6 +93,15 @@
                 
                 <div class="offers-slider-wrapper">
                     <div class="offers-container" style="justify-content: center;">
+
+                        <!-- Offer 1 (New) -->
+                        <div class="offer-embed">
+                            <div class="embed-loader">
+                                <div class="spinner"></div>
+                                <p>Loading Offer...</p>
+                            </div>
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXjl6T4D_Cu/" data-instgrm-version="14"></blockquote>
+                        </div>
 
                         <!-- Offer 2 -->
                         <div class="offer-embed">
@@ -132,7 +142,8 @@
                     window.addEventListener('load', () => {
                         const checkInterval = setInterval(() => {
                             const embeds = document.querySelectorAll('.instagram-media-rendered');
-                            if (embeds.length >= 2) { // Wait for both to render
+                            const targetCount = document.querySelectorAll('.instagram-media').length;
+                            if (embeds.length >= targetCount && targetCount > 0) { 
                                 document.querySelectorAll('.embed-loader').forEach(loader => {
                                     loader.style.display = 'none';
                                 });
@@ -142,6 +153,14 @@
                                 clearInterval(checkInterval);
                             }
                         }, 500);
+
+                        // Fail-safe: Hide loader after 10 seconds if Instagram fails to load
+                        setTimeout(() => {
+                            clearInterval(checkInterval);
+                            document.querySelectorAll('.embed-loader').forEach(loader => {
+                                loader.style.display = 'none';
+                            });
+                        }, 10000);
                     });
                 </script>
                 
@@ -151,9 +170,58 @@
                 </div>
             </div>
         </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <div class="faq-header">
+                    <h2>Offers & Promotions FAQs</h2>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How often are new offers updated at Axom Cars?</span>
+                            <span class="faq-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>We update our offers monthly, with special festive and seasonal promotions throughout the year. Keep an eye on our 'Offers' page or follow us on social media for real-time updates.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Are there any exchange bonuses available for my old car?</span>
+                            <span class="faq-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Yes, we offer attractive exchange bonuses when you trade in your old vehicle for a brand-new Tata car. Our evaluators provide competitive market rates for your pre-owned car.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Can I combine multiple offers on a single car purchase?</span>
+                            <span class="faq-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Some offers may be combinable, such as consumer discounts and exchange bonuses. Corporate and government employee schemes may also apply. Our sales consultants can provide a detailed breakdown of all eligible benefits.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="footer">
+                <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
@@ -164,67 +232,50 @@
                     </picture>
                     <p>Redefining luxury and performance in every journey. Join the Axom family today.</p>
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/p/Axom-Cars-61555218074115/" target="_blank"
-                            class="social-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                            </svg>
+                        <a href="https://www.facebook.com/p/Axom-Cars-61555218074115/" target="_blank" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
                             <span>Facebook</span>
                         </a>
                         <a href="https://www.instagram.com/axomcars/" target="_blank" class="social-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
                             <span>Instagram</span>
                         </a>
                     </div>
                 </div>
 
                 <div class="footer-col">
-                    <h4>Axom Range</h4>
+                    <h4>Our Range</h4>
                     <ul class="footer-links">
                         <li><a href="cars.html">SUVs</a></li>
-                        <li><a href="cars.html">Sedans</a></li>
+                        <li><a href="cars.html">Sedans & Hatchbacks</a></li>
                         <li><a href="index.html#range">Electric Vehicles</a></li>
                         <li><a href="offers.html">Latest Offers</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
-                    <h4>Help & Support</h4>
+                    <h4>Customer Care</h4>
                     <ul class="footer-links">
                         <li><a href="javascript:void(0)" onclick="openTestDriveModal()">Book Test Drive</a></li>
                         <li><a href="finance.html">EMI Calculator</a></li>
-                        <li><a href="tel:7099034015">Service: 7099034015</a></li>
-                        <li><a href="tel:7099064993">Sales: 7099064993</a></li>
-                        <li><a href="mailto:info.sales@axomcars.in">Email Us</a></li>
                         <li><a href="showrooms.html">Showrooms</a></li>
-                        <li><a href="showrooms.html#outlets">Outlets</a></li>
+                        <li><a href="workshops.html">Workshops</a></li>
+                        <li><a href="careers.html">Careers</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col footer-contact">
                     <h4>Connect</h4>
                     <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
                         Sales: 7099064993
                     </p>
                     <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect width="20" height="16" x="2" y="4" rx="2" />
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                        Service: 7099034015
+                    </p>
+                    <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
                         info.sales@axomcars.in
                     </p>
                 </div>
@@ -236,6 +287,8 @@
             </div>
         </div>
     </footer>
+
+    
 
     <!-- Help Modal -->
     <div class="modal-overlay" id="helpModal">
