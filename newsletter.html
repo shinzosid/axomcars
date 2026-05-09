@@ -164,11 +164,14 @@
 
         <section class="newsletter-content" style="margin-top: -40px;">
             <div class="container">
-                <div class="newsletter-card">
-                    <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">Subscribe To Stories From Axom Cars</h2>
-                    <p style="color: #444; line-height: 1.7; font-size: 1.05rem; margin-bottom: 2rem;">
-                        Every other week, we bring you a selection of stories that offer insight into Axom Cars’ community initiatives, rich heritage, and diverse workforce. We also have a daily email that highlights career opportunities within our network.
-                    </p>
+                <div class="newsletter-card" id="mainNewsletterCard">
+                    <!-- Dynamic Content Loaded Here -->
+                    <div id="storyContent">
+                        <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">Subscribe To Stories From Axom Cars</h2>
+                        <p style="color: #444; line-height: 1.7; font-size: 1.05rem; margin-bottom: 2rem;">
+                            Every other week, we bring you a selection of stories that offer insight into Axom Cars’ community initiatives, rich heritage, and diverse workforce. We also have a daily email that highlights career opportunities within our network.
+                        </p>
+                    </div>
                     
                     <div id="newsletterStatus" style="display: none; padding: 15px; border-radius: 8px; margin: 0 auto 20px; font-size: 0.95rem; max-width: 600px;"></div>
                     <form class="newsletter-form" id="newsletterForm">
@@ -291,27 +294,185 @@
                     </p>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>For Roadside Assistance, call on - 18002098282</p>
                 <p>&copy; 2026 Axom Cars. All rights reserved.</p>
             </div>
         </div>
     </footer>
+    <style>
+        /* Modern Newsroom Styles */
+        .newsroom-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            font-family: 'Poppins', sans-serif;
+        }
 
-    
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            grid-auto-rows: 250px;
+            gap: 20px;
+        }
+
+        .news-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #222;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-card.featured {
+            grid-row: span 2;
+        }
+
+        .card-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .card-bg {
+            transform: scale(1.05);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.9) 100%);
+            z-index: 2;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 3;
+            padding: 25px;
+            color: #fff;
+        }
+
+        .tag-latest {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 3;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .featured .card-title {
+            font-size: 2rem;
+        }
+
+        .card-meta {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        @media (max-width: 900px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 300px;
+            }
+            .news-card.featured {
+                grid-row: span 1;
+            }
+        }
+
+        /* Subscription Form Overlay */
+        .subscribe-section {
+            background: #f8f9fa;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 20px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Axom Cars">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="cars.html">New Cars</a>
+                <a href="workshops.html">Workshops</a>
+                <a href="finance.html">Finance</a>
+                <a href="newsletter.html" class="active">Newsletter</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="newsroom-container">
+        <h1 style="margin-bottom: 30px; font-weight: 700; color: #1a1a1a;">Axom Cars Newsroom</h1>
+        
+        <div class="news-grid" id="newsGrid">
+            <!-- Dynamic Stories will be injected here -->
+            <p>Loading the latest updates...</p>
+        </div>
+
+        <div class="subscribe-section">
+            <h2 style="margin-bottom: 15px;">Join the Axom Club</h2>
+            <p style="margin-bottom: 30px; color: #666;">Get exclusive Tata Motors updates, offers, and local event news delivered to your inbox.</p>
+            
+            <div id="newsletterStatus"></div>
+            
+            <form id="newsletterForm" style="max-width: 500px; margin: 0 auto; display: flex; gap: 10px;">
+                <input type="email" id="subscriberEmail" placeholder="Enter your email" required style="flex: 1; padding: 12px 20px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;">
+                <button type="submit" style="background: #e74c3c; color: #fff; padding: 12px 25px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Join Now</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-client.js"></script>
 
-    <script defer src="main.min.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const newsletterForm = document.getElementById('newsletterForm');
-        const statusDiv = document.getElementById('newsletterStatus');
+                        <div style="margin-bottom: 2rem;">
+                            <a href="${latestStory.cta_link}" class="btn btn-secondary">${latestStory.cta_text}</a>
+                        </div>
+                    ` : ''}
+                `;
+            }
+        } catch (err) {
+            console.log('Using static newsletter fallback');
+        }
 
-        // Check for URL parameters (from redirects)
+        // 2. Check for URL parameters (from redirects)
         const urlParams = new URLSearchParams(window.location.search);
         const status = urlParams.get('status');
         const msg = urlParams.get('msg');
