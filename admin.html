@@ -299,6 +299,29 @@
             location.reload();
         }
 
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // Remove active class from all buttons and contents
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked button
+            event.currentTarget.classList.add('active');
+            
+            // Show the corresponding content
+            const targetContent = document.getElementById(tabId + 'Tab');
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+            
+            // Run specific tab logic
+            if (tabId === 'newsletter') {
+                // No extra fetch needed for now
+            } else {
+                renderLeads();
+            }
+        }
+
         async function renderLeads() {
             const body = document.getElementById('leadsBody');
             const totalEl = document.getElementById('totalLeads');
