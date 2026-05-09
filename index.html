@@ -16,7 +16,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="preload" fetchpriority="high" as="image" href="hero.png" type="image/png">
+    <!-- Preload LCP Image -->
+    <link rel="preload" as="image" href="hero.avif" type="image/avif" fetchpriority="high">
 </head>
 
 <body>
@@ -67,10 +68,10 @@
                 <a href="finance.html" class="nav-dropdown">
                     <span>Finance</span>
                 </a>
-                <a href="careers.html" class="nav-dropdown">
+                <a href="careers.html" class="nav-dropdown" aria-label="Join our team - Careers">
                     <span>Careers</span>
                 </a>
-                <a href="newsletter.html" class="nav-dropdown">
+                <a href="newsletter.html" class="nav-dropdown" aria-label="Axom Cars Newsroom">
                     <span>Newsletter</span>
                 </a>
             </nav>
@@ -90,7 +91,7 @@
             <picture>
                         <source srcset="hero.avif" type="image/avif">
                         <source srcset="hero.webp" type="image/webp">
-                        <img src="hero.png" alt="The New Tata Punch" class="hero-image" fetchpriority="high" width="1920" height="1080">
+                        <img src="hero.png" alt="Tata Punch - Authorized Tata Motors Dealer in Guwahati, Assam" class="hero-image" fetchpriority="high" width="1920" height="1080">
                     </picture>
             <div class="hero-overlay-box">
                 <p class="price-start">Price starts at ₹5.64 Lakh*</p>
@@ -552,9 +553,9 @@
                     </picture>
     </a>
 
-    <!-- Supabase SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-client.js"></script>
+    <!-- Supabase SDK (Deferred) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="supabase-client.js"></script>
 
     <script defer src="main.min.js"></script>
 
