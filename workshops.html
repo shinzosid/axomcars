@@ -439,10 +439,24 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize Supabase lead handling for the service form
             window.handleLeadForm('serviceForm', 'Service');
+
+            // Close modal listener
+            document.getElementById('closeServiceModal')?.addEventListener('click', () => {
+                document.getElementById('serviceModal').classList.remove('active');
+            });
+
+            // Close on overlay click
+            const serviceModal = document.getElementById('serviceModal');
+            serviceModal?.addEventListener('click', (e) => {
+                if (e.target === serviceModal) {
+                    serviceModal.classList.remove('active');
+                }
+            });
         });
 
         function moveCarousel(id, direction) {
             const carousel = document.getElementById(id);
+            if (!carousel) return;
             const images = carousel.querySelectorAll('.carousel-images img');
             let activeIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
 
@@ -469,10 +483,6 @@
                 modal.classList.add('active');
             }
         }
-
-        document.getElementById('closeServiceModal')?.addEventListener('click', () => {
-            document.getElementById('serviceModal').classList.remove('active');
-        });
     </script>
     <div class="mobile-sticky-bar">
         <a href="tel:+917099034014" class="mobile-cta-btn secondary">Call Sales</a>
