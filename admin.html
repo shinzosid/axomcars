@@ -153,6 +153,7 @@
         <div class="admin-tabs">
             <button class="tab-btn active" onclick="switchTab('leads')">Leads Dashboard</button>
             <button class="tab-btn" onclick="switchTab('newsletter')">Quick Broadcast</button>
+            <button class="tab-btn" onclick="switchTab('visits')">Visitor Insights</button>
         </div>
 
         <div id="leadsTab" class="tab-content active">
@@ -251,6 +252,42 @@
                 <p id="broadcastStatus" style="margin-top: 15px; text-align: center; font-weight: 600; display: none;"></p>
             </div>
         </div>
+
+        <div id="visitsTab" class="tab-content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Visits (Recent)</h3>
+                    <div class="value" id="totalVisits">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Unique Referrers</h3>
+                    <div class="value" id="uniqueReferrers">0</div>
+                </div>
+            </div>
+
+            <div class="leads-table-container">
+                <div class="table-header-actions">
+                    <h2>Live Visitor Stream</h2>
+                    <p style="font-size: 0.9rem; color: #666;">Showing the last 50 visitors in real-time</p>
+                </div>
+                <div id="visitsWrapper">
+                    <table class="leads-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Page</th>
+                                <th>Referrer</th>
+                                <th>Location</th>
+                                <th>Device</th>
+                            </tr>
+                        </thead>
+                        <tbody id="visitsBody">
+                            <tr><td colspan="5" class="empty-state">Loading visitor data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Supabase SDK -->
@@ -333,8 +370,65 @@
             // Run specific tab logic
             if (tabId === 'newsletter') {
                 // No extra fetch needed for now
+            } else if (tabId === 'visits') {
+                renderVisits();
             } else {
                 renderLeads();
+            }
+        }
+
+        async function renderVisits() {
+            const body = document.getElementById('visitsBody');
+            const totalEl = document.getElementById('totalVisits');
+            const refEl = document.getElementById('uniqueReferrers');
+
+            if (!body) return;
+
+            try {
+                const { data: visits, error } = await window.supabaseClient
+                    .from('visits')
+                    .select('*')
+                    .order('created_at', { ascending: false })
+                    .limit(50);
+
+                if (error) throw error;
+
+                // Update Stats
+                totalEl.textContent = visits.length;
+                const referrers = new Set(visits.map(v => v.referrer.split('/')[2] || v.referrer));
+                refEl.textContent = referrers.size;
+
+                if (visits.length === 0) {
+                    body.innerHTML = '<tr><td colspan="5" class="empty-state">No visits tracked yet.</td></tr>';
+                    return;
+                }
+
+                body.innerHTML = visits.map(visit => {
+                    const date = new Date(visit.created_at).toLocaleString('en-IN', { 
+                        hour: '2-digit', 
+                        minute: '2-digit', 
+                        day: '2-digit', 
+                        month: 'short' 
+                    });
+                    const page = visit.page_url.replace('.html', '').replace('/', '') || 'Home';
+                    const referrer = visit.referrer.includes('axomcars.in') ? 'Internal' : visit.referrer;
+                    const location = visit.city && visit.city !== 'Unknown' ? `${visit.city}, ${visit.region}` : 'Assam, India';
+                    const device = visit.browser.includes('Mobi') ? '📱 Mobile' : '💻 Desktop';
+                    
+                    return `
+                        <tr>
+                            <td>${date}</td>
+                            <td style="font-weight: 600; color: #1d70b8;">${page.charAt(0).toUpperCase() + page.slice(1)}</td>
+                            <td><span class="referrer-tag">${referrer}</span></td>
+                            <td>${location}</td>
+                            <td>${device}</td>
+                        </tr>
+                    `;
+                }).join('');
+
+            } catch (err) {
+                console.error('Error fetching visits:', err);
+                body.innerHTML = '<tr><td colspan="5" class="empty-state">Error loading visitor data. Make sure you created the visits table.</td></tr>';
             }
         }
 

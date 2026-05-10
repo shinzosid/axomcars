@@ -88,3 +88,48 @@ window.handleLeadForm = async (formId, leadType = 'General Inquiry') => {
         submitBtn.classList.remove('btn-loading');
     });
 };
+
+/**
+ * Tracks a visitor session
+ */
+window.trackVisit = async () => {
+    // Prevent tracking in admin panel
+    if (window.location.pathname.includes('admin.html')) return;
+
+    try {
+        // Optional: Fetch location data (Free tier, no key needed)
+        let geoData = {};
+        try {
+            const geoRes = await fetch('https://ipapi.co/json/');
+            geoData = await geoRes.json();
+        } catch (e) {
+            console.warn('Geo tracking blocked or failed');
+        }
+
+        const { data, error } = await supabaseClient
+            .from('visits')
+            .insert([
+                {
+                    page_url: window.location.pathname,
+                    referrer: document.referrer || 'Direct',
+                    browser: navigator.userAgent,
+                    screen_res: `${window.screen.width}x${window.screen.height}`,
+                    city: geoData.city || 'Unknown',
+                    region: geoData.region || 'Unknown',
+                    country: geoData.country_name || 'Unknown'
+                }
+            ]);
+
+        if (error) throw error;
+    } catch (error) {
+        // Silent fail for tracking
+        console.debug('Tracking error:', error);
+    }
+};
+
+// Auto-track on load
+if (document.readyState === 'complete') {
+    window.trackVisit();
+} else {
+    window.addEventListener('load', window.trackVisit);
+}
