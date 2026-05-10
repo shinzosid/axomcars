@@ -1,0 +1,15 @@
+# Axom Cars Permanent Redirects (301)
+# Mapping legacy URLs to new project structure
+
+/new-cars/*             /cars.html              301
+/new-cars               /cars.html              301
+/tata-curvv/*           /cars/curvv.html        301
+/tata-nexon-ev/*        /cars/nexon.html        301
+/tata-tigor/*           /cars/tigor.html        301
+/outlet/workshop.html   /workshops.html         301
+/outlet/showroom.html   /showrooms.html         301
+/outlet/*               /showrooms.html         301
+/testimonial            /index.html             301
+/disclaimer.html        /index.html             301
+/New%20Cars/*           /cars.html              301
+/New%20Cars             /cars.html              301
