@@ -446,19 +446,16 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.classList.remove('active');
             localStorage.setItem('axom_modal_seen', 'true');
         });
+
+        // Close on overlay click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                localStorage.setItem('axom_modal_seen', 'true');
+            }
+        });
     }
 
-    // Set seen flag when any lead form is submitted successfully
-    const originalHandleLeadForm = window.handleLeadForm;
-    window.handleLeadForm = async function(formId, leadType) {
-        const form = document.getElementById(formId);
-        if (form && formId === 'helpForm') {
-            form.addEventListener('submit', () => {
-                localStorage.setItem('axom_modal_seen', 'true');
-            });
-        }
-        return originalHandleLeadForm(formId, leadType);
-    };
 
     initHelpModal();
     initAutoCarousels();

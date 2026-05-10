@@ -73,9 +73,12 @@ window.handleLeadForm = async (formId, leadType = 'General Inquiry') => {
         if (result.success) {
             alert('Thank you! Your request has been received.');
             form.reset();
+            // Set persistence flag so modal doesn't show again
+            localStorage.setItem('axom_modal_seen', 'true');
             // Close modals if they exist
             document.querySelector('.modal-overlay.active')?.classList.remove('active');
-        } else {
+        }
+ else {
             alert('Sorry, there was an error. Please try again or call us directly.');
         }
 

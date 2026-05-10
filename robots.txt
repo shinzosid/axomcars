@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /supabase-lead-system/
+Disallow: /scratch/
+Disallow: /venv/
+Disallow: /favicon_io/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.vscode/
+
+Sitemap: https://axomcars.in/sitemap.xml
