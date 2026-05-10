@@ -93,8 +93,15 @@ window.handleLeadForm = async (formId, leadType = 'General Inquiry') => {
  * Tracks a visitor session
  */
 window.trackVisit = async () => {
-    // Prevent tracking in admin panel
-    if (window.location.pathname.includes('admin.html')) return;
+    // Prevent tracking in admin panel or local development
+    const isLocal = window.location.hostname === 'localhost' || 
+                   window.location.hostname === '127.0.0.1' || 
+                   window.location.protocol === 'file:';
+    
+    if (window.location.pathname.includes('admin.html') || isLocal) {
+        console.debug('Tracking skipped: Local or Admin environment');
+        return;
+    }
 
     try {
         // Optional: Fetch location data (Free tier, no key needed)
