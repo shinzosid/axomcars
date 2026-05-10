@@ -137,7 +137,14 @@
         .btn-primary { background: #1d70b8; color: var(--white); }
         @media (max-width: 991px) {
             .static-hero { flex-direction: column; justify-content: flex-end; height: auto; min-height: 100vh; }
-            .header-nav { display: none; }
+            .header-nav { 
+                position: fixed; top: var(--header-height); left: -100%; width: 100%; 
+                height: calc(100vh - var(--header-height)); background: var(--white); 
+                flex-direction: column; padding: 2rem; gap: 1.5rem; 
+                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 999; 
+                overflow-y: auto; align-items: flex-start;
+            }
+            .header-nav.active { left: 0; }
             .hamburger-menu { display: flex; }
             .hero-overlay-box { position: relative; left: 0; bottom: 0; width: 100%; max-width: none; padding: 3rem 1.5rem; background: rgba(0, 0, 0, 0.85); text-align: center; border-left: none; border-top: 4px solid var(--primary-color); margin-top: auto; }
             .hero-actions { align-items: center; width: 100%; }
