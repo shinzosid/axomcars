@@ -12,4 +12,4 @@ Disallow: /.git/
 Disallow: /.github/
 Disallow: /.vscode/
 
-Sitemap: https://axomcars.in/sitemap.xml
+Sitemap: https://www.axomcars.in/sitemap.xml
