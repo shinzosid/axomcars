@@ -92,51 +92,88 @@ window.handleLeadForm = async (formId, leadType = 'General Inquiry') => {
 /**
  * Tracks a visitor session
  */
-window.trackVisit = async () => {
+/**
+ * Tracks a visitor session or specific event
+ */
+window.trackVisit = async (eventType = 'page_view', metadata = {}) => {
     // Prevent tracking in admin panel or local development
     const isLocal = window.location.hostname === 'localhost' || 
                    window.location.hostname === '127.0.0.1' || 
                    window.location.protocol === 'file:';
     
     if (window.location.pathname.includes('admin.html') || isLocal) {
-        console.debug('Tracking skipped: Local or Admin environment');
         return;
     }
 
     try {
-        // Optional: Fetch location data (Free tier, no key needed)
-        let geoData = {};
-        try {
-            const geoRes = await fetch('https://ipapi.co/json/');
-            geoData = await geoRes.json();
-        } catch (e) {
-            console.warn('Geo tracking blocked or failed');
+        // 1. Manage Visitor ID (Persistent)
+        let visitorId = localStorage.getItem('axom_visitor_id');
+        if (!visitorId) {
+            visitorId = 'v-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
+            localStorage.setItem('axom_visitor_id', visitorId);
         }
 
-        const { data, error } = await supabaseClient
+        // 2. Manage Session ID (Tab-based)
+        let sessionId = sessionStorage.getItem('axom_session_id');
+        if (!sessionId) {
+            sessionId = 's-' + Math.random().toString(36).substr(2, 9);
+            sessionStorage.setItem('axom_session_id', sessionId);
+        }
+
+        // 3. Capture UTMs
+        const urlParams = new URLSearchParams(window.location.search);
+        const utm = {
+            source: urlParams.get('utm_source'),
+            medium: urlParams.get('utm_medium'),
+            campaign: urlParams.get('utm_campaign')
+        };
+
+        // 4. Fetch Geo Data (Cached per session to avoid rate limits)
+        let geoData = JSON.parse(sessionStorage.getItem('axom_geo_data') || '{}');
+        if (!geoData.city && eventType === 'page_view') {
+            try {
+                const geoRes = await fetch('https://ipapi.co/json/');
+                geoData = await geoRes.json();
+                sessionStorage.setItem('axom_geo_data', JSON.stringify(geoData));
+            } catch (e) { console.debug('Geo blocked'); }
+        }
+
+        // 5. Insert into Supabase
+        const { error } = await supabaseClient
             .from('visits')
-            .insert([
-                {
-                    page_url: window.location.pathname,
-                    referrer: document.referrer || 'Direct',
-                    browser: navigator.userAgent,
-                    screen_res: `${window.screen.width}x${window.screen.height}`,
-                    city: geoData.city || 'Unknown',
-                    region: geoData.region || 'Unknown',
-                    country: geoData.country_name || 'Unknown'
-                }
-            ]);
+            .insert([{
+                visitor_id: visitorId,
+                session_id: sessionId,
+                event_type: eventType,
+                page_url: window.location.pathname,
+                referrer: document.referrer || 'Direct',
+                browser: navigator.userAgent.includes('Mobi') ? 'Mobile' : 'Desktop',
+                screen_res: `${window.screen.width}x${window.screen.height}`,
+                city: geoData.city || 'Unknown',
+                region: geoData.region || 'Unknown',
+                country: geoData.country_name || 'India',
+                utm_source: utm.source,
+                utm_medium: utm.medium,
+                utm_campaign: utm.campaign,
+                metadata: metadata
+            }]);
 
         if (error) throw error;
     } catch (error) {
-        // Silent fail for tracking
         console.debug('Tracking error:', error);
     }
 };
 
-// Auto-track on load
+/**
+ * Global Event Tracker for Clicks
+ */
+window.trackEvent = (type, label = '') => {
+    window.trackVisit(type, { label });
+};
+
+// Auto-track page view
 if (document.readyState === 'complete') {
     window.trackVisit();
 } else {
-    window.addEventListener('load', window.trackVisit);
+    window.addEventListener('load', () => window.trackVisit());
 }
