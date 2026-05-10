@@ -12,4 +12,18 @@ Disallow: /.git/
 Disallow: /.github/
 Disallow: /.vscode/
 
+# Block AI training bots
+User-agent: GPTBot
+Disallow: /
+User-agent: ChatGPT-User
+Disallow: /
+User-agent: CCBot
+Disallow: /
+User-agent: AnthropicAI
+Disallow: /
+User-agent: Claude-Web
+Disallow: /
+User-agent: Google-Extended
+Disallow: /
+
 Sitemap: https://www.axomcars.in/sitemap.xml
