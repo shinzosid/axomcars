@@ -226,10 +226,6 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
                 <span>Broadcast</span>
             </div>
-            <div class="nav-item" onclick="switchTab('settings')">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-                <span>Settings</span>
-            </div>
         </nav>
         <div class="nav-item" onclick="logout()" style="margin-top: auto;">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
@@ -305,11 +301,27 @@
             </div>
         </div>
 
-        <!-- Existing Leads Tab -->
         <div id="leadsTab" class="tab-content">
             <div class="header-bar">
                 <h1>Customer Leads</h1>
-                <button class="btn-broadcast" onclick="exportToCSV()" style="background: var(--bg-sidebar);">Export CSV</button>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                    <select id="typeFilter" onchange="renderLeads()" style="padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0; outline: none; font-family: 'Poppins', sans-serif;">
+                        <option value="all">All Types</option>
+                        <option value="Test Drive">Test Drive</option>
+                        <option value="Service">Service</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Newsletter Signup">Newsletter</option>
+                    </select>
+                    <select id="dateFilter" onchange="renderLeads()" style="padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0; outline: none; font-family: 'Poppins', sans-serif;">
+                        <option value="all">All Time</option>
+                        <option value="current">Current Month</option>
+                        <option value="last3">Last 3 Months</option>
+                    </select>
+                    <button class="btn-broadcast" onclick="exportToCSV()" style="background: var(--bg-sidebar); height: 44px; display: flex; align-items: center; gap: 8px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                        Export CSV
+                    </button>
+                </div>
             </div>
             <div class="data-card">
                 <div class="table-responsive">
@@ -332,20 +344,46 @@
 
         <!-- Newsletter Tab -->
         <div id="newsletterTab" class="tab-content">
-            <!-- Content kept from original -->
-            <div class="story-form" style="max-width: 700px; margin: 0 auto;">
-                <h2 style="margin-bottom: 10px;">One-Click Broadcast</h2>
-                <p style="color: #666; margin-bottom: 25px; font-size: 0.9rem;">Update your website and notify subscribers instantly.</p>
-                <!-- Form fields from original -->
-                <div class="form-group">
-                    <label>Headline / Subject</label>
-                    <input type="text" id="storyTitle" placeholder="The New Tata Curvv has Arrived!">
+            <div class="story-form" style="max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px; box-shadow: var(--card-shadow);">
+                <h2 style="margin-bottom: 8px;">One-Click Broadcast</h2>
+                <p style="color: var(--text-light); margin-bottom: 32px; font-size: 0.95rem;">Update your website and notify all subscribers instantly.</p>
+                
+                <div class="form-group" style="margin-bottom: 24px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem;">Headline / Subject</label>
+                    <input type="text" id="storyTitle" placeholder="The New Tata Curvv has Arrived!" style="width: 100%; padding: 14px; border: 1px solid #e2e8f0; border-radius: 10px; font-family: inherit; font-size: 1rem;">
                 </div>
-                <div class="form-group">
-                    <label>Content</label>
-                    <textarea id="storyBody" rows="8"></textarea>
+
+                <div class="form-group" style="margin-bottom: 24px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem;">Photos / Gallery</label>
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px;">
+                        <input type="file" id="imageUpload" accept="image/*" multiple onchange="handleImageUpload(this)" style="display: none;">
+                        <button type="button" onclick="document.getElementById('imageUpload').click()" style="padding: 12px 20px; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 10px; cursor: pointer; font-weight: 600; font-family: inherit; display: flex; align-items: center; gap: 8px; color: var(--bg-sidebar);">
+                            📸 Select Multiple Photos
+                        </button>
+                        <p id="uploadStatus" style="font-size: 0.85rem; color: var(--text-light); margin: 0;"></p>
+                    </div>
+                    <!-- Gallery Preview Container -->
+                    <div id="galleryPreview" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px;">
+                        <!-- Thumbnails will appear here -->
+                    </div>
+                    <input type="hidden" id="storyImage">
+                    <input type="hidden" id="galleryUrls">
                 </div>
-                <button class="btn-broadcast" id="broadcastBtn" onclick="quickBroadcast()" style="width: 100%;">🚀 Publish & Send</button>
+
+                <div class="form-group" style="margin-bottom: 24px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem;">Content</label>
+                    <textarea id="storyBody" rows="8" placeholder="Tell your story..." style="width: 100%; padding: 14px; border: 1px solid #e2e8f0; border-radius: 10px; font-family: inherit; font-size: 1rem; resize: vertical;"></textarea>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 32px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem;">Link (Optional)</label>
+                    <input type="text" id="storyLink" placeholder="https://axomcars.in/cars/curvv.html" style="width: 100%; padding: 14px; border: 1px solid #e2e8f0; border-radius: 10px; font-family: inherit; font-size: 1rem;">
+                </div>
+
+                <button class="btn-broadcast" id="broadcastBtn" onclick="quickBroadcast()" style="width: 100%; background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease;">
+                    🚀 Publish & Notify All
+                </button>
+                <p id="broadcastStatus" style="margin-top: 20px; text-align: center; font-weight: 600; display: none;"></p>
             </div>
         </div>
     </main>
