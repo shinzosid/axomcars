@@ -521,6 +521,28 @@ body {
     font-size: 0.9rem;
 }
 
+.footer-legal {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.powered-by {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.powered-by a {
+    color: inherit;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+}
+
+.powered-by a:hover {
+    opacity: 1;
+}
+
 /* Animations */
 @keyframes fadeInLeft {
     from {

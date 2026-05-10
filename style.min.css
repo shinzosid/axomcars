@@ -509,17 +509,11 @@ body {
     flex-shrink: 0;
 }
 
-.footer-bottom {
-    border-top: 1px solid #333;
-    padding-top: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    color: #888;
-    font-size: 0.9rem;
-}
+.footer-bottom { border-top: 1px solid #333; padding-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; color: #888; font-size: 0.9rem; }
+.footer-legal { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.powered-by { font-size: 0.8rem; opacity: 0.7; }
+.powered-by a { color: inherit; text-decoration: underline; transition: opacity 0.3s ease; }
+.powered-by a:hover { opacity: 1; }
 
 /* Animations */
 @keyframes fadeInLeft {
