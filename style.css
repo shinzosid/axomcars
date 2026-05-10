@@ -479,7 +479,7 @@ body {
 
 .logo-white {
     height: 40px;
-    filter: brightness(0) invert(1);
+    width: auto;
     margin-bottom: 1.5rem;
 }
 
