@@ -41,12 +41,14 @@ window.openTestDriveModal = function(modelId = '') {
     const modal = document.getElementById('helpModal');
     if (!modal) return;
     const modalTitle = modal.querySelector('h2');
+    const submitBtn = modal.querySelector('button[type="submit"]');
     const modelSelect = document.getElementById('carModel');
     const helpForm = document.getElementById('helpForm');
     
     if (helpForm) helpForm.reset();
     window.currentLeadType = 'Test Drive';
     if (modalTitle) modalTitle.textContent = 'Book Your Test Drive';
+    if (submitBtn) submitBtn.textContent = 'Book Now';
     if (modelId && modelSelect) modelSelect.value = modelId.toLowerCase();
     
     modal.classList.add('active');
@@ -449,7 +451,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (modal.classList.contains('active')) return;
                 
                 const modalTitle = modal.querySelector('h2');
+                const submitBtn = modal.querySelector('button[type="submit"]');
                 if (modalTitle) modalTitle.textContent = 'How can we help you?';
+                if (submitBtn) submitBtn.textContent = 'Get Assistance';
                 modal.classList.add('active');
             }, 8000);
         }
