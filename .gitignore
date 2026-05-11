@@ -2,3 +2,10 @@
 **/ .DS_Store
 .env
 .env.*
+
+# Heavy Assets (served via CDN)
+images/cars/
+images/showrooms/
+images/workshop/
+images/offers/
+images/electric/
