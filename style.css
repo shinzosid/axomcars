@@ -428,8 +428,15 @@ body {
     animation: none;
 }
 
-.car-card .img-wrap img,
+/* picture is just a layout container — no opacity on it */
 .car-card .img-wrap picture {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.car-card .img-wrap img {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -439,8 +446,7 @@ body {
     transition: opacity 0.5s ease;
 }
 
-.car-card .img-wrap.img-loaded img,
-.car-card .img-wrap.img-loaded picture img {
+.car-card .img-wrap.img-loaded img {
     opacity: 1;
 }
 
