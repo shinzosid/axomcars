@@ -17,6 +17,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <style>
+        /* Critical CSS: Prevent Dropdown Flicker while preserving Mobile Slide-in */
+        .dropdown-menu { display: none; }
+        .dropdown:hover .dropdown-menu, 
+        .dropdown.active .dropdown-menu { display: block; }
+
         /* Modern Newsroom Styles */
         .newsroom-container {
             max-width: 1200px;

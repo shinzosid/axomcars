@@ -151,6 +151,11 @@
             .hero-actions .btn { width: 100%; }
             .model-name { font-size: 2.5rem; }
         }
+
+        /* Critical CSS: Prevent Dropdown Flicker while preserving Mobile Slide-in */
+        .dropdown-menu { display: none; }
+        .dropdown:hover .dropdown-menu, 
+        .dropdown.active .dropdown-menu { display: block; }
     </style>
 </head>
 
