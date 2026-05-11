@@ -434,11 +434,19 @@
         window.supabaseClient.auth.onAuthStateChange((event, session) => {
             if (session) {
                 document.getElementById('loginOverlay').style.display = 'none';
-                renderLeads();
+                renderIntelligence();
             } else {
                 document.getElementById('loginOverlay').style.display = 'flex';
             }
         });
+
+        // Auto-refresh Intelligence every 60 seconds
+        setInterval(() => {
+            const iqTab = document.getElementById('intelligenceTab');
+            if (iqTab && iqTab.classList.contains('active')) {
+                renderIntelligence();
+            }
+        }, 60000);
 
         async function checkAuth() {
             const email = document.getElementById('adminEmail').value;
