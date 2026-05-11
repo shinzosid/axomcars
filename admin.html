@@ -440,10 +440,12 @@
             }
         });
 
-        // Auto-refresh Intelligence every 60 seconds
+        // Auto-refresh Intelligence every 60 seconds (Only when visible and active)
         setInterval(() => {
             const iqTab = document.getElementById('intelligenceTab');
-            if (iqTab && iqTab.classList.contains('active')) {
+            const isVisible = document.visibilityState === 'visible';
+            
+            if (isVisible && iqTab && iqTab.classList.contains('active')) {
                 renderIntelligence();
             }
         }, 60000);
