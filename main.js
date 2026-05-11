@@ -250,9 +250,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     swatch.style.backgroundColor = color.hex;
                 }
 
+                
+                
                 swatch.addEventListener('click', () => {
                     document.querySelectorAll('.swatch').forEach(s => {
                         s.classList.remove('active');
+                        s.classList.remove('swatch-loading');
                     });
                     swatch.classList.add('active');
                     if (colorNameEl) colorNameEl.textContent = color.name;
@@ -264,9 +267,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         const startTime = Date.now();
                         const carLoader = document.getElementById('carLoader');
                         if (carLoader) carLoader.style.display = 'block';
-                        
-                        // Start fading out current image slightly
-                        mainImg.style.opacity = '0.5';
+                        if (mainImg) {
+                            mainImg.style.opacity = '0.7';
+                            mainImg.style.filter = 'blur(2px)';
+                        }
                         
                         nextImg.src = color.img;
                         
@@ -286,11 +290,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (nextImg.complete) {
                             performSwap();
                         } else {
+                            mainImg.style.opacity = '0.3';
                             nextImg.onload = performSwap;
-                            nextImg.onerror = () => {
-                                if (carLoader) carLoader.style.display = 'none';
-                                mainImg.style.opacity = '1';
-                            };
                         }
                     }
     
@@ -326,7 +327,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const startTime = Date.now();
             
             if (carLoader) carLoader.style.display = 'block';
-            mainImg.style.opacity = '0';
             
             const initShow = () => {
                 const elapsed = Date.now() - startTime;
@@ -345,10 +345,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (initialImg.complete) {
                 initShow();
             } else {
+                mainImg.style.opacity = '0';
                 initialImg.onload = initShow;
                 initialImg.onerror = () => {
                     if (carLoader) carLoader.style.display = 'none';
                 };
+                // Fallback for very slow connections
+                setTimeout(() => {
+                    if (mainImg.style.opacity === '0' && !initialImg.complete) {
+                         // Keep showing loader
+                    }
+                }, 5000);
             }
         }
 

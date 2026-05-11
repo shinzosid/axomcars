@@ -2331,6 +2331,17 @@ body {
     width: 60%;
 }
 
+.skeleton-img {
+    transition: opacity 0.3s ease;
+    position: absolute;
+    width: 80%;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
 .skeleton-btn {
     height: 45px;
     width: 150px;
@@ -2441,9 +2452,9 @@ body {
     z-index: 1;
 }
 
-.car-spinner-only {
+.modern-car-loader {
     position: absolute;
-    top: 45%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50px;
@@ -2456,7 +2467,7 @@ body {
     pointer-events: none;
 }
 
-.vehicle-display-container.light-text .car-spinner-only {
+.vehicle-display-container.light-text .modern-car-loader {
     border: 3px solid rgba(255, 255, 255, 0.2);
     border-top-color: #fff;
 }
