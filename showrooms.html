@@ -650,6 +650,33 @@
 
     <script defer src="main.min.js"></script>
     <script>
+        // Fallback SVG shown when a CDN image fails to load
+        const FALLBACK_SVG = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250"><rect width="400" height="250" fill="#1a1a1a"/><text x="200" y="110" font-family="Arial,sans-serif" font-size="14" fill="#555" text-anchor="middle">Image unavailable</text><text x="200" y="135" font-family="Arial,sans-serif" font-size="12" fill="#444" text-anchor="middle">axomcars.in</text></svg>`)}`;
+
+        function markImageReady(img) {
+            img.classList.add('img-ready');
+            // Stop shimmer on the parent carousel once any image is ready
+            const carousel = img.closest('.showroom-carousel');
+            if (carousel) carousel.classList.add('loaded');
+        }
+
+        function initCarouselImages() {
+            document.querySelectorAll('.carousel-images img').forEach(img => {
+                // Image already cached/loaded
+                if (img.complete && img.naturalWidth > 0) {
+                    markImageReady(img);
+                    return;
+                }
+                img.addEventListener('load', () => markImageReady(img), { once: true });
+                img.addEventListener('error', () => {
+                    img.src = FALLBACK_SVG;
+                    img.classList.add('img-error', 'img-ready');
+                    const carousel = img.closest('.showroom-carousel');
+                    if (carousel) carousel.classList.add('loaded');
+                }, { once: true });
+            });
+        }
+
         function moveCarousel(carouselId, direction) {
             const carousel = document.getElementById(carouselId);
             const images = carousel.querySelectorAll('.carousel-images img');
@@ -659,6 +686,8 @@
             activeIndex = (activeIndex + direction + images.length) % images.length;
             images[activeIndex].classList.add('active');
         }
+
+        document.addEventListener('DOMContentLoaded', initCarouselImages);
     </script>
 <div class="mobile-sticky-bar">
         <a href="tel:+917099034014" class="mobile-cta-btn secondary">Call Sales</a>
