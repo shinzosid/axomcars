@@ -103,7 +103,7 @@ body {
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-.modern-car-loader {
+.car-spinner-only {
     position: absolute;
     top: 45%;
     left: 50%;
@@ -118,7 +118,7 @@ body {
     pointer-events: none;
 }
 
-.vehicle-display-container.light-text .modern-car-loader {
+.vehicle-display-container.light-text .car-spinner-only {
     border: 3px solid rgba(255, 255, 255, 0.2);
     border-top-color: #fff;
 }
