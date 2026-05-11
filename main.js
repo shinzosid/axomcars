@@ -250,28 +250,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     swatch.style.backgroundColor = color.hex;
                 }
 
-                
-                
                 swatch.addEventListener('click', () => {
                     document.querySelectorAll('.swatch').forEach(s => {
                         s.classList.remove('active');
-                        s.classList.remove('swatch-loading');
                     });
                     swatch.classList.add('active');
                     if (colorNameEl) colorNameEl.textContent = color.name;
                     
                     const mainImg = document.getElementById('mainVehicleImage');
-                    const imgSkeleton = document.getElementById('imgSkeleton');
                     
                     if (mainImg) {
                         const nextImg = new Image();
                         const startTime = Date.now();
                         const carLoader = document.getElementById('carLoader');
                         if (carLoader) carLoader.style.display = 'block';
-                        if (mainImg) {
-                            mainImg.style.opacity = '0.7';
-                            mainImg.style.filter = 'blur(2px)';
-                        }
+                        
+                        // Start fading out current image slightly
+                        mainImg.style.opacity = '0.5';
                         
                         nextImg.src = color.img;
                         
@@ -281,7 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             
                             setTimeout(() => {
                                 if (carLoader) carLoader.style.display = 'none';
-                                if (imgSkeleton) { imgSkeleton.style.display = 'none'; imgSkeleton.style.opacity = '0'; }
                                 mainImg.src = color.img;
                                 mainImg.style.display = 'block';
                                 mainImg.style.opacity = '1';
@@ -292,9 +286,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (nextImg.complete) {
                             performSwap();
                         } else {
-                            mainImg.style.opacity = '0.3';
-                            if (imgSkeleton) imgSkeleton.style.display = 'block';
                             nextImg.onload = performSwap;
+                            nextImg.onerror = () => {
+                                if (carLoader) carLoader.style.display = 'none';
+                                mainImg.style.opacity = '1';
+                            };
                         }
                     }
     
@@ -321,7 +317,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const mainImg = document.getElementById('mainVehicleImage');
-        const imgSkeleton = document.getElementById('imgSkeleton');
         const carLoader = document.getElementById('carLoader');
         const interiorImg = document.getElementById('interiorImage');
         const lifestyleImg = document.getElementById('lifestyleImage');
@@ -331,10 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const startTime = Date.now();
             
             if (carLoader) carLoader.style.display = 'block';
-            if (imgSkeleton) {
-                imgSkeleton.style.display = 'block';
-                imgSkeleton.style.opacity = '1';
-            }
+            mainImg.style.opacity = '0';
             
             const initShow = () => {
                 const elapsed = Date.now() - startTime;
@@ -342,7 +334,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 setTimeout(() => {
                     if (carLoader) carLoader.style.display = 'none';
-                    if (imgSkeleton) { imgSkeleton.style.display = 'none'; imgSkeleton.style.opacity = '0'; }
                     mainImg.src = car.colors[0].img;
                     mainImg.style.display = 'block';
                     mainImg.style.opacity = '1';
@@ -354,18 +345,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (initialImg.complete) {
                 initShow();
             } else {
-                mainImg.style.opacity = '0';
                 initialImg.onload = initShow;
                 initialImg.onerror = () => {
                     if (carLoader) carLoader.style.display = 'none';
-                    if (imgSkeleton) imgSkeleton.style.display = 'none';
                 };
-                // Fallback for very slow connections
-                setTimeout(() => {
-                    if (mainImg.style.opacity === '0' && !initialImg.complete) {
-                         // Keep showing loader/skeleton
-                    }
-                }, 5000);
             }
         }
 
