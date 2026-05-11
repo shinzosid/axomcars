@@ -20,7 +20,7 @@
     <style>
         .location-meta-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             gap: 15px;
             margin-top: 15px;
             padding-top: 15px;
@@ -45,6 +45,9 @@
             font-size: 0.9rem;
             color: #333;
             font-weight: 500;
+            overflow-wrap: break-word;
+            word-break: break-all;
+            min-width: 0;
         }
 
         .review-link {
