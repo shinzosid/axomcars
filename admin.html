@@ -208,6 +208,18 @@
         }
     </style>
 </head>
+<body class="admin-body">
+    <!-- Login Overlay -->
+    <div id="loginOverlay">
+        <div style="background: white; padding: 40px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+            <h2 style="margin-bottom: 24px; font-weight: 700; color: #0f172a;">Admin Console</h2>
+            <input type="email" id="adminEmail" placeholder="Email Address" style="width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: inherit;">
+            <input type="password" id="adminPass" placeholder="Password" style="width: 100%; padding: 12px; margin-bottom: 24px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: inherit;">
+            <button id="loginBtn" onclick="checkAuth()" style="width: 100%; padding: 14px; background: #1d70b8; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">Login to Dashboard</button>
+            <p id="loginError" style="color: #e74c3c; margin-top: 16px; display: none; font-size: 0.85rem; font-weight: 500;"></p>
+        </div>
+    </div>
+
     <aside class="sidebar">
         <div class="sidebar-logo">
             <img src="logo.png" alt="Axom Cars">
@@ -405,6 +417,9 @@
     <script src="supabase-client.js"></script>
 
     <script>
+        // Start security check on load
+        window.addEventListener('load', checkAuthState);
+
         // Check auth state on load
         async function checkAuthState() {
             const { data: { session } } = await window.supabaseClient.auth.getSession();
