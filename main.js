@@ -211,6 +211,72 @@ document.addEventListener('DOMContentLoaded', () => {
             interior: "images/cars/tigor/tigorinterior.avif",
             lifestyle: "images/cars/tigor/tigorexterior.avif",
             accentColor: "#b87333"
+        },
+        'nexon-ev': {
+            name: "Nexon EV",
+            tagline: "Meet the game changer",
+            description: "A stunning leap forward in design, cabin comfort, performance, technology and safety for you and your family.",
+            colors: [
+                { id: "teal", name: "Empowered Teal", hex: "#008080", img: "https://cdn.axomcars.in/electric/nexon-ev.avif" }
+            ],
+            interior: "https://cdn.axomcars.in/cars/nexon/interiornexon.avif",
+            lifestyle: "https://cdn.axomcars.in/electric/nexon-ev.avif",
+            accentColor: "#008080"
+        },
+        'punch-ev': {
+            name: "Punch EV",
+            tagline: "beyond everyday",
+            description: "The electric SUV that's built for the city and beyond. Experience the perfect blend of compactness and capability.",
+            colors: [
+                { id: "green", name: "Empowered Oxide", hex: "#808000", img: "https://cdn.axomcars.in/electric/Punch-ev.avif" }
+            ],
+            interior: "images/cars/punch/new-punch-interior.avif",
+            lifestyle: "https://cdn.axomcars.in/electric/Punch-ev.avif",
+            accentColor: "#808000"
+        },
+        'tiago-ev': {
+            name: "Tiago EV",
+            tagline: "It's a Chill Car",
+            description: "The most loved electric hatchback in India. Designed to make your everyday drive effortless and sustainable.",
+            colors: [
+                { id: "blue", name: "Tropical Mist", hex: "#add8e6", img: "https://cdn.axomcars.in/electric/tiago-ev-cropped.avif" }
+            ],
+            interior: "images/cars/tiago/tiagointerior.avif",
+            lifestyle: "https://cdn.axomcars.in/electric/tiago-ev-cropped.avif",
+            accentColor: "#add8e6"
+        },
+        'tigor-ev': {
+            name: "Tigor EV",
+            tagline: "Life.ev with Tigor.ev",
+            description: "The electric sedan that combines elegance with efficiency. Perfect for the professional who values style and sustainability.",
+            colors: [
+                { id: "blue", name: "Signature Teal Blue", hex: "#004c4c", img: "https://cdn.axomcars.in/electric/tigor-ev.avif" }
+            ],
+            interior: "images/cars/tigor/tigorinterior.avif",
+            lifestyle: "https://cdn.axomcars.in/electric/tigor-ev.avif",
+            accentColor: "#004c4c"
+        },
+        'curvv-ev': {
+            name: "Curvv EV",
+            tagline: "Shaped for You",
+            description: "The SUV Coupé is designed to impress with its blend of elegance and innovation. Every ride is a statement.",
+            colors: [
+                { id: "gold", name: "Virtual Sunrise", hex: "#caac7c", img: "https://cdn.axomcars.in/electric/curvv-ev.avif" }
+            ],
+            interior: "images/cars/curvv/curvvinterior.avif",
+            lifestyle: "https://cdn.axomcars.in/electric/curvv-ev.avif",
+            accentColor: "#caac7c"
+        },
+        'harrier-ev': {
+            name: "Harrier EV",
+            tagline: "Delete Impossible",
+            description: "Designed to silence doubt. Engineered to outrun limits. Takes the unbeaten path and makes it its own.",
+            colors: [
+                { id: "red", name: "Nitro Crimson", hex: "#5c121e", img: "https://cdn.axomcars.in/electric/harrier-ev.avif" }
+            ],
+            interior: "images/cars/harrier/terrain-interior.avif",
+            lifestyle: "https://cdn.axomcars.in/electric/harrier-ev.avif",
+            accentColor: "#5c121e"
         }
     };
 
@@ -370,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const learnMoreBtn = document.getElementById('learnMoreBtn');
-        if (learnMoreBtn) learnMoreBtn.href = `cars/${carId}.html`;
+        if (learnMoreBtn) learnMoreBtn.href = `tata-assam-${carId}.html`;
         const bookNowBtn = document.querySelector('.cta-group .btn[href*="wa.me"], #waBookBtn');
         if (bookNowBtn) {
             const message = encodeURIComponent(`Hi Axom Cars, I am interested in booking the Tata ${car.name}. Please provide more details.`);
