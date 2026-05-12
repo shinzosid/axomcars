@@ -78,18 +78,8 @@ Supabase pauses free projects after 7 days of inactivity. We set up a GitHub Act
    ```
 4. Open `http://localhost:3000` in your browser. Submit a lead, and you should instantly receive a Telegram message!
 
-## 6. Vercel Deployment
-
-To deploy the frontend to the web for free:
-1. Create an account on [Vercel.com](https://vercel.com).
-2. Click **Add New Project** and import your GitHub repository.
-3. Set the Root Directory to `supabase-lead-system/frontend`.
-4. In the Environment Variables section, add:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-5. Click **Deploy**.
-
 ---
+
 
 ## Optional Advanced Features Architecture
 
