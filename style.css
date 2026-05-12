@@ -2749,6 +2749,8 @@ body {
     overflow: hidden;
     border: 1px solid #333;
     transition: transform 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .ev-card:hover {
@@ -2769,6 +2771,9 @@ body {
 
 .ev-card-content {
     padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .ev-card-content h3 {
@@ -2786,6 +2791,7 @@ body {
 .ev-card-actions {
     display: flex;
     gap: 10px;
+    margin-top: auto;
 }
 
 .ev-card-actions .btn {

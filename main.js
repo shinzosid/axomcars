@@ -217,10 +217,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: "Meet the game changer",
             description: "A stunning leap forward in design, cabin comfort, performance, technology and safety for you and your family.",
             colors: [
-                { id: "teal", name: "Empowered Teal", hex: "#008080", img: "https://cdn.axomcars.in/electric/nexon-ev.avif" }
+                { id: "teal", name: "Empowered Teal", hex: "#008080", img: "https://cdn.axomcars.in/electric/nexon-ev/nexon-ev.avif" }
             ],
-            interior: "https://cdn.axomcars.in/cars/nexon/interiornexon.avif",
-            lifestyle: "https://cdn.axomcars.in/electric/nexon-ev.avif",
+            interior: "https://cdn.axomcars.in/electric/nexon-ev/nexonev-interior.avif",
+            lifestyle: "https://cdn.axomcars.in/electric/nexon-ev/nexonev-exterior.avif",
             accentColor: "#008080"
         },
         'punch-ev': {
@@ -228,10 +228,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: "beyond everyday",
             description: "The electric SUV that's built for the city and beyond. Experience the perfect blend of compactness and capability.",
             colors: [
-                { id: "green", name: "Empowered Oxide", hex: "#808000", img: "https://cdn.axomcars.in/electric/Punch-ev.avif" }
+                { id: "green", name: "Empowered Oxide", hex: "#808000", img: "https://cdn.axomcars.in/electric/punch-ev/Punch-ev.avif" }
             ],
-            interior: "https://cdn.axomcars.in/cars/punch/new-punch-interior.avif",
-            lifestyle: "https://cdn.axomcars.in/electric/Punch-ev.avif",
+            interior: "https://cdn.axomcars.in/electric/punch-ev/punchev-interior.avif",
+            lifestyle: "https://cdn.axomcars.in/electric/punch-ev/punchev-exterior.avif",
             accentColor: "#808000"
         },
         'tiago-ev': {
@@ -239,10 +239,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: "It's a Chill Car",
             description: "The most loved electric hatchback in India. Designed to make your everyday drive effortless and sustainable.",
             colors: [
-                { id: "blue", name: "Tropical Mist", hex: "#add8e6", img: "https://cdn.axomcars.in/electric/tiago-ev-cropped.avif" }
+                { id: "blue", name: "Tropical Mist", hex: "#add8e6", img: "https://cdn.axomcars.in/electric/tiago-ev/tiago-ev.avif" }
             ],
-            interior: "https://cdn.axomcars.in/cars/tiago/tiagointerior.avif",
-            lifestyle: "https://cdn.axomcars.in/electric/tiago-ev-cropped.avif",
+            interior: "https://cdn.axomcars.in/electric/tiago-ev/tiagoev-interior.avif",
+            lifestyle: "https://cdn.axomcars.in/electric/tiago-ev/tiagoev-exterior.avif",
             accentColor: "#add8e6"
         },
         'tigor-ev': {
@@ -250,10 +250,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: "Life.ev with Tigor.ev",
             description: "The electric sedan that combines elegance with efficiency. Perfect for the professional who values style and sustainability.",
             colors: [
-                { id: "blue", name: "Signature Teal Blue", hex: "#004c4c", img: "https://cdn.axomcars.in/electric/tigor-ev.avif" }
+                { id: "blue", name: "Signature Teal Blue", hex: "#004c4c", img: "https://cdn.axomcars.in/electric/tigor-ev/tigor-ev.avif" }
             ],
-            interior: "https://cdn.axomcars.in/cars/tigor/tigorinterior.avif",
-            lifestyle: "https://cdn.axomcars.in/electric/tigor-ev.avif",
+            interior: "https://cdn.axomcars.in/electric/tigor-ev/tigorev-interior.avif",
+            lifestyle: "https://cdn.axomcars.in/electric/tigor-ev/tigorev-exterior.avif",
             accentColor: "#004c4c"
         },
         'curvv-ev': {
@@ -261,10 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: "Shaped for You",
             description: "The SUV Coupé is designed to impress with its blend of elegance and innovation. Every ride is a statement.",
             colors: [
-                { id: "gold", name: "Virtual Sunrise", hex: "#caac7c", img: "https://cdn.axomcars.in/electric/curvv-ev.avif" }
+                { id: "gold", name: "Virtual Sunrise", hex: "#caac7c", img: "https://cdn.axomcars.in/electric/curvv-ev/curvv-ev.avif" }
             ],
-            interior: "https://cdn.axomcars.in/cars/curvv/curvvinterior.avif",
-            lifestyle: "https://cdn.axomcars.in/electric/curvv-ev.avif",
+            interior: "https://cdn.axomcars.in/electric/curvv-ev/curvvev-interior.avif",
+            lifestyle: "https://cdn.axomcars.in/electric/curvv-ev/curvvev-exterior.avif",
             accentColor: "#caac7c"
         },
         'harrier-ev': {
@@ -272,10 +272,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: "Delete Impossible",
             description: "Designed to silence doubt. Engineered to outrun limits. Takes the unbeaten path and makes it its own.",
             colors: [
-                { id: "red", name: "Nitro Crimson", hex: "#5c121e", img: "https://cdn.axomcars.in/electric/harrier-ev.avif" }
+                { id: "red", name: "Nitro Crimson", hex: "#5c121e", img: "https://cdn.axomcars.in/electric/harrier-ev/harrier-ev.avif" }
             ],
-            interior: "https://cdn.axomcars.in/cars/harrier/terrain-interior.avif",
-            lifestyle: "https://cdn.axomcars.in/electric/harrier-ev.avif",
+            interior: "https://cdn.axomcars.in/electric/harrier-ev/harrier-interior.avif",
+            lifestyle: "https://cdn.axomcars.in/electric/harrier-ev/harrier-exterior.avif",
             accentColor: "#5c121e"
         }
     };
