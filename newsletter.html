@@ -641,6 +641,25 @@
         }
 
         loadNewsroom();
+
+        // Check for Status Messages from Redirects (Subscription/Unsubscription)
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const status = params.get('status');
+            const msg = params.get('msg');
+            const statusBox = document.getElementById('statusBox');
+
+            if (status && msg && statusBox) {
+                statusBox.innerHTML = decodeURIComponent(msg);
+                statusBox.style.display = 'block';
+                statusBox.style.backgroundColor = status === 'success' ? '#d4edda' : '#f8d7da';
+                statusBox.style.color = status === 'success' ? '#155724' : '#721c24';
+                statusBox.style.border = `1px solid ${status === 'success' ? '#c3e6cb' : '#f5c6cb'}`;
+                
+                // Scroll to status box
+                statusBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
     </script>
     <!-- Sticky WhatsApp Button -->
     <a href="https://wa.me/917099064993" class="whatsapp-sticky" target="_blank" aria-label="Chat with Axom Cars Sales on WhatsApp">
