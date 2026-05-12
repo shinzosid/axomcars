@@ -65,11 +65,12 @@ serve(async (req: Request) => {
 
       if (upsertError) throw upsertError
 
-      // Send Confirmation Email via Resend
       const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
       const SITE_URL = Deno.env.get('SITE_URL') ?? 'https://axomcars.in'
 
-      const confirmLink = `${Deno.env.get('SUPABASE_URL')}/functions/v1/newsletter-handler/confirm?token=${confirmToken}`
+      // Use req.url as base if SUPABASE_URL is missing
+      const supabaseUrl = Deno.env.get('SUPABASE_URL') || new URL(req.url).origin
+      const confirmLink = `${supabaseUrl}/functions/v1/newsletter-handler/confirm?token=${confirmToken}`
 
       const res = await fetch('https://api.resend.com/emails', {
         method: 'POST',
@@ -97,9 +98,9 @@ serve(async (req: Request) => {
       })
 
       if (!res.ok) {
-        const error = await res.text()
-        console.error('Resend error:', error)
-        throw new Error('Failed to send confirmation email')
+        const resendError = await res.text()
+        console.error('Resend error:', resendError)
+        throw new Error(`Failed to send confirmation email: ${resendError}`)
       }
 
       return new Response(JSON.stringify({ message: 'Confirmation email sent! Please check your inbox.' }), {
@@ -156,8 +157,9 @@ serve(async (req: Request) => {
     return new Response('Not Found', { status: 404 })
 
   } catch (err: any) {
-    console.error('Newsletter Error:', err.message)
-    return new Response(JSON.stringify({ error: err.message }), {
+    const errorMessage = err.message || 'An unknown error occurred'
+    console.error('Newsletter Error:', errorMessage)
+    return new Response(JSON.stringify({ error: errorMessage }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 400,
     })

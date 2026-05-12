@@ -617,7 +617,20 @@
                     statusBox.style.backgroundColor = '#d4edda';
                     subForm.reset();
                 } catch (err) {
-                    statusBox.innerHTML = "Error: " + err.message;
+                    console.error("Subscription error:", err);
+                    let displayError = err.message;
+                    
+                    // Try to parse detailed error from Supabase Function response
+                    if (err.context && typeof err.context.json === 'function') {
+                        try {
+                            const errorData = await err.context.json();
+                            if (errorData.error) displayError = errorData.error;
+                        } catch (e) {
+                            console.debug("Could not parse error JSON");
+                        }
+                    }
+
+                    statusBox.innerHTML = "Error: " + displayError;
                     statusBox.style.display = 'block';
                     statusBox.style.backgroundColor = '#f8d7da';
                 } finally {
