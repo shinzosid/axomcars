@@ -29,6 +29,7 @@ serve(async (req: Request) => {
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     )
+    const SITE_URL = Deno.env.get('SITE_URL') ?? 'https://www.axomcars.in'
 
     // 2. Get the story details
     const { data: story, error: storyError } = await supabase
@@ -69,7 +70,7 @@ serve(async (req: Request) => {
                   <h1 style="color: #1a1a1a; margin-top: 0;">${story.title}</h1>
                   <p style="color: #444; line-height: 1.6; font-size: 16px;">${story.body.replace(/\n/g, '<br>')}</p>
                   <div style="margin-top: 30px; text-align: center;">
-                    <a href="https://axomcars.in/newsletter.html?id=${story.id}" style="background: #1d70b8; color: #fff; padding: 14px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
+                    <a href="${SITE_URL}/newsletter.html?id=${story.id}" style="background: #1d70b8; color: #fff; padding: 14px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
                       Read Full Story
                     </a>
                   </div>
