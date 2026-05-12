@@ -60,6 +60,13 @@
         async function confirmUnsubscribe() {
             const urlParams = new URLSearchParams(window.location.search);
             const email = urlParams.get('email');
+            const status = urlParams.get('status');
+
+            if (status === 'success') {
+                document.getElementById('unsub-form').style.display = 'none';
+                document.getElementById('unsub-success').style.display = 'block';
+                return;
+            }
             
             if (!email) {
                 alert('No email address found.');
@@ -88,6 +95,14 @@
                 btn.textContent = 'Confirm Unsubscribe';
             }
         }
+
+        // Auto-check if coming from secure redirect
+        window.addEventListener('load', () => {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('status') === 'success') {
+                confirmUnsubscribe();
+            }
+        });
     </script>
     <!-- Sticky WhatsApp Button -->
     <a href="https://wa.me/917099064993" class="whatsapp-sticky" target="_blank" aria-label="Chat with Axom Cars Sales on WhatsApp">

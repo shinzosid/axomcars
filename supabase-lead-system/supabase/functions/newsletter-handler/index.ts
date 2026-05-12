@@ -110,9 +110,9 @@ serve(async (req: Request) => {
     }
 
     // Helper for clean redirects
-    const redirectWithParams = (status: string, msg: string) => {
+    const redirectWithParams = (status: string, msg: string, page: string = 'newsletter.html') => {
       const baseUrl = (Deno.env.get('SITE_URL') ?? 'https://axomcars.in').trim().replace(/\/$/, '')
-      const redirectUrl = `${baseUrl}/newsletter.html?status=${status}&msg=${encodeURIComponent(msg)}`
+      const redirectUrl = `${baseUrl}/${page}?status=${status}&msg=${encodeURIComponent(msg)}`
       return Response.redirect(redirectUrl, 302)
     }
 
@@ -148,10 +148,10 @@ serve(async (req: Request) => {
         .single()
 
       if (error || !data) {
-        return redirectWithParams('error', 'Could not unsubscribe')
+        return redirectWithParams('error', 'Could not unsubscribe', 'unsubscribe.html')
       }
 
-      return redirectWithParams('success', 'You have been unsubscribed')
+      return redirectWithParams('success', 'You have been unsubscribed', 'unsubscribe.html')
     }
 
     return new Response('Not Found', { status: 404 })

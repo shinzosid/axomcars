@@ -43,7 +43,7 @@ serve(async (req: Request) => {
     // 3. Get all confirmed subscribers
     const { data: subscribers, error: subError } = await supabase
       .from('newsletter_subscribers')
-      .select('email')
+      .select('email, unsubscribe_token')
       .eq('status', 'confirmed')
 
     if (subError) throw subError
@@ -84,7 +84,7 @@ serve(async (req: Request) => {
                 </div>
                 <div style="background: #f9f9f9; padding: 20px; text-align: center; color: #999; font-size: 12px; border-top: 1px solid #eee;">
                   &copy; 2026 Axom Cars, Guwahati<br>
-                  <a href="https://axomcars.in/unsubscribe.html?email=${encodeURIComponent(sub.email)}" style="color: #999;">Unsubscribe</a>
+                  <a href="${SITE_URL}/functions/v1/newsletter-handler/unsubscribe?token=${sub.unsubscribe_token}" style="color: #999;">Unsubscribe</a>
                 </div>
               </div>
             `
