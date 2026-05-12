@@ -79,7 +79,7 @@ serve(async (req: Request) => {
           'Authorization': `Bearer ${RESEND_API_KEY}`,
         },
         body: JSON.stringify({
-          from: 'Axom Cars <onboarding@resend.dev>',
+          from: 'Axom Cars <info@axomcars.in>',
           to: [email],
           subject: 'Confirm your Axom Cars Newsletter subscription',
           html: `
