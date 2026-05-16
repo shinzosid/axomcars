@@ -459,7 +459,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const menuToggle = document.getElementById('menuToggle');
     const headerNav = document.querySelector('.header-nav');
-    const navOverlay = document.getElementById('navOverlay');
+    let navOverlay = document.getElementById('navOverlay');
+    
+    // Auto-inject overlay if missing (for other pages)
+    if (!navOverlay && headerNav) {
+        navOverlay = document.createElement('div');
+        navOverlay.id = 'navOverlay';
+        navOverlay.className = 'nav-overlay';
+        document.body.prepend(navOverlay);
+    }
     
     if (menuToggle && headerNav && navOverlay) {
         const toggleMenu = () => {
