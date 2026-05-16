@@ -475,9 +475,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (window.innerWidth <= 991) {
                     e.preventDefault();
                     e.stopPropagation();
-                    dropdown.classList.toggle('active');
+                    
+                    // Toggle the active class
+                    const isActive = dropdown.classList.contains('active');
+                    
+                    // Close all other dropdowns first (if any)
+                    document.querySelectorAll('.dropdown').forEach(d => {
+                        if (d !== dropdown) d.classList.remove('active');
+                    });
+                    
+                    if (isActive) {
+                        dropdown.classList.remove('active');
+                    } else {
+                        dropdown.classList.add('active');
+                    }
                 }
             };
+            
             link.addEventListener('click', handleMobileDropdown);
         }
     });

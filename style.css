@@ -2058,8 +2058,12 @@ body {
         margin-left: 1rem;
     }
 
+    .dropdown:hover .dropdown-menu {
+        display: none;
+    }
+
     .dropdown.active .dropdown-menu {
-        display: block;
+        display: block !important;
     }
 
     .hero-overlay-box {

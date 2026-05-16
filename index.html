@@ -189,6 +189,9 @@
             .nav-dropdown { display: flex !important; width: 100% !important; justify-content: space-between !important; padding: 15px 0 !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
             .nav-dropdown svg { transition: transform 0.3s ease; pointer-events: none; }
             .dropdown.active .nav-dropdown svg { transform: rotate(180deg); }
+            .dropdown-menu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; padding: 0; display: none; width: 100%; margin-left: 1rem; }
+            .dropdown:hover .dropdown-menu { display: none; }
+            .dropdown.active .dropdown-menu { display: block !important; }
             .hamburger-menu { display: flex; }
             .hero-overlay-box { position: relative; left: 0; bottom: 0; width: 100%; max-width: none; padding: 3rem 1.5rem; background: rgba(0, 0, 0, 0.85); text-align: center; border-left: none; border-top: 4px solid var(--primary-color); margin-top: auto; }
             .hero-actions { align-items: center; width: 100%; }
