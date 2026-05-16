@@ -466,6 +466,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Mobile Dropdown Toggle
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('.nav-dropdown');
+        if (link) {
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 991) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        }
+    });
+
     const rangeTabs = document.querySelectorAll('.tab[data-range]');
     const carCards = document.querySelectorAll('.car-card[data-category]');
     if (rangeTabs.length > 0) {

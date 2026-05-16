@@ -1981,6 +1981,19 @@ body {
 }
 
 @media (max-width: 991px) {
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo-container {
+        order: 2;
+    }
+
+    .header-actions {
+        order: 1;
+    }
+
     .static-hero {
         flex-direction: column;
         justify-content: flex-end;
@@ -2010,6 +2023,21 @@ body {
 
     .hamburger-menu {
         display: flex;
+    }
+
+    .nav-dropdown {
+        width: 100%;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav-dropdown svg {
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown.active .nav-dropdown svg {
+        transform: rotate(180deg);
     }
 
     .dropdown-menu {
