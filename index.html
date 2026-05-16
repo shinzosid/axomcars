@@ -178,12 +178,19 @@
             .header-actions { order: 1; }
             .static-hero { flex-direction: column; justify-content: flex-end; height: auto; min-height: 100vh; }
             .header-nav { 
-                position: fixed; top: var(--header-height); left: -100%; width: 100%; 
+                position: fixed; top: var(--header-height); left: -100%; width: 85%; max-width: 320px;
                 height: calc(100vh - var(--header-height)); background: var(--white); 
                 flex-direction: column; padding: 2rem; gap: 1.5rem; 
                 transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 999; 
                 overflow-y: auto; align-items: flex-start;
+                box-shadow: 10px 0 30px rgba(0,0,0,0.1);
             }
+            .nav-overlay {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; visibility: hidden;
+                transition: 0.3s ease;
+            }
+            .nav-overlay.active { opacity: 1; visibility: visible; }
             .header-nav.active { left: 0; }
             .dropdown { width: 100% !important; }
             .nav-dropdown { display: flex !important; width: 100% !important; justify-content: space-between !important; padding: 15px 0 !important; border-bottom: 1px solid rgba(0,0,0,0.05); position: relative; }
@@ -208,7 +215,8 @@
 </head>
 
 <body>
-        <header class="header">
+        <div class="nav-overlay" id="navOverlay"></div>
+    <header class="header">
         <div class="container header-container">
             <div class="logo-container">
                 <a href="index.html">

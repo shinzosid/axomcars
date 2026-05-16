@@ -2005,7 +2005,8 @@ body {
         position: fixed;
         top: var(--header-height);
         left: -100%;
-        width: 100%;
+        width: 85%;
+        max-width: 320px;
         height: calc(100vh - var(--header-height));
         background: var(--white);
         flex-direction: column;
@@ -2015,6 +2016,25 @@ body {
         z-index: 999;
         overflow-y: auto;
         align-items: flex-start;
+        box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+    }
+
+    .nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 998;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s ease;
+    }
+
+    .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
     }
 
     .header-nav.active {

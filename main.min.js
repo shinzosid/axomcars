@@ -459,11 +459,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const menuToggle = document.getElementById('menuToggle');
     const headerNav = document.querySelector('.header-nav');
-    if (menuToggle && headerNav) {
-        menuToggle.addEventListener('click', () => {
+    const navOverlay = document.getElementById('navOverlay');
+    
+    if (menuToggle && headerNav && navOverlay) {
+        const toggleMenu = () => {
             menuToggle.classList.toggle('active');
             headerNav.classList.toggle('active');
-        });
+            navOverlay.classList.toggle('active');
+            
+            // Toggle body scroll
+            if (headerNav.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        };
+
+        menuToggle.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', toggleMenu);
     }
 
     // Mobile Dropdown Toggle
