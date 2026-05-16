@@ -23,6 +23,37 @@
         .dropdown.active .dropdown-menu { display: block; }
 
         /* Modern Newsroom Styles */
+        .newsroom-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 20px;
+        }
+        .newsroom-header h1 {
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .newsroom-header p {
+            color: #666;
+            margin: 0;
+            font-size: 1.1rem;
+            text-align: right;
+        }
+        @media (max-width: 768px) {
+            .newsroom-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .newsroom-header p {
+                text-align: left;
+            }
+        }
+
         .newsroom-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -383,10 +414,9 @@
     </header>
 
     <div class="newsroom-container">
-        <div
-            style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 2px solid #f0f0f0; padding-bottom: 20px;">
-            <h1 style="font-weight: 700; color: #1a1a1a; margin: 0;">Axom Cars Newsroom</h1>
-            <p style="color: #666; margin: 0;">News, Launches & Experiences</p>
+        <div class="newsroom-header">
+            <h1>Axom Cars Newsroom</h1>
+            <p>News, Launches & Experiences</p>
         </div>
 
         <div class="news-grid" id="newsGrid">
