@@ -99,9 +99,13 @@ window.trackVisit = async (eventType = 'page_view', metadata = {}) => {
     // Prevent tracking in admin panel or local development
     const isLocal = window.location.hostname === 'localhost' || 
                    window.location.hostname === '127.0.0.1' || 
+                   window.location.hostname.startsWith('192.168.') ||
+                   window.location.hostname.startsWith('10.') ||
                    window.location.protocol === 'file:';
     
-    if (window.location.pathname.includes('admin.html') || isLocal) {
+    if (window.location.pathname.toLowerCase().includes('admin') || 
+        document.body.classList.contains('admin-body') || 
+        isLocal) {
         return;
     }
 
