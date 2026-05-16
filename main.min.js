@@ -476,23 +476,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    // Toggle the active class
-                    const isActive = dropdown.classList.contains('active');
-                    
-                    // Close all other dropdowns first (if any)
+                    // Close all other dropdowns first
                     document.querySelectorAll('.dropdown').forEach(d => {
                         if (d !== dropdown) d.classList.remove('active');
                     });
                     
-                    if (isActive) {
-                        dropdown.classList.remove('active');
-                    } else {
-                        dropdown.classList.add('active');
-                    }
+                    // Explicitly toggle the 'active' class
+                    dropdown.classList.toggle('active');
                 }
             };
             
             link.addEventListener('click', handleMobileDropdown);
+            link.addEventListener('touchstart', handleMobileDropdown, { passive: false });
         }
     });
 

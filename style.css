@@ -2035,11 +2035,15 @@ body {
         justify-content: space-between !important;
         padding: 15px 0 !important;
         border-bottom: 1px solid rgba(0,0,0,0.05);
+        position: relative;
+    }
+
+    .nav-dropdown * {
+        pointer-events: none; /* Force click to the <a> tag */
     }
 
     .nav-dropdown svg {
         transition: transform 0.3s ease;
-        pointer-events: none;
     }
 
     .dropdown.active .nav-dropdown svg {

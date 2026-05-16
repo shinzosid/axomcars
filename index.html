@@ -186,8 +186,9 @@
             }
             .header-nav.active { left: 0; }
             .dropdown { width: 100% !important; }
-            .nav-dropdown { display: flex !important; width: 100% !important; justify-content: space-between !important; padding: 15px 0 !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
-            .nav-dropdown svg { transition: transform 0.3s ease; pointer-events: none; }
+            .nav-dropdown { display: flex !important; width: 100% !important; justify-content: space-between !important; padding: 15px 0 !important; border-bottom: 1px solid rgba(0,0,0,0.05); position: relative; }
+            .nav-dropdown * { pointer-events: none; }
+            .nav-dropdown svg { transition: transform 0.3s ease; }
             .dropdown.active .nav-dropdown svg { transform: rotate(180deg); }
             .dropdown-menu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; padding: 0; display: none; width: 100%; margin-left: 1rem; }
             .dropdown:hover .dropdown-menu { display: none; }
