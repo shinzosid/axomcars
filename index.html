@@ -185,8 +185,9 @@
                 overflow-y: auto; align-items: flex-start;
             }
             .header-nav.active { left: 0; }
-            .nav-dropdown { width: 100%; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
-            .nav-dropdown svg { transition: transform 0.3s ease; }
+            .dropdown { width: 100% !important; }
+            .nav-dropdown { display: flex !important; width: 100% !important; justify-content: space-between !important; padding: 15px 0 !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
+            .nav-dropdown svg { transition: transform 0.3s ease; pointer-events: none; }
             .dropdown.active .nav-dropdown svg { transform: rotate(180deg); }
             .hamburger-menu { display: flex; }
             .hero-overlay-box { position: relative; left: 0; bottom: 0; width: 100%; max-width: none; padding: 3rem 1.5rem; background: rgba(0, 0, 0, 0.85); text-align: center; border-left: none; border-top: 4px solid var(--primary-color); margin-top: auto; }

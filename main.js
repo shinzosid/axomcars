@@ -471,12 +471,14 @@ document.addEventListener('DOMContentLoaded', () => {
     dropdowns.forEach(dropdown => {
         const link = dropdown.querySelector('.nav-dropdown');
         if (link) {
-            link.addEventListener('click', (e) => {
+            const handleMobileDropdown = (e) => {
                 if (window.innerWidth <= 991) {
                     e.preventDefault();
+                    e.stopPropagation();
                     dropdown.classList.toggle('active');
                 }
-            });
+            };
+            link.addEventListener('click', handleMobileDropdown);
         }
     });
 
