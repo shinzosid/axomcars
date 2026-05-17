@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /admin.html
-Disallow: /testimonial
 Disallow: /disclaimer
 Disallow: /New%20Cars/
 Disallow: /supabase-lead-system/
