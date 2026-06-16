@@ -21,52 +21,355 @@
         .dropdown:hover .dropdown-menu, 
         .dropdown.active .dropdown-menu { display: block; }
 
-        .jobs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+        /* Careers Table Custom Styles */
+        .careers-container {
             margin-top: 2rem;
         }
-        .job-card {
+
+        .table-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .search-wrapper {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-wrapper input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: var(--font-main);
+            outline: none;
+            transition: var(--transition);
+            background: #fff;
+        }
+
+        .search-wrapper input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(29, 112, 184, 0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .search-wrapper input:focus + .search-icon {
+            color: var(--primary-color);
+        }
+
+        .filter-wrapper select {
+            padding: 0.75rem 2.5rem 0.75rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: var(--font-main);
+            outline: none;
+            background: #fff;
+            cursor: pointer;
+            transition: var(--transition);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            min-width: 200px;
+        }
+
+        .filter-wrapper select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(29, 112, 184, 0.15);
+        }
+
+        .table-card-wrapper {
             background: #fff;
             border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eaeaea;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .careers-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-family: var(--font-main);
+        }
+
+        .careers-table th {
+            background: #f8fafc;
+            padding: 1.25rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .careers-table td {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+            font-size: 0.95rem;
+            vertical-align: middle;
+            line-height: 1.5;
+        }
+
+        .job-row {
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .job-row:hover {
+            background: #f8fafc;
+        }
+
+        .job-row.active {
+            background: #f0f7ff;
+        }
+
+        .designation-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .job-title {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .hot-badge {
+            background: #ef4444;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            letter-spacing: 0.05em;
+        }
+
+        .location-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #334155;
+        }
+
+        .location-icon {
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .vacancy-badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .btn-apply-table {
+            background: var(--primary-color);
+            color: #fff !important;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-apply-table:hover {
+            background: #155187;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(29, 112, 184, 0.2);
+        }
+
+        /* Detail expandable row styling */
+        .details-row {
+            background: #fafcfd;
+        }
+
+        .details-row td {
+            padding: 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .details-content {
+            padding: 1.5rem 2rem;
+            animation: slideDown 0.3s ease-out;
+            background: #fcfdfe;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .details-content h5 {
+            font-size: 0.95rem;
+            color: #1e293b;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .details-content ul {
+            padding-left: 1.25rem;
+            margin: 0;
+            color: #475569;
+            font-size: 0.9rem;
+        }
+
+        .details-content ul li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .details-content ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        .no-results-state {
+            padding: 3.5rem 2rem;
+            text-align: center;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: #64748b;
         }
-        .job-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-        .job-card h4 {
-            font-size: 1.25rem;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #eaeaea;
-            padding-bottom: 0.5rem;
-        }
-        .job-details {
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            color: #555;
-        }
-        .job-details p {
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-        }
-        .job-details strong {
-            color: #1a1a1a;
+
+        .no-results-state p {
+            font-size: 1rem;
             font-weight: 500;
         }
-        .job-desc {
-            font-size: 0.9rem;
-            color: #666;
-            flex-grow: 1;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile View Rules: Cards transformation */
+        @media (max-width: 900px) {
+            .table-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-wrapper {
+                max-width: none;
+            }
+
+            .careers-table, 
+            .careers-table thead, 
+            .careers-table tbody, 
+            .careers-table th, 
+            .careers-table td, 
+            .careers-table tr {
+                display: block;
+            }
+
+            .careers-table thead {
+                display: none;
+            }
+
+            .careers-table tr.job-row {
+                border-bottom: 1px solid #e2e8f0;
+                padding: 1.25rem 1.5rem;
+            }
+
+            .careers-table td {
+                padding: 0.5rem 0;
+                border-bottom: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: right;
+            }
+
+            .careers-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #475569;
+                text-align: left;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                margin-right: 1rem;
+            }
+
+            .careers-table td[data-label="Designation"]::before,
+            .careers-table td[data-label="Location"]::before,
+            .careers-table td[data-label="Vacancies"]::before,
+            .careers-table td[data-label="Qualification"]::before,
+            .careers-table td[data-label="Experience"]::before {
+                display: block;
+            }
+
+            .careers-table td[data-label="Action"] {
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid #f1f5f9;
+                justify-content: center;
+            }
+
+            .careers-table td[data-label="Action"]::before {
+                display: none;
+            }
+
+            .designation-cell {
+                justify-content: flex-end;
+            }
+
+            .btn-apply-table {
+                width: 100%;
+                padding: 0.65rem;
+            }
+
+            .details-row td {
+                display: block;
+                text-align: left;
+                padding: 0;
+            }
+
+            .details-row td::before {
+                display: none;
+            }
+
+            .details-content {
+                border-left: none;
+                border-top: 4px solid var(--primary-color);
+                padding: 1.25rem 1.5rem;
+                background: #f8fafc;
+            }
         }
     </style>
 </head>
@@ -149,41 +452,228 @@
                 <div style="margin-top: 2rem;">
                     <h3 style="margin-bottom: 1.5rem;">Current Vacancies</h3>
                     
-                    <div class="jobs-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
-                        <div class="job-card" style="padding: 2.5rem;">
-                            <h4 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Customer Advisor</h4>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; background: #f9f9f9; padding: 1.5rem; border-radius: 8px;">
-                                <div class="job-details" style="margin-bottom: 0;">
-                                    <p><strong>Locations:</strong></p>
-                                    <ul style="margin-top: 0.5rem; padding-left: 1.2rem; color: #555; line-height: 1.5; font-size: 0.95rem;">
-                                        <li>Dispur (Guwahati) - <strong>10 Posts</strong></li>
-                                        <li>Ulubari (Guwahati) - <strong>10 Posts</strong></li>
-                                        <li>Rangia - <strong>5 Posts</strong></li>
-                                        <li>Dudhnoi - <strong>5 Posts</strong></li>
-                                        <li>Jagiroad - <strong>5 Posts</strong></li>
-                                    </ul>
-                                </div>
-                                <div class="job-details" style="margin-bottom: 0;">
-                                    <p><strong>Total Vacancies:</strong> 35</p>
-                                    <p><strong>Qualification:</strong> Graduate</p>
-                                    <p style="margin-top: 1rem;"><strong>Experience Required:</strong></p>
-                                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">Minimum 2 years experience. Sales expertise in Automobile/4-wheeler dealership or Retail preferred.</p>
-                                </div>
+                    <div class="careers-container">
+                        <!-- Search and Filter Controls -->
+                        <div class="table-controls">
+                            <div class="search-wrapper">
+                                <input type="text" id="careersSearch" placeholder="Search position, location, experience..." onkeyup="filterCareersTable()">
+                                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </div>
+                            <div class="filter-wrapper">
+                                <select id="locationFilter" onchange="filterCareersTable()">
+                                    <option value="">All Locations</option>
+                                    <option value="Guwahati">Guwahati (All)</option>
+                                    <option value="Dispur">Dispur (Guwahati)</option>
+                                    <option value="Ulubari">Ulubari (Guwahati)</option>
+                                    <option value="Rangia">Rangia</option>
+                                    <option value="Dudhnoi">Dudhnoi</option>
+                                    <option value="Jagiroad">Jagiroad</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Table Card Wrapper -->
+                        <div class="table-card-wrapper">
+                            <div class="table-responsive">
+                                <table class="careers-table" id="careersTable">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 20%;">Designation</th>
+                                            <th style="width: 20%;">Location</th>
+                                            <th style="width: 12%;">Vacancies</th>
+                                            <th style="width: 13%;">Qualification</th>
+                                            <th style="width: 25%;">Experience Required</th>
+                                            <th style="width: 10%;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Row 1: Dispur -->
+                                        <tr class="job-row" data-location="Dispur Guwahati" data-designation="Customer Advisor" data-experience="Minimum 2 years experience. Sales expertise in Automobile/4-wheeler dealership or Retail preferred." onclick="toggleRowDetails('dispur-details')">
+                                            <td data-label="Designation">
+                                                <div class="designation-cell">
+                                                    <span class="hot-badge">Hot</span>
+                                                    <span class="job-title">Customer Advisor</span>
+                                                </div>
+                                            </td>
+                                            <td data-label="Location">
+                                                <div class="location-cell">
+                                                    <svg class="location-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                                    <span>Dispur (Guwahati)</span>
+                                                </div>
+                                            </td>
+                                            <td data-label="Vacancies"><span class="vacancy-badge">10 Posts</span></td>
+                                            <td data-label="Qualification">Graduate</td>
+                                            <td data-label="Experience">Minimum 2 years experience. Sales expertise in Automobile/4-wheeler dealership or Retail preferred.</td>
+                                            <td data-label="Action" onclick="event.stopPropagation();">
+                                                <a href="mailto:hrm@axomcars.in?subject=Application for Customer Advisor - Dispur" class="btn-apply-table">Apply</a>
+                                            </td>
+                                        </tr>
+                                        <tr id="dispur-details" class="details-row" style="display: none;">
+                                            <td colspan="6">
+                                                <div class="details-content">
+                                                    <h5>Key Responsibilities & Duties:</h5>
+                                                    <ul>
+                                                        <li>Ensure all customers receive excellent service through direct salesmanship and prompt, courteous assistance.</li>
+                                                        <li>Identify and approach prospective customers through showroom visits, field activities, and referrals.</li>
+                                                        <li>Generate prospects from walk-ins, field work, and telephone enquiries, ensuring complete details are entered.</li>
+                                                        <li>Demonstrate vehicle features, explain warranties and services, and take customers on test drives.</li>
+                                                        <li>Identify customer requirements and assist them with their purchase decisions.</li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 2: Ulubari -->
+                                        <tr class="job-row" data-location="Ulubari Guwahati" data-designation="Customer Advisor" data-experience="Minimum 2 years experience. Sales expertise in Automobile/4-wheeler dealership or Retail preferred." onclick="toggleRowDetails('ulubari-details')">
+                                            <td data-label="Designation">
+                                                <div class="designation-cell">
+                                                    <span class="job-title">Customer Advisor</span>
+                                                </div>
+                                            </td>
+                                            <td data-label="Location">
+                                                <div class="location-cell">
+                                                    <svg class="location-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                                    <span>Ulubari (Guwahati)</span>
+                                                </div>
+                                            </td>
+                                            <td data-label="Vacancies"><span class="vacancy-badge">10 Posts</span></td>
+                                            <td data-label="Qualification">Graduate</td>
+                                            <td data-label="Experience">Minimum 2 years experience. Sales expertise in Automobile/4-wheeler dealership or Retail preferred.</td>
+                                            <td data-label="Action" onclick="event.stopPropagation();">
+                                                <a href="mailto:hrm@axomcars.in?subject=Application for Customer Advisor - Ulubari" class="btn-apply-table">Apply</a>
+                                            </td>
+                                        </tr>
+                                        <tr id="ulubari-details" class="details-row" style="display: none;">
+                                            <td colspan="6">
+                                                <div class="details-content">
+                                                    <h5>Key Responsibilities & Duties:</h5>
+                                                    <ul>
+                                                        <li>Identify and approach prospective customers through showroom visits, field activities, and referrals.</li>
+                                                        <li>Ensure all customers receive excellent service through direct salesmanship and prompt, courteous assistance.</li>
+                                                        <li>Generate prospects from walk-ins, field work, and telephone enquiries, ensuring complete details are entered.</li>
+                                                        <li>Demonstrate vehicle features, explain warranties and services, and take customers on test drives.</li>
+                                                        <li>Identify customer requirements and assist them with their purchase decisions.</li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 3: Rangia -->
+                                        <tr class="job-row" data-location="Rangia" data-designation="Customer Advisor" data-experience="Minimum 2 years experience. Sales expertise in Automobile/4-wheeler dealership or Retail preferred." onclick="toggleRowDetails('rangia-details')">
+                                            <td data-label="Designation">
+                                                <div class="designation-cell">
+                                                    <span class="job-title">Customer Advisor</span>
+                                                </div>
+                                            </td>
+                                            <td data-label="Location">
+                                                <div class="location-cell">
+                                                    <svg class="location-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                                    <span>Rangia</span>
+                                                </div>
+                                            </td>
+                                            <td data-label="Vacancies"><span class="vacancy-badge">5 Posts</span></td>
+                                            <td data-label="Qualification">Graduate</td>
+                                            <td data-label="Experience">Minimum 2 years experience. Sales expertise in Automobile/4-wheeler dealership or Retail preferred.</td>
+                                            <td data-label="Action" onclick="event.stopPropagation();">
+                                                <a href="mailto:hrm@axomcars.in?subject=Application for Customer Advisor - Rangia" class="btn-apply-table">Apply</a>
+                                            </td>
+                                        </tr>
+                                        <tr id="rangia-details" class="details-row" style="display: none;">
+                                            <td colspan="6">
+                                                <div class="details-content">
+                                                    <h5>Key Responsibilities & Duties:</h5>
+                                                    <ul>
+                                                        <li>Generate prospects from showroom walk-in or field, telephone enquiries. Enquiries are to be entered in the system/tab with complete details of the customer.</li>
+                                                        <li>Ensure all customers receive excellent service through direct salesmanship and prompt, courteous assistance.</li>
+                                                        <li>Identify and approach prospective customers through showroom visits, field activities, and referrals.</li>
+                                                        <li>Demonstrate vehicle features, explain warranties and services, and take customers on test drives.</li>
+                                                        <li>Identify customer requirements and assist them with their purchase decisions.</li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 4: Dudhnoi -->
+                                        <tr class="job-row" data-location="Dudhnoi" data-designation="Customer Advisor" data-experience="Minimum 2 years experience. Sales expertise in Automobile/4-wheeler dealership or Retail preferred." onclick="toggleRowDetails('dudhnoi-details')">
+                                            <td data-label="Designation">
+                                                <div class="designation-cell">
+                                                    <span class="job-title">Customer Advisor</span>
+                                                </div>
+                                            </td>
+                                            <td data-label="Location">
+                                                <div class="location-cell">
+                                                    <svg class="location-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                                    <span>Dudhnoi</span>
+                                                </div>
+                                            </td>
+                                            <td data-label="Vacancies"><span class="vacancy-badge">5 Posts</span></td>
+                                            <td data-label="Qualification">Graduate</td>
+                                            <td data-label="Experience">Minimum 2 years experience. Sales expertise in Automobile/4-wheeler dealership or Retail preferred.</td>
+                                            <td data-label="Action" onclick="event.stopPropagation();">
+                                                <a href="mailto:hrm@axomcars.in?subject=Application for Customer Advisor - Dudhnoi" class="btn-apply-table">Apply</a>
+                                            </td>
+                                        </tr>
+                                        <tr id="dudhnoi-details" class="details-row" style="display: none;">
+                                            <td colspan="6">
+                                                <div class="details-content">
+                                                    <h5>Key Responsibilities & Duties:</h5>
+                                                    <ul>
+                                                        <li>Demonstrates vehicle features and takes customers on test drives. Demonstrates automobiles by explaining warranties and services.</li>
+                                                        <li>Ensure all customers receive excellent service through direct salesmanship and prompt, courteous assistance.</li>
+                                                        <li>Identify and approach prospective customers through showroom visits, field activities, and referrals.</li>
+                                                        <li>Generate prospects from walk-ins, field work, and telephone enquiries, ensuring complete details are entered.</li>
+                                                        <li>Identify customer requirements and assist them with their purchase decisions.</li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 5: Jagiroad -->
+                                        <tr class="job-row" data-location="Jagiroad" data-designation="Customer Advisor" data-experience="Minimum 2 years experience. Sales expertise in Automobile/4-wheeler dealership or Retail preferred." onclick="toggleRowDetails('jagiroad-details')">
+                                            <td data-label="Designation">
+                                                <div class="designation-cell">
+                                                    <span class="job-title">Customer Advisor</span>
+                                                </div>
+                                            </td>
+                                            <td data-label="Location">
+                                                <div class="location-cell">
+                                                    <svg class="location-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                                    <span>Jagiroad</span>
+                                                </div>
+                                            </td>
+                                            <td data-label="Vacancies"><span class="vacancy-badge">5 Posts</span></td>
+                                            <td data-label="Qualification">Graduate</td>
+                                            <td data-label="Experience">Minimum 2 years experience. Sales expertise in Automobile/4-wheeler dealership or Retail preferred.</td>
+                                            <td data-label="Action" onclick="event.stopPropagation();">
+                                                <a href="mailto:hrm@axomcars.in?subject=Application for Customer Advisor - Jagiroad" class="btn-apply-table">Apply</a>
+                                            </td>
+                                        </tr>
+                                        <tr id="jagiroad-details" class="details-row" style="display: none;">
+                                            <td colspan="6">
+                                                <div class="details-content">
+                                                    <h5>Key Responsibilities & Duties:</h5>
+                                                    <ul>
+                                                        <li>Identifying customer requirements and assisting customers with purchase decisions.</li>
+                                                        <li>Ensure all customers receive excellent service through direct salesmanship and prompt, courteous assistance.</li>
+                                                        <li>Identify and approach prospective customers through showroom visits, field activities, and referrals.</li>
+                                                        <li>Generate prospects from walk-ins, field work, and telephone enquiries, ensuring complete details are entered.</li>
+                                                        <li>Demonstrate vehicle features, explain warranties and services, and take customers on test drives.</li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
-                            <div class="job-desc" style="margin-bottom: 2rem;">
-                                <strong>Key Responsibilities:</strong>
-                                <ul style="margin-top: 0.75rem; padding-left: 1.2rem; line-height: 1.6;">
-                                    <li>Ensure all customers receive excellent service through direct salesmanship and courteous assistance.</li>
-                                    <li>Identify and approach prospective customers through showroom visits, field activities, and referrals.</li>
-                                    <li>Generate prospects from walk-ins, field work, and telephone enquiries, ensuring complete data entry.</li>
-                                    <li>Demonstrate vehicle features, explain warranties and services, and take customers on test drives.</li>
-                                    <li>Identify customer requirements and assist them with their purchase decisions.</li>
-                                </ul>
+                            <!-- No Results State -->
+                            <div id="noResults" class="no-results-state" style="display: none;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <p>No job vacancies match your search or filter criteria.</p>
                             </div>
-                            
-                            <a href="mailto:hrm@axomcars.in?subject=Application for Customer Advisor" class="btn btn-primary" style="align-self: flex-start; padding: 0.75rem 2rem;">Apply Now</a>
                         </div>
                     </div>
 
@@ -387,6 +877,63 @@
             // Initialize Supabase lead handling for the help form
             window.handleLeadForm('helpForm', 'General Inquiry');
         });
+
+        function toggleRowDetails(id) {
+            const detailsRow = document.getElementById(id);
+            const jobRow = detailsRow.previousElementSibling;
+            
+            jobRow.classList.toggle('active');
+            
+            if (detailsRow.style.display === 'none') {
+                detailsRow.style.display = '';
+            } else {
+                detailsRow.style.display = 'none';
+            }
+        }
+
+        function filterCareersTable() {
+            const searchInput = document.getElementById('careersSearch').value.toLowerCase();
+            const locationSelect = document.getElementById('locationFilter').value.toLowerCase();
+            const rows = document.querySelectorAll('.job-row');
+            const table = document.getElementById('careersTable');
+            const noResults = document.getElementById('noResults');
+            let hasMatches = false;
+
+            rows.forEach(row => {
+                const designation = row.getAttribute('data-designation').toLowerCase();
+                const location = row.getAttribute('data-location').toLowerCase();
+                const experience = row.getAttribute('data-experience').toLowerCase();
+                const detailsId = row.nextElementSibling.id;
+                const detailsRow = document.getElementById(detailsId);
+
+                const matchesSearch = designation.includes(searchInput) || 
+                                      location.includes(searchInput) || 
+                                      experience.includes(searchInput);
+                
+                const matchesLocation = locationSelect === "" || 
+                                        (locationSelect === "guwahati" && location.includes("guwahati")) ||
+                                        location.includes(locationSelect);
+
+                if (matchesSearch && matchesLocation) {
+                    row.style.display = '';
+                    hasMatches = true;
+                } else {
+                    row.style.display = 'none';
+                    detailsRow.style.display = 'none';
+                    row.classList.remove('active');
+                }
+            });
+
+            const tableHeader = table.querySelector('thead');
+            if (hasMatches) {
+                table.style.display = '';
+                if (tableHeader) tableHeader.style.display = '';
+                noResults.style.display = 'none';
+            } else {
+                table.style.display = 'none';
+                noResults.style.display = 'block';
+            }
+        }
     </script>
     <!-- Sticky WhatsApp Button -->
     <a href="https://wa.me/917099064993?text=Hi%20Axom%20Cars,%20I%20am%20interested%20in%20a%20Tata%20car.%20Please%20provide%20more%20details." class="whatsapp-sticky" target="_blank" aria-label="Chat with Axom Cars Sales on WhatsApp">
