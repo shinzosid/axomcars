@@ -5,6 +5,13 @@ const TELEGRAM_CHAT_ID = Deno.env.get("TELEGRAM_CHAT_ID")
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")
 const ADMIN_EMAIL = Deno.env.get("ADMIN_EMAIL")
 
+// WhatsApp Cloud API Configuration
+const WHATSAPP_ACCESS_TOKEN = Deno.env.get("WHATSAPP_ACCESS_TOKEN")
+const WHATSAPP_PHONE_NUMBER_ID = Deno.env.get("WHATSAPP_PHONE_NUMBER_ID")
+const WHATSAPP_RECIPIENT_PHONE = Deno.env.get("WHATSAPP_RECIPIENT_PHONE")
+const WHATSAPP_TEMPLATE_NAME = Deno.env.get("WHATSAPP_TEMPLATE_NAME") || "new_lead_alert"
+
+
 serve(async (req) => {
   try {
     // Check method
@@ -78,6 +85,8 @@ serve(async (req) => {
 
     // --- EXECUTION ---
 
+    const hasWhatsAppConfig = !!(WHATSAPP_ACCESS_TOKEN && WHATSAPP_PHONE_NUMBER_ID && WHATSAPP_RECIPIENT_PHONE)
+
     // Send to Telegram
     const telegramPromise = fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
       method: "POST",
@@ -104,13 +113,54 @@ serve(async (req) => {
       }),
     })
 
-    const [telRes, emailRes] = await Promise.all([telegramPromise, emailPromise])
+    // Send WhatsApp Template Message if configured
+    let whatsappPromise: Promise<Response | null> = Promise.resolve(null)
+    if (hasWhatsAppConfig) {
+      whatsappPromise = fetch(`https://graph.facebook.com/v20.0/${WHATSAPP_PHONE_NUMBER_ID}/messages`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${WHATSAPP_ACCESS_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messaging_product: "whatsapp",
+          recipient_type: "individual",
+          to: WHATSAPP_RECIPIENT_PHONE,
+          type: "template",
+          template: {
+            name: WHATSAPP_TEMPLATE_NAME,
+            language: {
+              code: "en_US",
+            },
+            components: [
+              {
+                type: "body",
+                parameters: [
+                  { type: "text", text: lead.name },
+                  { type: "text", text: lead.phone },
+                  { type: "text", text: lead.vehicle || "N/A" },
+                  { type: "text", text: lead.location || "N/A" },
+                  { type: "text", text: lead.source || "Website Lead Form" },
+                ],
+              },
+            ],
+          },
+        }),
+      })
+    } else {
+      console.log("WhatsApp credentials not fully configured. Skipping WhatsApp alert.")
+    }
+
+    const [telRes, emailRes, waRes] = await Promise.all([telegramPromise, emailPromise, whatsappPromise])
 
     if (!telRes.ok) {
       console.error("Telegram Error:", await telRes.text())
     }
     if (!emailRes.ok) {
       console.error("Resend Error:", await emailRes.text())
+    }
+    if (waRes && !waRes.ok) {
+      console.error("WhatsApp Error:", await waRes.text())
     }
 
     return new Response(JSON.stringify({ success: true }), {

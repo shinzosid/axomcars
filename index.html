@@ -167,6 +167,7 @@
         .static-hero { position: relative; height: 100vh; display: flex; align-items: center; overflow: hidden; }
         .hero-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
         .hero-overlay-box { position: absolute; left: 5%; bottom: 10%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); padding: 2.5rem; color: white; max-width: 500px; border-radius: 4px; border-left: 4px solid var(--primary-color); }
+        .hero-overlay-box.hero-overlay-right { left: auto; right: 5%; border-left: none; border-right: 4px solid var(--primary-color); }
         .price-start { font-size: 1.1rem; margin-bottom: 0.25rem; opacity: 0.9; }
         .brand-tag { font-size: 1.4rem; font-weight: 500; margin-bottom: 0rem; }
         .model-name { font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px; line-height: 1.2; }
@@ -202,6 +203,7 @@
             .dropdown.active .dropdown-menu { display: block !important; }
             .hamburger-menu { display: flex; }
             .hero-overlay-box { position: relative; left: 0; bottom: 0; width: 100%; max-width: none; padding: 3rem 1.5rem; background: rgba(0, 0, 0, 0.85); text-align: center; border-left: none; border-top: 4px solid var(--primary-color); margin-top: auto; }
+            .hero-overlay-box.hero-overlay-right { right: auto; border-right: none; margin-top: 0; border-top: 4px solid var(--primary-color); }
             .hero-actions { align-items: center; width: 100%; }
             .hero-actions .btn { width: 100%; }
             .model-name { font-size: 2.5rem; }
@@ -299,6 +301,16 @@
                         <button class="btn btn-secondary btn-test-drive" onclick="openTestDriveModal()">Book Test Drive</button>
                         <a href="cars.html" class="btn btn-secondary">Get On-Road Price</a>
                         <a href="https://wa.me/917099064993?text=Hi%20Axom%20Cars,%20I%20am%20interested%20in%20a%20Tata%20car.%20Please%20provide%20more%20details." target="_blank" class="btn btn-secondary">WhatsApp Us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-overlay-box hero-overlay-right">
+                <h1 class="model-name">The NEXT GEN Tiago</h1>
+                <p class="brand-tag" style="font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.6; opacity: 0.9;">Experience dynamic styling, premium comfort, and advanced tech. Visit Axom Cars Guwahati to check out the next-generation Tata Tiago.</p>
+                <div class="hero-actions">
+                    <div class="cta-group">
+                        <button class="btn btn-primary" onclick="openBookingModal('tiago')">Book Now</button>
+                        <a href="tata-assam-tiago.html" class="btn btn-secondary">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -484,14 +496,14 @@
                     <div class="car-card" data-category="hatchback" style="display: none;">
                         <div class="img-wrap">
                         <picture>
-                        <source srcset="https://cdn.axomcars.in/cars/tiago/tiagoexterior.avif" type="image/avif">
-                        <source srcset="https://cdn.axomcars.in/cars/tiago/tiagoexterior.webp" type="image/webp">
-                        <img loading="lazy" src="https://cdn.axomcars.in/cars/tiago/tiagoexterior.jpg" width="400" height="250" alt="Tata Tiago">
+                        <source srcset="https://cdn.axomcars.in/cars/tiago/tiagoexterior.avif?v=2" type="image/avif">
+                        <source srcset="https://cdn.axomcars.in/cars/tiago/tiagoexterior.webp?v=2" type="image/webp">
+                        <img loading="lazy" src="https://cdn.axomcars.in/cars/tiago/tiagoexterior.jpg?v=2" width="400" height="250" alt="Tata Tiago">
                     </picture>
                         </div>
                         <div class="car-info">
                             <h3>Tata Tiago</h3>
-                            <p class="price">Seriously Fun</p>
+                            <p class="price">Unexpected Tech. Unmissable WOW!</p>
                             <div class="cta-group">
                                 <a href="https://wa.me/917099064993?text=Hi%20Axom%20Cars,%20I%20am%20interested%20in%20booking%20the%20Tata%20Tiago.%20Please%20provide%20more%20details." target="_blank" class="btn btn-primary">Book Now</a>
                                 <button class="btn btn-secondary btn-test-drive" onclick="openTestDriveModal('tiago')">Test Drive</button>

@@ -98,18 +98,18 @@
         },
         tiago: {
             name: "Tiago",
-            tagline: "It's Seriously fun",
-            description: "Younger than ever. Bolder than ever. Inspired by the spirited youth, the All-new Tiago is hard to ignore. Drive around the city and watch heads turn towards you.",
+            tagline: "Unexpected Tech. Unmissable WOW!",
+            description: "Raising the bar with tech, head turning design, and a driving experience that truly feels JUST WOW.",
             colors: [
-                { id: "arizonablue", name: "Arizona Blue", hex: "#103d6e", img: "images/cars/tiago/arizona-blue-right-23.avif" },
-                { id: "classyred", name: "Supernova Copper", hex: "#ca7f6a", img: "images/cars/tiago/classy-red-right.avif" },
-                { id: "daytonagrey", name: "Daytona Grey", hex: "#38393b ", img: "images/cars/tiago/daytona-grey-right-211.avif" },
-                { id: "mysticsea", name: "Ocean Blue", hex: "#679195", img: "images/cars/tiago/mystic-seadt-dt-right.avif" },
-                { id: "polarwhite", name: "Pristine White", hex: "#dcdddf", img: "images/cars/tiago/polar-white-dt-right-1.avif" },
-                { id: "tornadoblue", name: "Tornado Blue", hex: "#1864b3", img: "images/cars/tiago/tornado-blue-right-30.avif" }
+                { id: "varanasivibrance", name: "Varanasi Vibrance with Dual Tone", hex: "linear-gradient(90deg, #d75f4f 50%, #111 50%)", img: "images/cars/tiago/vibrance-varanasi.avif" },
+                { id: "pangongpulse", name: "Pangong Pulse with Dual Tone", hex: "linear-gradient(90deg, #8ca8b4 50%, #111 50%)", img: "images/cars/tiago/pangong-pulse.avif" },
+                { id: "sobosurge", name: "Sobo Surge with Dual Tone", hex: "linear-gradient(90deg, #ab9a91  50%, #111 50%)", img: "images/cars/tiago/sobo-surge.avif" },
+                { id: "grey", name: "Pure Grey with Dual Tone", hex: "linear-gradient(90deg, #808484 50%, #111 50%)", img: "images/cars/tiago/pure-grey.avif" },
+                { id: "daytonagrey", name: "Daytona Grey with Dual Tone", hex: "linear-gradient(90deg, #38393b 50%, #111 50%)", img: "images/cars/tiago/matheran-monsoon.avif" },
+                { id: "white", name: "Pristine White with Dual Tone", hex: "linear-gradient(90deg, #dcdddf 50%, #111 50%)", img: "images/cars/tiago/pristine-white.avif" }
             ],
-            interior: "images/cars/tiago/tiagointerior.jpg",
-            lifestyle: "images/cars/tiago/tiagoexterior.jpg",
+            interior: "images/cars/tiago/tiagointerior.avif",
+            lifestyle: "images/cars/tiago/tiagoexterior.avif",
             accentColor: "#1d70b8"
         },
         curvv: {

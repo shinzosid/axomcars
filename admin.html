@@ -413,7 +413,7 @@
                         <option value="Test Drive">Test Drive</option>
                         <option value="Service">Service</option>
                         <option value="General Inquiry">General Inquiry</option>
-                        <option value="Newsletter Signup">Newsletter</option>
+                        <option value="Booking">Booking</option>
                     </select>
                     <select id="dateFilter" onchange="renderLeads()" style="padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0; outline: none; font-family: 'Poppins', sans-serif;">
                         <option value="all">All Time</option>
@@ -868,11 +868,13 @@
 
                 body.innerHTML = filteredLeads.map(lead => {
                     const date = new Date(lead.created_at).toLocaleString('en-IN');
-                    const type = lead.source?.includes('Service') ? 'Service' : (lead.source?.includes('Test Drive') ? 'Test Drive' : 'Inquiry');
+                    const type = lead.source?.includes('Service') ? 'Service' : 
+                                 (lead.source?.includes('Test Drive') ? 'Test Drive' : 
+                                 (lead.source?.includes('Booking') ? 'Booking' : 'Inquiry'));
                     return `
                         <tr>
                             <td style="font-size: 11px; white-space: nowrap;">${date}</td>
-                            <td><span style="background: ${type === 'Test Drive' ? '#fff4f4' : (type === 'Service' ? '#eef6fc' : '#f4fff4')}; color: ${type === 'Test Drive' ? '#e74c3c' : (type === 'Service' ? '#1d70b8' : '#27ae60')}; padding: 4px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; border: 1px solid currentColor;">${type.toUpperCase()}</span></td>
+                            <td><span style="background: ${type === 'Test Drive' ? '#fff4f4' : (type === 'Service' ? '#eef6fc' : (type === 'Booking' ? '#f0f3ff' : '#f4fff4'))}; color: ${type === 'Test Drive' ? '#e74c3c' : (type === 'Service' ? '#1d70b8' : (type === 'Booking' ? '#3b82f6' : '#27ae60'))}; padding: 4px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; border: 1px solid currentColor;">${type.toUpperCase()}</span></td>
                             <td style="font-weight: 600;">${lead.name || 'N/A'}</td>
                             <td style="font-weight: 600;">${lead.phone || 'N/A'}</td>
                             <td><span style="background: #e1e7ec; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">${(lead.vehicle || 'N/A').toUpperCase()}</span></td>

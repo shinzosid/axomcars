@@ -1,16 +1,16 @@
 window.currentLeadType = 'General Inquiry';
 
 // --- Carousel Functionality ---
-window.moveCarousel = function(carouselId, direction) {
+window.moveCarousel = function (carouselId, direction) {
     const carousel = document.getElementById(carouselId);
     if (!carousel) return;
-    
+
     const images = carousel.querySelectorAll('.carousel-images img');
     if (images.length <= 1) return;
-    
+
     let activeIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
     if (activeIndex === -1) activeIndex = 0;
-    
+
     images[activeIndex].classList.remove('active');
     activeIndex = (activeIndex + direction + images.length) % images.length;
     images[activeIndex].classList.add('active');
@@ -37,22 +37,47 @@ function getBrightness(hexColor) {
 }
 
 // --- Test Drive Modal Handler ---
-window.openTestDriveModal = function(modelId = '') {
+window.openTestDriveModal = function (modelId = '') {
     const modal = document.getElementById('helpModal');
     if (!modal) return;
     const modalTitle = modal.querySelector('h2');
     const submitBtn = modal.querySelector('button[type="submit"]');
     const modelSelect = document.getElementById('carModel');
     const helpForm = document.getElementById('helpForm');
-    
+
     if (helpForm) helpForm.reset();
     window.currentLeadType = 'Test Drive';
     if (modalTitle) modalTitle.textContent = 'Book Your Test Drive';
     if (submitBtn) submitBtn.textContent = 'Book Now';
     if (modelId && modelSelect) modelSelect.value = modelId.toLowerCase();
-    
+
     modal.classList.add('active');
 };
+
+// --- Booking Modal Handler ---
+window.openBookingModal = function (modelId = '') {
+    const modal = document.getElementById('helpModal');
+    if (!modal) return;
+    const modalTitle = modal.querySelector('h2');
+    const submitBtn = modal.querySelector('button[type="submit"]');
+    const modelSelect = document.getElementById('carModel');
+    const helpForm = document.getElementById('helpForm');
+
+    if (helpForm) helpForm.reset();
+    window.currentLeadType = 'Booking';
+    if (modalTitle) modalTitle.textContent = 'Book Your Car';
+    if (submitBtn) submitBtn.textContent = 'Submit Booking Request';
+
+    if (modelId && modelSelect) {
+        const optionExists = Array.from(modelSelect.options).some(opt => opt.value === modelId.toLowerCase());
+        if (optionExists) {
+            modelSelect.value = modelId.toLowerCase();
+        }
+    }
+
+    modal.classList.add('active');
+};
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Vehicle Range Data ---
@@ -165,15 +190,15 @@ document.addEventListener('DOMContentLoaded', () => {
         tiago: {
             name: "Tiago",
             price: "4,59,990",
-            tagline: "It's Seriously fun",
-            description: "Younger than ever. Bolder than ever. Inspired by the spirited youth, the All-new Tiago is hard to ignore. Drive around the city and watch heads turn towards you.",
+            tagline: "Unexpected Tech. Unmissable WOW!",
+            description: "Raising the bar with tech, head turning design, and a driving experience that truly feels JUST WOW.",
             colors: [
-                { id: "arizonablue", name: "Arizona Blue", hex: "#103d6e", img: "https://cdn.axomcars.in/cars/tiago/arizona-blue-right-23.avif" },
-                { id: "classyred", name: "Supernova Copper", hex: "#ca7f6a", img: "https://cdn.axomcars.in/cars/tiago/classy-red-right.avif" },
-                { id: "daytonagrey", name: "Daytona Grey", hex: "#38393b ", img: "https://cdn.axomcars.in/cars/tiago/daytona-grey-right-211.avif" },
-                { id: "mysticsea", name: "Ocean Blue", hex: "#679195", img: "https://cdn.axomcars.in/cars/tiago/mystic-seadt-dt-right.avif" },
-                { id: "polarwhite", name: "Pristine White", hex: "#dcdddf", img: "https://cdn.axomcars.in/cars/tiago/polar-white-dt-right-1.avif" },
-                { id: "tornadoblue", name: "Tornado Blue", hex: "#1864b3", img: "https://cdn.axomcars.in/cars/tiago/tornado-blue-right-30.avif" }
+                { id: "varanasivibrance", name: "Varanasi Vibrance with Dual Tone", hex: "linear-gradient(90deg, #d75f4f 50%, #111 50%)", img: "https://cdn.axomcars.in/cars/tiago/vibrance-varanasi.avif" },
+                { id: "pangongpulse", name: "Pangong Pulse with Dual Tone", hex: "linear-gradient(90deg, #8ca8b4 50%, #111 50%)", img: "https://cdn.axomcars.in/cars/tiago/pangong-pulse.avif" },
+                { id: "sobosurge", name: "Sobo Surge with Dual Tone", hex: "linear-gradient(90deg, #ab9a91  50%, #111 50%)", img: "https://cdn.axomcars.in/cars/tiago/sobo-surge.avif" },
+                { id: "grey", name: "Pure Grey with Dual Tone", hex: "linear-gradient(90deg, #808484 50%, #111 50%)", img: "https://cdn.axomcars.in/cars/tiago/pure-grey.avif" },
+                { id: "daytonagrey", name: "Daytona Grey with Dual Tone", hex: "linear-gradient(90deg, #38393b 50%, #111 50%)", img: "https://cdn.axomcars.in/cars/tiago/matheran-monsoon.avif" },
+                { id: "white", name: "Pristine White with Dual Tone", hex: "linear-gradient(90deg, #dcdddf 50%, #111 50%)", img: "https://cdn.axomcars.in/cars/tiago/pristine-white.avif" }
             ],
             interior: "https://cdn.axomcars.in/cars/tiago/tiagointerior.avif",
             lifestyle: "https://cdn.axomcars.in/cars/tiago/tiagoexterior.avif",
@@ -311,15 +336,15 @@ document.addEventListener('DOMContentLoaded', () => {
             car.colors.forEach((color, index) => {
                 const swatch = document.createElement('div');
                 swatch.className = 'swatch' + (index === 0 ? ' active' : '');
-                
+
                 if (color.hex.includes('gradient')) {
                     swatch.style.backgroundImage = color.hex;
                 } else {
                     swatch.style.backgroundColor = color.hex;
                 }
 
-                
-                
+
+
                 swatch.addEventListener('click', () => {
                     document.querySelectorAll('.swatch').forEach(s => {
                         s.classList.remove('active');
@@ -327,9 +352,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                     swatch.classList.add('active');
                     if (colorNameEl) colorNameEl.textContent = color.name;
-                    
+
                     const mainImg = document.getElementById('mainVehicleImage');
-                    
+
                     if (mainImg) {
                         const nextImg = new Image();
                         const startTime = Date.now();
@@ -339,13 +364,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             mainImg.style.opacity = '0.7';
                             mainImg.style.filter = 'blur(2px)';
                         }
-                        
+
                         nextImg.src = color.img;
-                        
+
                         const performSwap = () => {
                             const elapsed = Date.now() - startTime;
                             const remaining = Math.max(0, 300 - elapsed);
-                            
+
                             setTimeout(() => {
                                 if (carLoader) carLoader.style.display = 'none';
                                 mainImg.src = color.img;
@@ -362,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             nextImg.onload = performSwap;
                         }
                     }
-    
+
 
                     if (displayContainer) {
                         const bgColor = color.hex.includes('gradient') ? color.hex.split(',')[1].split(' ')[1] : color.hex;
@@ -375,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 swatchContainer.appendChild(swatch);
             });
             if (colorNameEl && car.colors[0]) colorNameEl.textContent = car.colors[0].name;
-            
+
             if (displayContainer && car.colors[0]) {
                 const initialColor = car.colors[0].hex;
                 const bgColor = initialColor.includes('gradient') ? initialColor.split(',')[1].split(' ')[1] : initialColor;
@@ -393,13 +418,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mainImg && car.colors[0]) {
             const initialImg = new Image();
             const startTime = Date.now();
-            
+
             if (carLoader) carLoader.style.display = 'block';
-            
+
             const initShow = () => {
                 const elapsed = Date.now() - startTime;
                 const remaining = Math.max(0, 300 - elapsed);
-                
+
                 setTimeout(() => {
                     if (carLoader) carLoader.style.display = 'none';
                     mainImg.src = car.colors[0].img;
@@ -421,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Fallback for very slow connections
                 setTimeout(() => {
                     if (mainImg.style.opacity === '0' && !initialImg.complete) {
-                         // Keep showing loader
+                        // Keep showing loader
                     }
                 }, 5000);
             }
@@ -460,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     const headerNav = document.querySelector('.header-nav');
     let navOverlay = document.getElementById('navOverlay');
-    
+
     // Auto-inject overlay if missing (for other pages)
     if (!navOverlay && headerNav) {
         navOverlay = document.createElement('div');
@@ -468,13 +493,13 @@ document.addEventListener('DOMContentLoaded', () => {
         navOverlay.className = 'nav-overlay';
         document.body.prepend(navOverlay);
     }
-    
+
     if (menuToggle && headerNav && navOverlay) {
         const toggleMenu = () => {
             menuToggle.classList.toggle('active');
             headerNav.classList.toggle('active');
             navOverlay.classList.toggle('active');
-            
+
             // Toggle body scroll
             if (headerNav.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
@@ -496,17 +521,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (window.innerWidth <= 991) {
                     e.preventDefault();
                     e.stopPropagation();
-                    
+
                     // Close all other dropdowns first
                     document.querySelectorAll('.dropdown').forEach(d => {
                         if (d !== dropdown) d.classList.remove('active');
                     });
-                    
+
                     // Explicitly toggle the 'active' class
                     dropdown.classList.toggle('active');
                 }
             };
-            
+
             link.addEventListener('click', handleMobileDropdown);
             link.addEventListener('touchstart', handleMobileDropdown, { passive: false });
         }
@@ -561,7 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 // Double check if user has already opened it manually via another button
                 if (modal.classList.contains('active')) return;
-                
+
                 const modalTitle = modal.querySelector('h2');
                 const submitBtn = modal.querySelector('button[type="submit"]');
                 if (modalTitle) modalTitle.textContent = 'How can we help you?';
@@ -569,7 +594,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.classList.add('active');
             }, 8000);
         }
-        
+
         // Save to localStorage when closed
         document.getElementById('closeModal')?.addEventListener('click', () => {
             modal.classList.remove('active');
@@ -596,7 +621,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (question) {
             question.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
-                
+
                 // Close other items
                 faqItems.forEach(otherItem => {
                     otherItem.classList.remove('active');
@@ -604,6 +629,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (!isActive) {
                     item.classList.add('active');
+                }
+            });
+        }
+    });
+
+    // --- WhatsApp 'Book Now' Link Interceptor ---
+    const bookButtons = document.querySelectorAll('a[href*="wa.me"]');
+    bookButtons.forEach(btn => {
+        // Exclude the general sticky WhatsApp contact button
+        if (btn.classList.contains('whatsapp-sticky')) return;
+
+        const text = btn.textContent.trim().toLowerCase();
+        if (text === 'book now') {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                let modelId = '';
+                try {
+                    const url = new URL(btn.href);
+                    const textParam = url.searchParams.get('text') || '';
+                    const match = textParam.match(/booking (?:the )?(?:Tata )?([^.]+)/i);
+                    if (match && match[1]) {
+                        const parsedModel = match[1].trim().toLowerCase();
+                        modelId = parsedModel.replace(/\s+/g, '-');
+                    }
+                } catch (err) {
+                    console.error('Error parsing WhatsApp URL:', err);
+                }
+
+                if (window.openBookingModal) {
+                    window.openBookingModal(modelId);
                 }
             });
         }

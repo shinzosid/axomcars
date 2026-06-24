@@ -51,15 +51,21 @@ serve(async (req: Request) => {
     })
 
     // 5. Upload to R2
-    const folder = Deno.env.get('R2_FOLDER') || 'newsletter' // Default to newsletter folder
-    const fileName = `${folder.replace(/\/$/, '')}/news-${Date.now()}.webp`
+    const customFolder = req.headers.get('x-folder')
+    const customFileName = req.headers.get('x-file-name')
+    const contentType = req.headers.get('content-type') || 'image/webp'
+
+    const folder = customFolder || Deno.env.get('R2_FOLDER') || 'newsletter'
+    const fileName = customFileName 
+      ? `${folder.replace(/\/$/, '')}/${customFileName}`
+      : `${folder.replace(/\/$/, '')}/news-${Date.now()}.webp`
     const arrayBuffer = await blob.arrayBuffer()
 
     await s3.send(new PutObjectCommand({
       Bucket: BUCKET_NAME,
       Key: fileName,
       Body: new Uint8Array(arrayBuffer),
-      ContentType: 'image/webp',
+      ContentType: contentType,
     }))
 
     // 6. Return the public URL
