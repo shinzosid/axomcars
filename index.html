@@ -217,7 +217,21 @@
 </head>
 
 <body>
-        <div class="nav-overlay" id="navOverlay"></div>
+    <div class="announcement-bar" id="announcementBar">
+        <div class="container announcement-container">
+            <span class="announcement-text">🎉 Celebrating 4 Years of Axom Cars — 4 years of miles, smiles and trusted service.</span>
+            <button class="announcement-close" id="closeAnnouncement" aria-label="Close Announcement">&times;</button>
+        </div>
+    </div>
+    <div class="nav-overlay" id="navOverlay"></div>
+    
+    <!-- 4th Anniversary Splashscreen Popup -->
+    <div class="splash-overlay" id="splashOverlay" style="display: none;">
+        <div class="splash-container">
+            <button class="splash-close" id="closeSplash" aria-label="Close Splash Screen">&times;</button>
+            <img src="splashscreen.jpeg" alt="Axom Cars 4th Anniversary Celebration" class="splash-image">
+        </div>
+    </div>
     <header class="header">
         <div class="container header-container">
             <div class="logo-container">
@@ -543,7 +557,7 @@
                     </div>
                     <div class="car-card" data-category="ev" style="display: none;">
                         <div class="img-wrap">
-                        <img loading="lazy" src="https://cdn.axomcars.in/electric/tiago-ev/tiago-ev.avif" alt="Tiago EV">
+                        <img loading="lazy" src="https://cdn.axomcars.in/electric/tiago-ev/tiago-ev.webp" alt="Tiago EV">
                         </div>
                         <div class="car-info">
                             <h3>Tata Tiago EV</h3>
@@ -890,6 +904,58 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // 4th Anniversary announcement bar logic
+            const annBar = document.getElementById('announcementBar');
+            const closeBtn = document.getElementById('closeAnnouncement');
+            
+            if (annBar && closeBtn) {
+                if (localStorage.getItem('announcementDismissed') === 'true') {
+                    annBar.style.display = 'none';
+                } else {
+                    closeBtn.addEventListener('click', () => {
+                        annBar.style.opacity = '0';
+                        annBar.style.height = '0';
+                        annBar.style.paddingTop = '0';
+                        annBar.style.paddingBottom = '0';
+                        annBar.style.marginTop = '-50px';
+                        localStorage.setItem('announcementDismissed', 'true');
+                        setTimeout(() => {
+                            annBar.style.display = 'none';
+                        }, 300);
+                    });
+                }
+            }
+
+            // Splashscreen popup logic
+            const splashOverlay = document.getElementById('splashOverlay');
+            const closeSplashBtn = document.getElementById('closeSplash');
+            
+            if (splashOverlay && closeSplashBtn) {
+                if (localStorage.getItem('splashDismissed') !== 'true') {
+                    setTimeout(() => {
+                        splashOverlay.style.display = 'flex';
+                        // Force browser reflow to trigger transition
+                        splashOverlay.offsetHeight;
+                        splashOverlay.classList.add('active');
+                    }, 800);
+                    
+                    const dismissSplash = () => {
+                        splashOverlay.classList.remove('active');
+                        localStorage.setItem('splashDismissed', 'true');
+                        setTimeout(() => {
+                            splashOverlay.style.display = 'none';
+                        }, 400);
+                    };
+                    
+                    closeSplashBtn.addEventListener('click', dismissSplash);
+                    splashOverlay.addEventListener('click', (e) => {
+                        if (e.target === splashOverlay) {
+                            dismissSplash();
+                        }
+                    });
+                }
+            }
+
             // Initialize Supabase lead handling for the help form
             window.handleLeadForm('helpForm', 'General Inquiry');
 

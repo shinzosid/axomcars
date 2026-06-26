@@ -2900,3 +2900,156 @@ body {
     }
 }
 
+/* 4th Anniversary Announcement Bar */
+.announcement-bar {
+    background: linear-gradient(135deg, #1D70B8 0%, #0F4C81 100%);
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.75rem 0;
+    text-align: center;
+    position: relative;
+    z-index: 1100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease, margin-top 0.3s ease, padding 0.3s ease, height 0.3s ease;
+    border-bottom: 2px solid #D4AF37; /* Anniversary Gold Accent */
+    font-family: var(--font-main);
+    overflow: hidden;
+}
+
+.announcement-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+    position: relative;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.announcement-text {
+    padding-right: 2rem;
+    letter-spacing: 0.2px;
+    line-height: 1.4;
+    display: inline-block;
+}
+
+.announcement-close {
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1;
+    cursor: pointer;
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.8;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.announcement-close:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .announcement-bar {
+        font-size: 0.85rem;
+        padding: 0.6rem 0;
+    }
+    .announcement-text {
+        padding-right: 1.5rem;
+    }
+    .announcement-close {
+        right: 1rem;
+    }
+}
+
+/* Splashscreen Pop-up */
+.splash-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2500; /* Higher than header and standard modals */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.splash-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.splash-container {
+    position: relative;
+    max-width: 600px;
+    width: 90%;
+    background: transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.splash-overlay.active .splash-container {
+    transform: scale(1);
+}
+
+.splash-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.splash-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    color: #FFFFFF;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease, transform 0.2s ease;
+    line-height: 1;
+}
+
+.splash-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+@media (max-width: 480px) {
+    .splash-container {
+        max-width: 95%;
+    }
+    .splash-close {
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        font-size: 24px;
+    }
+}
+

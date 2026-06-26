@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         tiago: {
             name: "Tiago",
-            price: "4,59,990",
+            price: "4,69,990",
             tagline: "Unexpected Tech. Unmissable WOW!",
             description: "Raising the bar with tech, head turning design, and a driving experience that truly feels JUST WOW.",
             colors: [
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tagline: "It's a Chill Car",
             description: "The most loved electric hatchback in India. Designed to make your everyday drive effortless and sustainable.",
             colors: [
-                { id: "blue", name: "Tropical Mist", hex: "#add8e6", img: "https://cdn.axomcars.in/electric/tiago-ev/tiago-ev.avif" }
+                { id: "blue", name: "Tropical Mist", hex: "#add8e6", img: "https://cdn.axomcars.in/electric/tiago-ev/tiago-ev.webp" }
             ],
             interior: "https://cdn.axomcars.in/electric/tiago-ev/tiagoev-interior.avif",
             lifestyle: "https://cdn.axomcars.in/electric/tiago-ev/tiagoev-exterior.avif",

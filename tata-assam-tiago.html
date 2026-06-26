@@ -26,12 +26,14 @@
             padding-top: 40px;
             border-top: 1px solid #eaeaea;
         }
+
         .persona-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
             margin-top: 30px;
         }
+
         .persona-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -42,10 +44,12 @@
             flex-direction: column;
             transition: transform 0.2s, box-shadow 0.2s;
         }
+
         .persona-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+
         .persona-header {
             padding: 18px 24px;
             color: #ffffff;
@@ -54,12 +58,14 @@
             align-items: center;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
+
         .persona-header h4 {
             font-size: 1.25rem;
             font-weight: 700;
             margin: 0;
             letter-spacing: 0.5px;
         }
+
         .persona-addition {
             font-size: 0.75rem;
             font-weight: 500;
@@ -68,15 +74,18 @@
             border-radius: 12px;
             text-transform: uppercase;
         }
+
         .persona-body {
             padding: 24px;
             flex-grow: 1;
         }
+
         .persona-body ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
+
         .persona-body li {
             font-size: 0.9rem;
             color: #4a5568;
@@ -86,30 +95,59 @@
             line-height: 1.4;
             text-align: left;
         }
+
         .persona-body li:last-child {
             margin-bottom: 0;
         }
+
         .persona-body li::before {
             content: "•";
-            color: #3b82f6; /* premium blue bullet */
+            color: #3b82f6;
+            /* premium blue bullet */
             font-size: 1.2rem;
             position: absolute;
             left: 0;
             top: -2px;
         }
+
         /* Color schemes for header bands */
-        .smart-header { background: #4a5568; } /* Slate */
-        .pure-header { background: #319795; } /* Teal */
-        .pure-plus-header { background: #2b6cb0; } /* Blue */
-        .pure-plus-a-header { background: #805ad5; } /* Purple */
-        .creative-header { background: #dd6b20; } /* Orange */
-        .creative-plus-header { background: #e53e3e; } /* Red */
+        .smart-header {
+            background: #4a5568;
+        }
+
+        /* Slate */
+        .pure-header {
+            background: #319795;
+        }
+
+        /* Teal */
+        .pure-plus-header {
+            background: #2b6cb0;
+        }
+
+        /* Blue */
+        .pure-plus-a-header {
+            background: #805ad5;
+        }
+
+        /* Purple */
+        .creative-header {
+            background: #dd6b20;
+        }
+
+        /* Orange */
+        .creative-plus-header {
+            background: #e53e3e;
+        }
+
+        /* Red */
         /* Responsive wrapping */
         @media (max-width: 991px) {
             .persona-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+
         @media (max-width: 768px) {
             .persona-grid {
                 grid-template-columns: 1fr;
@@ -227,7 +265,7 @@
                     <h1>Tata Tiago Price in Guwahati & Assam</h1>
                     <p class="price-start"
                         style="color: #fff; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; opacity: 0.9;">
-                        Price starts at ₹4.59 Lakh*</p>
+                        Price starts at ₹4.69 Lakh*</p>
                     <p class="tagline">It's Seriously Fun</p>
                     <div class="cta-group">
                         <a href="https://wa.me/917099064993?text=Hi%20Axom%20Cars,%20I%20am%20interested%20in%20booking%20the%20Tata%20Tiago.%20Please%20provide%20more%20details."
@@ -284,8 +322,10 @@
                 <div class="feature-row">
                     <div class="feature-image">
                         <picture>
-                            <source srcset="https://cdn.axomcars.in/cars/tiago/tiagointerior.avif?v=2" type="image/avif">
-                            <source srcset="https://cdn.axomcars.in/cars/tiago/tiagointerior.webp?v=2" type="image/webp">
+                            <source srcset="https://cdn.axomcars.in/cars/tiago/tiagointerior.avif?v=2"
+                                type="image/avif">
+                            <source srcset="https://cdn.axomcars.in/cars/tiago/tiagointerior.webp?v=2"
+                                type="image/webp">
                             <img src="https://cdn.axomcars.in/cars/tiago/tiagointerior.jpg?v=2" alt="Interior">
                         </picture>
                     </div>
@@ -313,7 +353,8 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Choose Your Persona</h2>
-                    <p>Select the perfect variant and transmission combination for your Tiago. Explore detailed features and drivetrains for each persona below.</p>
+                    <p>Select the perfect variant and transmission combination for your Tiago. Explore detailed features
+                        and drivetrains for each persona below.</p>
                 </div>
                 <div class="comparison-table-wrapper">
                     <table class="comparison-table variant-matrix">
@@ -374,7 +415,9 @@
                 </div>
 
                 <div class="persona-walk-container">
-                    <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 24px; color: var(--secondary-color); text-align: center;">Persona Feature Walk</h3>
+                    <h3
+                        style="font-size: 1.8rem; font-weight: 700; margin-bottom: 24px; color: var(--secondary-color); text-align: center;">
+                        Persona Feature Walk</h3>
                     <div class="persona-grid">
                         <!-- SMART -->
                         <div class="persona-card">
