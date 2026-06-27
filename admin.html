@@ -124,6 +124,8 @@
         .stat-value { font-size: 1.875rem; font-weight: 700; color: var(--text-main); }
         .stat-trend { font-size: 0.75rem; margin-top: 8px; font-weight: 600; }
         .trend-up { color: var(--success); }
+        .trend-down { color: var(--danger); }
+        .trend-neutral { color: var(--text-light); }
 
         /* Charts Section */
         .charts-row {
@@ -348,21 +350,21 @@
                 <div class="stat-card">
                     <div class="stat-label">Total Visits</div>
                     <div class="stat-value" id="iqTotalVisits">0</div>
-                    <div class="stat-trend trend-up">↑ 12% vs last week</div>
+                    <div class="stat-trend" id="iqTotalVisitsTrend">-</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">High Intent Visitors</div>
                     <div class="stat-value" id="iqHighIntent">0</div>
-                    <div class="stat-trend trend-up">↑ 5% Hot Leads</div>
+                    <div class="stat-trend" id="iqHighIntentTrend">-</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Conversions (WhatsApp/Call)</div>
                     <div class="stat-value" id="iqConversions">0</div>
-                    <div class="stat-trend">7.2% Rate</div>
+                    <div class="stat-trend" id="iqConversionsTrend">-</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Avg. Engagement</div>
-                    <div class="stat-value" id="iqAvgTime">2m 14s</div>
+                    <div class="stat-value" id="iqAvgTime">0s</div>
                 </div>
             </div>
 
@@ -702,6 +704,79 @@
                 document.getElementById('iqHighIntent').textContent = hotLeadsCount;
                 document.getElementById('iqConversions').textContent = conversionsCount;
                 document.getElementById('liveVisitorCount').textContent = `${Object.keys(visitors).length} Active Recently`;
+
+                // Calculate Avg. Engagement Time
+                let totalDurationMs = 0;
+                let visitorsWithDurationCount = 0;
+                Object.values(visitors).forEach(data => {
+                    if (data.visits.length >= 2) {
+                        const times = data.visits.map(v => new Date(v.created_at).getTime());
+                        const duration = Math.max(...times) - Math.min(...times);
+                        totalDurationMs += duration;
+                        visitorsWithDurationCount++;
+                    } else {
+                        // Single page visit: assume default 15 seconds
+                        totalDurationMs += 15 * 1000;
+                        visitorsWithDurationCount++;
+                    }
+                });
+                const avgDurationMs = visitorsWithDurationCount > 0 ? totalDurationMs / visitorsWithDurationCount : 0;
+                const avgSeconds = Math.round(avgDurationMs / 1000);
+                const minutes = Math.floor(avgSeconds / 60);
+                const seconds = avgSeconds % 60;
+                document.getElementById('iqAvgTime').textContent = minutes > 0 ? `${minutes}m ${seconds}s` : `${seconds}s`;
+
+                // Calculate Total Visits Trend (This week vs last week)
+                const now = new Date().getTime();
+                const oneDayMs = 24 * 60 * 60 * 1000;
+                const sevenDaysAgo = now - 7 * oneDayMs;
+                const fourteenDaysAgo = now - 14 * oneDayMs;
+                let visitsThisWeek = 0;
+                let visitsLastWeek = 0;
+                visits.forEach(v => {
+                    const t = new Date(v.created_at).getTime();
+                    if (t >= sevenDaysAgo) visitsThisWeek++;
+                    else if (t >= fourteenDaysAgo) visitsLastWeek++;
+                });
+
+                const totalTrendEl = document.getElementById('iqTotalVisitsTrend');
+                totalTrendEl.className = 'stat-trend'; // reset
+                if (visitsLastWeek > 0) {
+                    const percentChange = Math.round(((visitsThisWeek - visitsLastWeek) / visitsLastWeek) * 100);
+                    if (percentChange >= 0) {
+                        totalTrendEl.textContent = `↑ ${percentChange}% vs last week`;
+                        totalTrendEl.classList.add('trend-up');
+                    } else {
+                        totalTrendEl.textContent = `↓ ${Math.abs(percentChange)}% vs last week`;
+                        totalTrendEl.classList.add('trend-down');
+                    }
+                } else {
+                    totalTrendEl.textContent = `↑ ${visitsThisWeek} visits this week`;
+                    totalTrendEl.classList.add('trend-up');
+                }
+
+                // Calculate High Intent Visitors Rate
+                const totalVisitorsCount = Object.keys(visitors).length;
+                const highIntentRate = totalVisitorsCount > 0 ? Math.round((hotLeadsCount / totalVisitorsCount) * 100) : 0;
+                const highIntentTrendEl = document.getElementById('iqHighIntentTrend');
+                highIntentTrendEl.className = 'stat-trend';
+                highIntentTrendEl.textContent = `${highIntentRate}% Hot Leads Rate`;
+                if (highIntentRate > 0) {
+                    highIntentTrendEl.classList.add('trend-up');
+                } else {
+                    highIntentTrendEl.classList.add('trend-neutral');
+                }
+
+                // Calculate Conversions Rate
+                const conversionsRate = totalVisitorsCount > 0 ? ((conversionsCount / totalVisitorsCount) * 100).toFixed(1) : "0.0";
+                const conversionsTrendEl = document.getElementById('iqConversionsTrend');
+                conversionsTrendEl.className = 'stat-trend';
+                conversionsTrendEl.textContent = `${conversionsRate}% Conversion Rate`;
+                if (parseFloat(conversionsRate) > 0) {
+                    conversionsTrendEl.classList.add('trend-up');
+                } else {
+                    conversionsTrendEl.classList.add('trend-neutral');
+                }
 
                 // 4. Update Charts
                 updateCharts(visits);
