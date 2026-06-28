@@ -155,93 +155,292 @@
                     </div>
                 </div>
 
-                <!-- Modern EMI Calculator Card -->
-                <div class="emi-calculator-container" style="margin-top: 5rem;">
+                <!-- Upgraded EMI Calculator -->
+                <div class="emi-calculator-container" style="margin-top: 5rem;" id="emi-calculator">
+
+                    <!-- LEFT PANEL -->
                     <div class="emi-inputs">
-                        <h3 style="margin-bottom: 30px; color: var(--secondary-color); font-size: 26px; font-weight: 700;">Estimate Your EMI</h3>
-                        
+                        <h3 style="margin-bottom: 8px; color: var(--secondary-color); font-size: 26px; font-weight: 700;">Estimate Your EMI</h3>
+                        <p style="font-size: 13px; color: #999; margin-bottom: 30px;">Based on your vehicle's on-road price in Assam</p>
+
+                        <!-- 1. Vehicle Selector -->
                         <div class="emi-field">
                             <div class="emi-label-row">
-                                <label>Loan Amount (₹)</label>
-                                <span id="valAmount" class="emi-value-display">₹7,00,000</span>
+                                <label for="emiVehicleSelect">Select Vehicle</label>
                             </div>
-                            <input type="range" id="emiAmount" min="100000" max="5000000" step="50000" value="700000" class="emi-slider" oninput="calculateEMI()">
+                            <select id="emiVehicleSelect" class="emi-vehicle-select" onchange="onVehicleChange()">
+                                <option value="custom">Custom / Enter Price Manually</option>
+                                <optgroup label="Hatchbacks &amp; Sedans">
+                                    <option value="tiago" data-price="675000">Tata Tiago — ₹6,75,000</option>
+                                    <option value="tigor" data-price="775000">Tata Tigor — ₹7,75,000</option>
+                                    <option value="altroz" data-price="895000">Tata Altroz — ₹8,95,000</option>
+                                </optgroup>
+                                <optgroup label="SUVs &amp; Crossovers">
+                                    <option value="punch" data-price="785000">Tata Punch — ₹7,85,000</option>
+                                    <option value="nexon" data-price="1045000" selected>Tata Nexon — ₹10,45,000</option>
+                                    <option value="curvv" data-price="1095000">Tata Curvv — ₹10,95,000</option>
+                                    <option value="harrier" data-price="1500000">Tata Harrier — ₹15,00,000</option>
+                                    <option value="safari" data-price="1700000">Tata Safari — ₹17,00,000</option>
+                                    <option value="sierra" data-price="2500000">Tata Sierra — ₹25,00,000</option>
+                                </optgroup>
+                                <optgroup label="Electric Vehicles">
+                                    <option value="tiago-ev" data-price="875000">Tata Tiago EV — ₹8,75,000</option>
+                                    <option value="tigor-ev" data-price="1195000">Tata Tigor EV — ₹11,95,000</option>
+                                    <option value="punch-ev" data-price="1145000">Tata Punch EV — ₹11,45,000</option>
+                                    <option value="nexon-ev" data-price="1495000">Tata Nexon EV — ₹14,95,000</option>
+                                    <option value="curvv-ev" data-price="1895000">Tata Curvv EV — ₹18,95,000</option>
+                                    <option value="harrier-ev" data-price="2250000">Tata Harrier EV — ₹22,50,000</option>
+                                </optgroup>
+                            </select>
                         </div>
 
+                        <!-- 2. On-Road Price -->
                         <div class="emi-field">
                             <div class="emi-label-row">
-                                <label>Interest Rate (%)</label>
+                                <label for="emiOnRoadPrice">Vehicle On-Road Price</label>
+                                <span id="emiPriceNote" style="font-size: 11px; color: #aaa; font-weight: 500;">Assam (incl. RTO &amp; Insurance)</span>
+                            </div>
+                            <div class="emi-price-display-wrapper">
+                                <span class="emi-price-rupee">₹</span>
+                                <input type="number" id="emiOnRoadPrice" value="1045000" min="100000" max="10000000" step="10000"
+                                    class="emi-price-input" oninput="onPriceInput()" readonly>
+                            </div>
+                            <p id="emiPriceReadonlyNote" style="font-size: 11px; color: #bbb; margin-top: 6px;">Select "Custom" above to enter a different price</p>
+                        </div>
+
+                        <!-- 3. Down Payment Slider -->
+                        <div class="emi-field">
+                            <div class="emi-label-row">
+                                <label>Down Payment</label>
+                                <span id="valDownPayment" class="emi-value-display">₹2,09,000</span>
+                            </div>
+                            <input type="range" id="emiDownPayment" min="50000" max="731500" step="10000" value="209000"
+                                class="emi-slider" oninput="calculateEMI()">
+                            <div style="display: flex; justify-content: space-between; font-size: 11px; color: #bbb; margin-top: 4px;">
+                                <span>₹50,000</span>
+                                <span id="downPayMaxLabel">70% of price</span>
+                            </div>
+                        </div>
+
+                        <!-- 4. Loan Amount (auto-calculated) -->
+                        <div class="emi-field">
+                            <div class="emi-loan-display">
+                                <div>
+                                    <p class="emi-loan-label">Loan Amount</p>
+                                    <p class="emi-loan-sublabel">On-Road Price − Down Payment</p>
+                                </div>
+                                <span id="valLoanAmount" class="emi-loan-value">₹8,36,000</span>
+                            </div>
+                        </div>
+
+                        <!-- 5. Interest Rate -->
+                        <div class="emi-field">
+                            <div class="emi-label-row">
+                                <label>Interest Rate</label>
                                 <span id="valRate" class="emi-value-display">8.75%</span>
                             </div>
-                            <input type="range" id="emiRate" min="5" max="20" step="0.25" value="8.75" class="emi-slider" oninput="calculateEMI()">
+                            <input type="range" id="emiRate" min="7" max="12" step="0.05" value="8.75"
+                                class="emi-slider" oninput="calculateEMI()">
+                            <div style="display: flex; justify-content: space-between; font-size: 11px; color: #bbb; margin-top: 4px;">
+                                <span>7%</span><span>12%</span>
+                            </div>
                         </div>
 
-                        <div class="emi-field">
+                        <!-- 6. Loan Tenure -->
+                        <div class="emi-field" style="margin-bottom: 0;">
                             <div class="emi-label-row">
-                                <label>Tenure (Years)</label>
+                                <label>Loan Tenure</label>
                                 <span id="valTenure" class="emi-value-display">7 Years</span>
                             </div>
-                            <input type="range" id="emiTenure" min="1" max="7" step="1" value="7" class="emi-slider" oninput="calculateEMI()">
+                            <input type="range" id="emiTenure" min="1" max="7" step="1" value="7"
+                                class="emi-slider" oninput="calculateEMI()">
+                            <div style="display: flex; justify-content: space-between; font-size: 11px; color: #bbb; margin-top: 4px;">
+                                <span>1 Yr</span><span>7 Yrs</span>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- RIGHT PANEL -->
                     <div class="emi-results">
                         <div class="emi-main-result">
                             <p class="label">Estimated Monthly EMI</p>
-                            <div id="emiResult" class="amount">₹11,165</div>
+                            <div id="emiResult" class="amount">₹13,384</div>
                         </div>
-                        
+
                         <div class="emi-stats">
                             <div class="emi-stat-row">
-                                <span class="emi-stat-label">Total Interest</span>
-                                <span id="totalInterest" class="emi-stat-value">₹2,37,860</span>
+                                <span class="emi-stat-label">Down Payment</span>
+                                <span id="totalDownPayment" class="emi-stat-value" style="color: #27ae60;">₹2,09,000</span>
                             </div>
                             <div class="emi-stat-row">
-                                <span class="emi-stat-label">Total Payable</span>
-                                <span id="totalPayable" class="emi-stat-value">₹9,37,860</span>
+                                <span class="emi-stat-label">Loan Amount</span>
+                                <span id="totalLoanAmount" class="emi-stat-value">₹8,36,000</span>
+                            </div>
+                            <div class="emi-stat-row">
+                                <span class="emi-stat-label">Total Interest</span>
+                                <span id="totalInterest" class="emi-stat-value">₹3,07,264</span>
+                            </div>
+                            <div class="emi-stat-row" style="border-top: 2px solid var(--primary-color); padding-top: 15px; margin-top: 5px;">
+                                <span class="emi-stat-label" style="font-weight: 700; color: #333;">Total Amount Payable</span>
+                                <span id="totalPayable" class="emi-stat-value" style="color: var(--primary-color);">₹11,43,264</span>
                             </div>
                         </div>
 
-                        <div class="emi-disclaimer">
-                            <p>*Indicative values only. Final EMI may vary based on bank schemes and processing fees.</p>
+                        <!-- Finance CTAs -->
+                        <div style="width: 100%; margin-top: 30px; display: flex; flex-direction: column; gap: 12px;">
+                            <button onclick="openFinanceModal()" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 15px;">
+                                Check Finance Eligibility
+                            </button>
+                            <button onclick="openTestDriveModal()" class="btn btn-secondary" style="width: 100%; justify-content: center; font-size: 14px;">
+                                Book Test Drive
+                            </button>
+                        </div>
+
+                        <div class="emi-disclaimer" style="margin-top: 20px;">
+                            <p>*Indicative values only. Final EMI may vary based on bank schemes and processing fees. On-road price includes Assam RTO &amp; insurance estimates.</p>
                         </div>
                     </div>
                 </div>
 
-                <div style="margin-top: 5rem; text-align: center;">
-                    <p style="font-size: 18px; color: #444;">Need a personalized finance quote for a specific car?</p>
-                    <div style="display: flex; gap: 20px; justify-content: center; margin-top: 20px;">
-                        <a href="tel:7099064993" class="btn btn-primary">Call Finance Expert</a>
-                        <a href="index.html" class="btn btn-secondary">Explore Cars</a>
+                <!-- Bonus: Finance Assistance CTA -->
+                <div class="emi-finance-assist" style="margin-top: 3rem;">
+                    <div class="emi-finance-assist-inner">
+                        <div>
+                            <p class="emi-finance-assist-heading">Need a customised finance plan?</p>
+                            <p class="emi-finance-assist-sub">Our finance experts can help you find the best EMI options with flexible down payment and tenure — at Guwahati and Rangia showrooms.</p>
+                        </div>
+                        <div class="emi-finance-assist-btns">
+                            <button onclick="openFinanceModal()" class="btn btn-primary">Get Finance Assistance</button>
+                            <a href="https://wa.me/917099064993?text=Hi%20Axom%20Cars,%20I%20need%20help%20with%20car%20finance%20and%20EMI%20options." target="_blank" class="btn btn-whatsapp">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                WhatsApp Finance Team
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <script>
+            // ── Vehicle price map (on-road estimates for Assam, incl. RTO & Insurance) ──
+            const EMI_CAR_PRICES = {
+                'tiago': 675000, 'tigor': 775000, 'altroz': 895000,
+                'punch': 785000, 'nexon': 1045000, 'curvv': 1095000,
+                'harrier': 1500000, 'safari': 1700000, 'sierra': 2500000,
+                'tiago-ev': 875000, 'tigor-ev': 1195000, 'punch-ev': 1145000,
+                'nexon-ev': 1495000, 'curvv-ev': 1895000, 'harrier-ev': 2250000
+            };
+
+            function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+
+            function onVehicleChange() {
+                const sel = document.getElementById('emiVehicleSelect');
+                const priceInput = document.getElementById('emiOnRoadPrice');
+                const note = document.getElementById('emiPriceReadonlyNote');
+                const key = sel.value;
+                if (key === 'custom') {
+                    priceInput.removeAttribute('readonly');
+                    priceInput.style.background = '#fff';
+                    note.textContent = 'Enter the on-road price for your city';
+                } else {
+                    priceInput.value = EMI_CAR_PRICES[key];
+                    priceInput.setAttribute('readonly', true);
+                    priceInput.style.background = '#f8f9fa';
+                    note.textContent = 'Select "Custom" above to enter a different price';
+                }
+                updateDownPaymentLimits();
+                calculateEMI();
+            }
+
+            function onPriceInput() {
+                updateDownPaymentLimits();
+                calculateEMI();
+            }
+
+            function updateDownPaymentLimits() {
+                const price = parseInt(document.getElementById('emiOnRoadPrice').value) || 1045000;
+                const dpSlider = document.getElementById('emiDownPayment');
+                const maxDP = Math.floor(price * 0.7 / 10000) * 10000;
+                dpSlider.min = 50000;
+                dpSlider.max = maxDP;
+                dpSlider.step = 10000;
+                const defaultDP = Math.round(price * 0.20 / 10000) * 10000;
+                if (parseInt(dpSlider.value) > maxDP || parseInt(dpSlider.value) < 50000) {
+                    dpSlider.value = defaultDP;
+                }
+                document.getElementById('downPayMaxLabel').textContent = fmt(maxDP) + ' (70%)';
+            }
+
             function calculateEMI() {
-                const P = parseFloat(document.getElementById('emiAmount').value);
-                const r = parseFloat(document.getElementById('emiRate').value) / 12 / 100;
-                const n = parseFloat(document.getElementById('emiTenure').value) * 12;
+                const price = parseInt(document.getElementById('emiOnRoadPrice').value) || 1045000;
+                const dp    = parseInt(document.getElementById('emiDownPayment').value) || 0;
+                const P     = Math.max(0, price - dp);
+                const rate  = parseFloat(document.getElementById('emiRate').value);
+                const r     = rate / 12 / 100;
+                const n     = parseFloat(document.getElementById('emiTenure').value) * 12;
 
-                // Update Labels
-                document.getElementById('valAmount').textContent = '₹' + P.toLocaleString('en-IN');
-                document.getElementById('valRate').textContent = document.getElementById('emiRate').value + '%';
-                document.getElementById('valTenure').textContent = document.getElementById('emiTenure').value + ' Years';
+                // Update left panel displays
+                document.getElementById('valDownPayment').textContent  = fmt(dp);
+                document.getElementById('valLoanAmount').textContent    = fmt(P);
+                document.getElementById('valRate').textContent          = rate.toFixed(2) + '%';
+                document.getElementById('valTenure').textContent        = document.getElementById('emiTenure').value + ' Years';
 
-                if (P && r && n) {
-                    const emi = P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+                // Update right panel summary
+                document.getElementById('totalDownPayment').textContent = fmt(dp);
+                document.getElementById('totalLoanAmount').textContent  = fmt(P);
+
+                if (P > 0 && r > 0 && n > 0) {
+                    const emi          = P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
                     const totalPayable = emi * n;
-                    const totalInterest = totalPayable - P;
-
-                    document.getElementById('emiResult').textContent = '₹' + Math.round(emi).toLocaleString('en-IN');
-                    document.getElementById('totalInterest').textContent = '₹' + Math.round(totalInterest).toLocaleString('en-IN');
-                    document.getElementById('totalPayable').textContent = '₹' + Math.round(totalPayable).toLocaleString('en-IN');
+                    const totalInterest= totalPayable - P;
+                    document.getElementById('emiResult').textContent      = fmt(emi);
+                    document.getElementById('totalInterest').textContent  = fmt(totalInterest);
+                    document.getElementById('totalPayable').textContent   = fmt(totalPayable);
+                } else {
+                    document.getElementById('emiResult').textContent      = '₹0';
+                    document.getElementById('totalInterest').textContent  = '₹0';
+                    document.getElementById('totalPayable').textContent   = fmt(dp);
                 }
             }
-            
-            // Initial calculation
-            window.addEventListener('load', calculateEMI);
+
+            // Finance Eligibility modal trigger
+            window.openFinanceModal = function() {
+                const modal = document.getElementById('helpModal');
+                if (!modal) return;
+                const title  = modal.querySelector('h2');
+                const submit = modal.querySelector('button[type="submit"]');
+                const form   = document.getElementById('helpForm');
+                if (form) form.reset();
+                window.currentLeadType = 'Finance Enquiry';
+                if (title)  title.textContent  = 'Check Finance Eligibility';
+                if (submit) submit.textContent = 'Get Finance Details';
+                modal.classList.add('active');
+            };
+
+            // Auto-select vehicle from URL param ?car=nexon (enables deep linking from vehicle pages)
+            document.addEventListener('DOMContentLoaded', () => {
+                const params = new URLSearchParams(window.location.search);
+                const carParam = params.get('car');
+                if (carParam && EMI_CAR_PRICES[carParam]) {
+                    const sel = document.getElementById('emiVehicleSelect');
+                    if (sel) sel.value = carParam;
+                }
+                onVehicleChange();
+            });
+
+            // Test Drive modal trigger
+            window.openTestDriveModal = function() {
+                const modal = document.getElementById('helpModal');
+                if (!modal) return;
+                const title  = modal.querySelector('h2');
+                const submit = modal.querySelector('button[type="submit"]');
+                const form   = document.getElementById('helpForm');
+                if (form) form.reset();
+                window.currentLeadType = 'Test Drive';
+                if (title)  title.textContent  = 'Book a Test Drive';
+                if (submit) submit.textContent = 'Book Test Drive';
+                modal.classList.add('active');
+            };
         </script>
 
         <section class="faq-section">

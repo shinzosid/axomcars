@@ -2442,6 +2442,149 @@ body {
     border: 1px solid #f0f0f0;
 }
 
+/* Vehicle select dropdown */
+.emi-vehicle-select {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--secondary-color);
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
+    appearance: auto;
+}
+.emi-vehicle-select:focus {
+    border-color: var(--primary-color);
+}
+
+/* On-road price input with ₹ prefix */
+.emi-price-display-wrapper {
+    display: flex;
+    align-items: center;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+.emi-price-display-wrapper:focus-within {
+    border-color: var(--primary-color);
+}
+.emi-price-rupee {
+    padding: 12px 14px;
+    background: #f8f9fa;
+    font-size: 18px;
+    font-weight: 700;
+    color: #555;
+    border-right: 1px solid #e2e8f0;
+    user-select: none;
+}
+.emi-price-input {
+    flex: 1;
+    padding: 12px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--secondary-color);
+    border: none;
+    outline: none;
+    background: #fff;
+    min-width: 0;
+}
+.emi-price-input[readonly] {
+    background: #f8f9fa;
+    cursor: not-allowed;
+}
+
+/* Auto-calculated loan amount display */
+.emi-loan-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e8f1fb 100%);
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 18px 22px;
+}
+.emi-loan-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+.emi-loan-sublabel {
+    font-size: 11px;
+    color: #888;
+}
+.emi-loan-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+/* Finance assistance banner */
+.emi-finance-assist {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%);
+    border-radius: 16px;
+    overflow: hidden;
+}
+.emi-finance-assist-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 40px 50px;
+    flex-wrap: wrap;
+}
+.emi-finance-assist-heading {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.emi-finance-assist-sub {
+    font-size: 0.95rem;
+    color: #bbb;
+    line-height: 1.6;
+    max-width: 600px;
+}
+.emi-finance-assist-btns {
+    display: flex;
+    gap: 15px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+.btn-whatsapp {
+    height: 48px;
+    padding: 0 2rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    transition: all 0.2s ease;
+}
+.btn-whatsapp:hover {
+    background: #1ebe5a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(37,211,102,0.35);
+}
+
 @media (max-width: 768px) {
     .emi-inputs, .emi-results {
         padding: 30px;
@@ -2453,6 +2596,19 @@ body {
     }
     .emi-main-result .amount {
         font-size: 40px;
+    }
+    .emi-finance-assist-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px 25px;
+    }
+    .emi-finance-assist-btns {
+        width: 100%;
+    }
+    .emi-finance-assist-btns .btn,
+    .emi-finance-assist-btns .btn-whatsapp {
+        flex: 1;
+        justify-content: center;
     }
 }
 
