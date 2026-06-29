@@ -1,28 +1,5 @@
 User-agent: *
-Allow: /
 Disallow: /admin.html
-Disallow: /disclaimer
-Disallow: /New%20Cars/
-Disallow: /supabase-lead-system/
-Disallow: /scratch/
-Disallow: /venv/
-Disallow: /favicon_io/
-Disallow: /.git/
-Disallow: /.github/
-Disallow: /.vscode/
-
-# Block AI training bots
-User-agent: GPTBot
-Disallow: /
-User-agent: ChatGPT-User
-Disallow: /
-User-agent: CCBot
-Disallow: /
-User-agent: AnthropicAI
-Disallow: /
-User-agent: Claude-Web
-Disallow: /
-User-agent: Google-Extended
-Disallow: /
+Disallow: /unsubscribe.html
 
 Sitemap: https://www.axomcars.in/sitemap.xml
