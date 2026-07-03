@@ -21,13 +21,13 @@ for file in html_files:
         url = base_url + "/"
     elif basename.startswith("tata-"):
         priority = "0.9"
-        url = f"{base_url}/{basename}"
+        url = f"{base_url}/{basename.replace('.html', '')}"
     elif "compare" in basename or basename in ["showrooms.html", "workshops.html", "cars.html"]:
         priority = "0.8"
-        url = f"{base_url}/{basename}"
+        url = f"{base_url}/{basename.replace('.html', '')}"
     else:
         priority = "0.6"
-        url = f"{base_url}/{basename}"
+        url = f"{base_url}/{basename.replace('.html', '')}"
         
     sitemap_urls.append(f"""  <url>
     <loc>{url}</loc>
