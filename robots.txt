@@ -2,4 +2,7 @@ User-agent: *
 Disallow: /admin.html
 Disallow: /unsubscribe.html
 
-Sitemap: https://www.axomcars.in/sitemap.xml
+Sitemap: https://www.axomcars.in/sitemap.xmlDisallow: /venv/
+Disallow: /scratch/
+Disallow: /newsletter-portal/node_modules/
+Disallow: /supabase-lead-system/node_modules/
