@@ -99,7 +99,7 @@ if '"@type": "AutoRepair"' not in w_content:
         "longitude": 91.7839475
       },
       "areaServed": ["Guwahati", "Rangia", "Assam"],
-      "brand": "Tata Motors",
+      "brand": "TATA.CARS",
       "priceRange": "$$"
     }
     </script>
@@ -153,7 +153,7 @@ if os.path.exists(showrooms):
         }
       ],
       "areaServed": ["Guwahati", "Rangia", "Dudhnoi", "Jagiroad", "Assam"],
-      "brand": "Tata Motors",
+      "brand": "TATA.CARS",
       "priceRange": "$$"
     }
     </script>

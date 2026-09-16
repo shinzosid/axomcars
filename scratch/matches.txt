@@ -1,0 +1,125 @@
+./tata-assam-curvv-ev.html:28: "name": "Tata Motors"
+./tata-assam-curvv-ev.html:505: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-assam-altroz.html:28: "name": "Tata Motors"
+./tata-assam-altroz.html:30: "description": "Explore the Tata Altroz at Axom Cars — authorized Tata Motors dealer in Guwahati, Assam. 5-star GNCAP safety, Turbo petrol, and iCNG — India's gold standard premium hatchback.",
+./tata-assam-altroz.html:530: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-assam-harrier.html:28: "name": "Tata Motors"
+./tata-assam-harrier.html:30: "description": "Explore the Tata Harrier at Axom Cars — authorized Tata Motors dealer in Guwahati, Assam. Kryotec diesel, Level 2 ADAS, panoramic sunroof, and 5-star safety.",
+./tata-assam-harrier.html:630: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./compare-cars.html:419: Axom Cars is your trusted authorized Tata Motors dealer in Assam, offering showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi. Visit us to test drive the latest Tata SUV and EV range, get custom on-road price sheets, or value your trade-in vehicle.
+./tata-nexon-ev-vs-mahindra-xuv-3xo-ev.html:227: <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; display: block; margin-bottom: 5px;">TATA MOTORS ADVANTAGE</span>
+./tata-nexon-ev-vs-mahindra-xuv-3xo-ev.html:549: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./index.html:9: content="Buy Tata cars in Assam from Axom Cars — authorized Tata Motors dealership in Guwahati. Explore Tata SUVs, EVs, offers, finance, and test drives.">
+./index.html:11: content="Tata cars Guwahati, Tata Motors Assam, Axom Cars Guwahati, Tata EV Assam, Tata Nexon price Guwahati, Tata Harrier Guwahati, Tata Safari Assam, Tata dealer Guwahati">
+./index.html:18: content="Authorized Tata Motors dealership in Guwahati. Explore SUVs, EVs, and hatchbacks with easy finance and test drives.">
+./index.html:26: content="Authorized Tata Motors dealership in Guwahati. Explore SUVs, EVs, and hatchbacks with easy finance and test drives.">
+./index.html:154: "description": "Authorized Tata Motors dealer in Assam. Explore Tata SUVs, EVs, hatchbacks, finance, and service across Guwahati, Rangia, Jagiroad, and Dudhnoi.",
+./index.html:590: <img src="tiagohero.png" alt="Authorized Tata Motors Dealer in Assam - Axom Cars Guwahati"
+./index.html:594: <h1 class="model-name">Authorized Tata Motors Dealer in Assam</h1>
+./index.html:596: Explore Tata SUVs, EVs, hatchbacks, and premium cars at Axom Cars — your trusted Tata Motors
+./index.html:628: Welcome to <strong>Axom Cars</strong>, your premier <strong>authorized Tata Motors dealer in
+./index.html:630: Guwahati</strong>. We bring the latest automotive innovations from Tata Motors to the
+./index.html:1068: <p>Assam's most trusted authorized Tata Motors dealership — built on transparency, expertise, and
+./index.html:1075: <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">✅ Authorized Tata Motors Dealer</h3>
+./index.html:1303: <p>Authorized Tata Motors dealer in Guwahati, Assam — serving Dispur, Ulubari, Rangia, Jagiroad, and
+./tata-harrier-ev-vs-mahindra-be-6.html:227: <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; display: block; margin-bottom: 5px;">TATA MOTORS ADVANTAGE</span>
+./tata-harrier-ev-vs-mahindra-be-6.html:544: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./workshops.html:7: <title>Authorized Tata Motors Service Center in Guwahati & Rangia | Axom Cars</title>
+./workshops.html:9: <meta name="keywords" content="Tata service center Guwahati, car repair Rangia, Tata Motors authorized workshop Assam, car maintenance Guwahati, Axom Cars service">
+./workshops.html:100: "brand": "Tata Motors",
+./workshops.html:182: <h1>Tata Motors Service Centers in Guwahati & Rangia</h1>
+./workshops.html:386: <p>Our workshops offer a full range of services, including routine maintenance, oil changes, brake repairs, engine diagnostics, bodywork, and genuine Tata Motors spare parts replacement.</p>
+./tata-punch-vs-hyundai-exter.html:251: <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; display: block; margin-bottom: 5px;">TATA MOTORS ADVANTAGE</span>
+./tata-punch-vs-hyundai-exter.html:587: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-assam-safari.html:28: "name": "Tata Motors"
+./tata-assam-safari.html:30: "description": "Explore the Tata Safari at Axom Cars — authorized Tata Motors dealer in Guwahati, Assam. 6/7-seater, ADAS, Kryotec diesel, panoramic sunroof.",
+./tata-assam-safari.html:553: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./add_schemas.py:102: "brand": "Tata Motors",
+./add_schemas.py:156: "brand": "Tata Motors",
+./tata-safari-vs-mahindra-xuv700.html:235: <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; display: block; margin-bottom: 5px;">TATA MOTORS ADVANTAGE</span>
+./tata-safari-vs-mahindra-xuv700.html:561: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./newsletter.html:7: <title>Axom Cars Newsroom | Latest Tata Motors Updates</title>
+./newsletter.html:8: <meta name="description" content="Stay updated with the latest Tata Motors news, car launches, and exclusive offers from Axom Cars. Your authorized Tata dealer in Guwahati and Rangia.">
+./404.html:9: content="Buy Tata cars in Assam from Axom Cars — authorized Tata Motors dealership in Guwahati. Explore Tata SUVs, EVs, offers, finance, and test drives.">
+./404.html:11: content="Tata cars Guwahati, Tata Motors Assam, Axom Cars Guwahati, Tata EV Assam, Tata Nexon price Guwahati, Tata Harrier Guwahati, Tata Safari Assam, Tata dealer Guwahati">
+./404.html:18: content="Authorized Tata Motors dealership in Guwahati. Explore SUVs, EVs, and hatchbacks with easy finance and test drives.">
+./404.html:26: content="Authorized Tata Motors dealership in Guwahati. Explore SUVs, EVs, and hatchbacks with easy finance and test drives.">
+./404.html:153: "description": "Authorized Tata Motors dealer in Assam. Explore Tata SUVs, EVs, hatchbacks, finance, and service across Guwahati, Rangia, Jagiroad, and Dudhnoi.",
+./404.html:595: <p>Authorized Tata Motors dealer in Guwahati, Assam — serving Dispur, Ulubari, Rangia, Jagiroad, and
+./tata-assam-curvv.html:28: "name": "Tata Motors"
+./tata-assam-curvv.html:30: "description": "Explore the Tata Curvv at Axom Cars — authorized Tata Motors dealer in Guwahati, Assam. Hyperion TGDi engine, bold coupé-SUV design, Level 2 ADAS.",
+./tata-assam-curvv.html:518: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-curvv-ev-vs-hyundai-creta-ev.html:227: <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; display: block; margin-bottom: 5px;">TATA MOTORS ADVANTAGE</span>
+./tata-curvv-ev-vs-hyundai-creta-ev.html:544: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./careers.html:9: <meta name="description" content="Build your career with Axom Cars, the leading Tata Motors dealer in Assam. Explore job openings for Customer Advisors, Sales Consultants, and Service Technicians in Guwahati, Rangia, and more.">
+./careers.html:10: <meta name="keywords" content="jobs in Guwahati, automobile careers Assam, sales advisor jobs Guwahati, Axom Cars recruitment, work at Tata Motors dealer">
+./careers.html:735: <p>Yes, we provide comprehensive training programs for all new joiners to familiarize them with Tata Motors' products, sales processes, and our company's service standards. Continuous learning is a key part of the career path at Axom Cars.</p>
+./tata-assam-tigor-ev.html:28: "name": "Tata Motors"
+./tata-assam-tigor-ev.html:507: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-assam-sierra.html:28: "name": "Tata Motors"
+./tata-assam-sierra.html:30: "description": "Explore the Tata Sierra at Axom Cars — authorized Tata Motors dealer in Guwahati, Assam. Iconic legend reborn with lounge interiors and panoramic glass roof.",
+./tata-assam-sierra.html:411: <p>Yes, Tata Motors has confirmed that the Sierra will be available in both internal combustion engine (ICE) and electric (EV) versions, catering to a wide range of customer preferences in the premium SUV segment.</p>
+./tata-assam-sierra.html:558: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-assam-nexon.html:28: "name": "Tata Motors"
+./tata-assam-nexon.html:30: "description": "Explore the Tata Nexon at Axom Cars — authorized Tata Motors dealer in Guwahati, Assam. 5-star B-NCAP safety, 208mm ground clearance, petrol & diesel variants.",
+./tata-assam-nexon.html:551: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-nexon-vs-maruti-brezza.html:267: <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; display: block; margin-bottom: 5px;">TATA MOTORS ADVANTAGE</span>
+./tata-nexon-vs-maruti-brezza.html:440: <p style="margin-bottom: 25px;">When it comes to monthly running costs, the Maruti Brezza takes the lead in fuel economy. Its 1.5L naturally aspirated petrol engine with Smart Hybrid tech can deliver an impressive 15-16 km/l in Guwahati city conditions, whereas the Nexon petrol averages around 11-13 km/l. However, the Nexon offers a highly efficient 1.5L Kryotec diesel engine option and an innovative twin-cylinder iCNG system, both of which drastically lower operating costs. In terms of maintenance, Maruti's spare parts are cheap and widely available. Tata Motors, however, offers competitive scheduled service plans. At Axom Cars, we offer fixed-price maintenance packages at our Guwahati and Rangia workshops, ensuring complete transparency and peace of mind without any surprise bills.</p>
+./tata-nexon-vs-maruti-brezza.html:621: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-curvv-vs-hyundai-creta.html:227: <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; display: block; margin-bottom: 5px;">TATA MOTORS ADVANTAGE</span>
+./tata-curvv-vs-hyundai-creta.html:553: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-assam-nexon-ev.html:28: "name": "Tata Motors"
+./tata-assam-nexon-ev.html:405: <p>Tata Motors offers a comprehensive warranty of 8 years or 1,60,000 km (whichever is earlier) on the high-voltage battery pack and motor, backed by Axom Cars' certified service centers in Assam.</p>
+./tata-assam-nexon-ev.html:513: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./cars.html:8: <meta name="description" content="Explore the complete range of Tata Motors vehicles at Axom Cars. From the rugged Safari and Harrier to the compact Punch and Tiago. Compare models, check prices, and book a test drive in Guwahati.">
+./cars.html:123: <img id="mainVehicleImage" src="" alt="Tata Motors Car Range in Guwahati - Axom Cars" class="main-vehicle-image" style="display: none; opacity: 0; transition: opacity 0.5s ease, filter 0.5s ease;">
+./tata-harrier-ev-vs-tata-curvv-ev.html:212: <p class="lead-text" style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; max-width: 900px;">Tata Motors leads the electric vehicle segment in India, and for buyers with a budget over 20 Lakhs, the choices are highly exciting. You can choose the sporty, striking Tata Curvv.ev built on the acti.ev platform, or step up to the flagship Tata Harrier.ev built on the Land Rover-derived OMEGARC platform. Both offer premium features, long range, and advanced technology. This comparison breaks down their performance, space, and features to help you decide.</p>
+./tata-harrier-ev-vs-tata-curvv-ev.html:227: <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; display: block; margin-bottom: 5px;">TATA MOTORS ADVANTAGE</span>
+./tata-harrier-ev-vs-tata-curvv-ev.html:553: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./style.css:2: --primary-color: #1D70B8; /* Tata Motors Blue */
+./implement_aeo.py:17: q2_old = r'<p>You can purchase the latest Tata Motors vehicles at <strong>Axom Cars<\/strong>. We have state-of-the-art showrooms located in <strong>Dispur<\/strong> and <strong>Ulubari<\/strong> in Guwahati, as well as branches in Rangia, Jagiroad, and Dudhnoi.<\/p>'
+./implement_aeo.py:18: q2_new = r'<p>You can purchase the latest Tata Motors vehicles at <strong>Axom Cars<\/strong>. We have state-of-the-art showrooms located at <strong>GS Road, Dispur<\/strong> and <strong>Ulubari<\/strong> in Guwahati. Visit us for the best on-road price quotes, or <a href="showrooms.html">view our showroom directions on Google Maps<\/a>. We also serve Rangia, Jagiroad, and Dudhnoi.<\/p>'
+./tata-harrier-vs-mahindra-xuv700.html:243: <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; display: block; margin-bottom: 5px;">TATA MOTORS ADVANTAGE</span>
+./tata-harrier-vs-mahindra-xuv700.html:574: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-assam-punch-ev.html:28: "name": "Tata Motors"
+./tata-assam-punch-ev.html:517: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-assam-tiago-ev.html:31: "name": "Tata Motors"
+./tata-assam-tiago-ev.html:533: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-assam-punch.html:28: "name": "Tata Motors"
+./tata-assam-punch.html:30: "description": "Explore the Tata Punch at Axom Cars — authorized Tata Motors dealer in Guwahati, Assam. 5-star GNCAP safety, 187mm ground clearance, iCNG twin-cylinder technology.",
+./tata-assam-punch.html:514: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-assam-harrier-ev.html:28: "name": "Tata Motors"
+./tata-assam-harrier-ev.html:30: "description": "Explore the Tata Harrier EV at Axom Cars — authorized Tata Motors dealer in Guwahati, Assam. Dual-motor AWD, acti.ev platform, 500km+ range, and Level 2 ADAS.",
+./tata-assam-harrier-ev.html:62: "acceptedAnswer": { "@type": "Answer", "text": "The acti.ev is Tata Motors' dedicated EV architecture with an IP67-rated waterproof battery pack, vehicle-to-load (V2L) capability, and multi-mode fast charging support." }
+./tata-assam-harrier-ev.html:539: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./tata-assam-tiago.html:166: "name": "Tata Motors"
+./tata-assam-tiago.html:168: "description": "Explore the new Tata Tiago at Axom Cars — authorized Tata Motors dealer in Guwahati, Assam. Next-gen styling, segment-first iCNG AMT, 4-star GNCAP safety.",
+./tata-assam-tiago.html:659: <p>Yes, Tata Motors has introduced the segment-first iCNG AMT in the Tiago, allowing you
+./tata-assam-tiago.html:828: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./showrooms.html:7: <title>Tata Motors Showrooms in Guwahati, Rangia, Jagiroad & Dudhnoi | Axom Cars</title>
+./showrooms.html:8: <meta name="description" content="Visit Axom Cars showrooms across Assam. Located in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi, we offer the latest Tata Motors range, expert guidance, and personalized car buying experiences.">
+./showrooms.html:9: <meta name="keywords" content="Tata showroom Guwahati, Axom Cars Dispur, Tata dealer Rangia, car showroom Jagiroad, Tata Motors outlet Dudhnoi">
+./showrooms.html:119: "brand": "Tata Motors",
+./showrooms.html:201: <h1>Tata Motors Showrooms in Guwahati and Assam</h1>
+./showrooms.html:607: <p>Yes, all our regional outlets, including Rangia, Jagiroad, and Dudhnoi, showcase the latest Tata Motors lineup. If a specific variant is not on display, our staff can arrange a viewing or test drive for you.</p>
+./privacy.html:49: <section class="privacy-section"><h2>1. About Axom Cars</h2><p>Axom Cars is an authorised Tata Motors dealer in Assam. We provide vehicle sales and related dealership and customer services, including customer assistance, test drives, vehicle enquiries, finance assistance, after-sales support and service coordination.</p></section>
+./privacy.html:56: <section class="privacy-section"><h2>8. Sharing of Information</h2><p>We may share information only where reasonably necessary with Tata Motors and relevant authorised systems or services for dealership operations; Meta or WhatsApp for WhatsApp communications; hosting, cloud, database or IT providers; banks, financial institutions or finance partners when you request finance assistance; service providers supporting dealership or customer operations; and government or regulatory authorities where legally required.</p><p>Not every category receives every customer's information. Axom Cars does not sell customers' personal information.</p></section>
+./privacy.html:60: <section class="privacy-section"><h2>12. Third-Party Services and Links</h2><p>Our website may contain links or integrations involving third-party services, including Tata Motors, WhatsApp or Meta, maps or navigation providers, finance providers and other relevant services. Axom Cars is not responsible for the independent privacy practices of third-party websites or services. Please review their applicable privacy policies.</p></section>
+./privacy.html:67: <footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-col"><img loading="lazy" src="footerlogo.png" alt="Axom Cars" class="logo-white"><p>Authorised Tata Motors dealer in Guwahati, Assam.</p><div class="social-icons"><a href="https://www.facebook.com/p/Axom-Cars-61555218074115/" target="_blank" rel="noopener noreferrer" class="social-icon"><span>Facebook</span></a><a href="https://www.instagram.com/axomcars/" target="_blank" rel="noopener noreferrer" class="social-icon"><span>Instagram</span></a></div></div><div class="footer-col"><h4>Customer Care</h4><ul class="footer-links"><li><a href="cars">Cars</a></li><li><a href="finance">Finance</a></li><li><a href="showrooms">Showrooms</a></li><li><a href="workshops">Workshops</a></li><li><a href="careers">Careers</a></li><li><a href="/privacy" aria-current="page">Privacy Policy</a></li></ul></div><div class="footer-col footer-contact"><h4>Connect</h4><p>Sales: 7099064993</p><p>Service: 7099034015</p><p><a href="mailto:info.sales@axomcars.in">info.sales@axomcars.in</a></p></div></div><div class="footer-bottom"><p>For Roadside Assistance, call on - 18002098282</p><div class="footer-legal"><p>&copy; 2026 Axom Cars. All rights reserved.</p><p class="powered-by">Powered by <a href="https://integritydigiverse.com" target="_blank" rel="noopener noreferrer">Integrity Digiverse</a></p></div></div></div></footer>
+./tata-assam-tigor.html:28: "name": "Tata Motors"
+./tata-assam-tigor.html:30: "description": "Explore the Tata Tigor at Axom Cars — authorized Tata Motors dealer in Guwahati, Assam. Stylish compact sedan with iCNG, 4-star safety, and a large 419L boot.",
+./tata-assam-tigor.html:514: <strong>Authorized Tata Motors Dealership:</strong> Full manufacturer backing and transparent billing across all showrooms in Dispur, Ulubari, Rangia, Jagiroad, and Dudhnoi.
+./offers.html:9: <meta name="keywords" content="Tata car offers Guwahati, car discounts Assam, exchange bonus Tata cars, Axom Cars festive deals, Tata Motors promotions">
+./cars/tigor.html:28: "name": "Tata Motors"
+./cars/harrier.html:28: "name": "Tata Motors"
+./cars/sierra.html:28: "name": "Tata Motors"
+./cars/sierra.html:362: <p>Yes, Tata Motors has confirmed that the Sierra will be available in both internal combustion engine (ICE) and electric (EV) versions, catering to a wide range of customer preferences in the premium SUV segment.</p>
+./cars/tiago.html:125: "name": "Tata Motors"
+./cars/tiago.html:540: <p>Yes, Tata Motors has introduced the segment-first iCNG AMT in the Tiago, allowing you to enjoy the convenience of an automatic transmission with the economy of CNG. This is perfect for the busy streets of Guwahati.</p>
+./cars/punch.html:28: "name": "Tata Motors"
+./cars/nexon.html:7: <title>Tata Nexon Price in Guwahati | Axom Cars Tata Motors</title>
+./cars/nexon.html:28: "name": "Tata Motors"
+./cars/curvv.html:28: "name": "Tata Motors"
+./cars/altroz.html:28: "name": "Tata Motors"
+./cars/safari.html:28: "name": "Tata Motors"
+./supabase-lead-system/supabase/functions/newsletter-handler/index.ts:88: <p>Thank you for your interest in our newsletter. Please confirm your email address to start receiving stories, offers, and updates from the world of Tata Motors.</p>

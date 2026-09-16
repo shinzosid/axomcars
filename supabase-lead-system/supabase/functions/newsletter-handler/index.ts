@@ -85,7 +85,7 @@ serve(async (req: Request) => {
           html: `
             <div style="font-family: 'Poppins', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
               <h2 style="color: #1d70b8;">Welcome to the Axom Cars Family!</h2>
-              <p>Thank you for your interest in our newsletter. Please confirm your email address to start receiving stories, offers, and updates from the world of Tata Motors.</p>
+              <p>Thank you for your interest in our newsletter. Please confirm your email address to start receiving stories, offers, and updates from the world of TATA.CARS.</p>
               <div style="text-align: center; margin: 30px 0;">
                 <a href="${confirmLink}" style="background-color: #1d70b8; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;">Confirm Subscription</a>
               </div>

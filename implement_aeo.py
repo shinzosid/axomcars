@@ -14,8 +14,8 @@ q1_new = r'<p>For navigating both the city traffic of Guwahati and the rugged te
 content = re.sub(q1_old, q1_new, content)
 
 # Enhance "Where can I buy Tata cars in Guwahati?"
-q2_old = r'<p>You can purchase the latest Tata Motors vehicles at <strong>Axom Cars<\/strong>. We have state-of-the-art showrooms located in <strong>Dispur<\/strong> and <strong>Ulubari<\/strong> in Guwahati, as well as branches in Rangia, Jagiroad, and Dudhnoi.<\/p>'
-q2_new = r'<p>You can purchase the latest Tata Motors vehicles at <strong>Axom Cars<\/strong>. We have state-of-the-art showrooms located at <strong>GS Road, Dispur<\/strong> and <strong>Ulubari<\/strong> in Guwahati. Visit us for the best on-road price quotes, or <a href="showrooms.html">view our showroom directions on Google Maps<\/a>. We also serve Rangia, Jagiroad, and Dudhnoi.<\/p>'
+q2_old = r'<p>You can purchase the latest TATA.CARS at <strong>Axom Cars<\/strong>. We have state-of-the-art showrooms located in <strong>Dispur<\/strong> and <strong>Ulubari<\/strong> in Guwahati, as well as branches in Rangia, Jagiroad, and Dudhnoi.<\/p>'
+q2_new = r'<p>You can purchase the latest TATA.CARS at <strong>Axom Cars<\/strong>. We have state-of-the-art showrooms located at <strong>GS Road, Dispur<\/strong> and <strong>Ulubari<\/strong> in Guwahati. Visit us for the best on-road price quotes, or <a href="showrooms.html">view our showroom directions on Google Maps<\/a>. We also serve Rangia, Jagiroad, and Dudhnoi.<\/p>'
 content = re.sub(q2_old, q2_new, content)
 
 # Enhance "Where can I book a Tata test drive in Guwahati?"
